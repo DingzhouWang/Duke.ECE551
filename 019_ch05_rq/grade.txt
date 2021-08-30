@@ -1,9 +1,7 @@
-Grading at 08/30/2021:01:10:19.373486
-For commit ID f3e9e6fc458e90aff85e13e0205297243582e30d
-Grading at Sun Aug 29 21:10:19 EDT 2021
-You do not seem to have a file called answers.txt. Here is what I see:
-answer.txt
-grade.txt
-README
+Grading at 08/30/2021:01:19:20.415855
+For commit ID 49fb7eb7b209a237799e01f776168fe5e87f84fb
+Grading at Sun Aug 29 21:19:20 EDT 2021
+Reading your quiz answers from answers.txt
+You have 2 wrong answers
 
 Overall Grade: FAILED
