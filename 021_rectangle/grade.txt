@@ -1,34 +1,15 @@
-Grading at 08/30/2021:03:47:08.581500
-For commit ID 3f9826948c87051342e1fed248f650b558d7a0cf
-Grading at Sun Aug 29 23:47:08 EDT 2021
+Grading at 08/30/2021:04:12:59.170777
+For commit ID 11382e3ca6d07da897073ba5e68053c69bad2027
+Grading at Mon Aug 30 00:12:58 EDT 2021
 Attempting to compile rectangle.c
 Tring to run rectangle
-Line_9_did_not_match
-Line_11_did_not_match
-Line_13_did_not_match
-Line_14_did_not_match
-Line_16_did_not_match
-Your file did not match the expected ouput
-Your output did not match what we expected. Here is what you printed
-r1 is (2,3) to (7,9)
-r2 is (-1,-2) to (4,5)
-r3 is (-2,-3) to (5,7)
-r4 is (-4,7) to (0,9)
-intersection(r1,r1): (2,3) to (7,9)
-intersection(r1,r2): (2,3) to (4,5)
-intersection(r1,r3): (2,3) to (5,7)
-intersection(r1,r4): <empty>
-intersection(r2,r1): (2,3) to (4,4)
-intersection(r2,r2): (-1,-2) to (4,5)
-intersection(r2,r3): (-1,-2) to (4,7)
-intersection(r2,r4): <empty>
-intersection(r3,r1): (2,3) to (5,3)
-intersection(r3,r2): (-1,-2) to (4,4)
-intersection(r3,r3): (-2,-3) to (5,7)
-intersection(r3,r4): <empty>
-intersection(r4,r1): <empty>
-intersection(r4,r2): <empty>
-intersection(r4,r3): (-2,7) to (0,7)
-intersection(r4,r4): (-4,7) to (0,9)
+Your file matched the expected output
+removing your main() and replacing it with out own to run more tests...
+#################################################
+testcase1:
+testcase1 passed
+#################################################
+testcase2:
+testcase2 passed
 
-Overall Grade: F
+Overall Grade: A
