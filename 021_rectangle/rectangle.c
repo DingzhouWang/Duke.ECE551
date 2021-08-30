@@ -44,8 +44,8 @@ rectangle intersection(rectangle r1, rectangle r2) {
   r2 = canonicalize(r2);
   rec_insert.x = max(r1.x, r2.x);
   rec_insert.y = max(r1.y, r2.y);
-  rec_insert.width = max(r1.x + r1.width, r2.x + r2.width) - rec_insert.x;
-  rec_insert.height = max(r1.y + r2.height, r2.y + r2.height) - rec_insert.y;
+  rec_insert.width = min(r1.x + r1.width, r2.x + r2.width) - rec_insert.x;
+  rec_insert.height = min(r1.y + r2.height, r2.y + r2.height) - rec_insert.y;
   if (rec_insert.width < 0 || rec_insert.height < 0) {
     rec_insert.width = 0;
     rec_insert.height = 0;
