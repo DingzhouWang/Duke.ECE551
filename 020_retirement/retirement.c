@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct _retire_info {
+struct _retire_info {
   int months;             //number of months it is applicable to
   double contribution;    //contribute or spent from account per month
   double rate_of_return;  //return rate
-} retire_info;
+};
 
-//typedef struct _retire_info retire_info;
+typedef struct _retire_info retire_info;
 
 void retirement(int startAge, double initial, retire_info working, retire_info retired) {
   for (int i = startAge; i < startAge + working.months + retired.months; i++) {
