@@ -42,18 +42,18 @@ rectangle intersection(rectangle r1, rectangle r2) {
   rectangle rt;
   r1 = canonicalize(r1);
   r2 = canonicalize(r2);
-  if ((r1.x > (r2.x + r2.width)) || ((r1.x + r1.width) < r2.x) ||
-      ((r1.y + r1.height) < r2.y) || (r1.y > (r2.y + r2.height))) {
+  if (r1.x > (r2.x + r2.width) || (r1.x + r1.width) < r2.x ||
+      (r1.y + r1.height) < r2.y || r1.y > (r2.y + r2.height)) {
     rt.x = r1.x;
     rt.y = r1.y;
     rt.width = 0;
     rt.height = 0;
   }
-  else if ((r1.x == (r2.x + r2.width)) || ((r1.x + r1.width) == r2.x)) {
+  else if (r1.x == (r2.x + r2.width) || (r1.x + r1.width) == r2.x) {
     rt.x = max(r1.x, r2.x);
     rt.y = max(r1.y, r2.y);
     rt.width = 0;
-    rt.height = min((r1.y + r1.height), (r2.y + r2.height)) - rt.y;
+    rt.height = min(r1.y + r1.height, r2.y + r2.height) - rt.y;
   }
   else if (r1.y == (r2.y + r2.height) || r1.y + r1.height == r2.y) {
     rt.x = max(r1.x, r2.x);
