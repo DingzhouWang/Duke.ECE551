@@ -39,45 +39,22 @@ rectangle canonicalize(rectangle r) {
 }
 rectangle intersection(rectangle r1, rectangle r2) {
   //WRITE THIS FUNCTION
-  rectangle rt;
-  r1 = canonicalize(r1);
-  r2 = canonicalize(r2);
-  if (r1.x > (r2.x + r2.width) || (r1.x + r1.width) < r2.x ||
+    rectangle rt;
+    r1 = canonicalize(r1);
+    r2 = canonicalize(r2);
+    if (r1.x > (r2.x + r2.width) || (r1.x + r1.width) < r2.x ||
       (r1.y + r1.height) < r2.y || r1.y > (r2.y + r2.height)) {
-    rt.x = r1.x;
-    rt.y = r1.y;
-    rt.width = 0;
-    rt.height = 0;
-  }
-  else if (r1.x == (r2.x + r2.width) || (r1.x + r1.width) == r2.x) {
-    rt.x = max(r1.x, r2.x);
-    rt.y = max(r1.y, r2.y);
-    rt.width = 0;
-    rt.height = min(r1.y + r1.height, r2.y + r2.height) - rt.y;
-  }
-  else if (r1.y == (r2.y + r2.height) || r1.y + r1.height == r2.y) {
-    rt.x = max(r1.x, r2.x);
-    rt.y = max(r1.y, r2.y);
-    rt.width = min(r1.x + r1.width, r2.x + r2.width) - rt.x;
-    rt.height = 0;
-  }
-  else {
-    rt.x = max(r1.x, r2.x);
-    rt.y = max(r1.y, r2.y);
-    rt.width = min(r1.x + r1.width, r2.x + r2.width) - rt.x;
-    rt.height = min(r1.y + r1.height, r2.y + r2.height) - rt.y;
-  }
-  return rt;
-
-  // rec_insert.x = max(r1.x, r2.x);
-  // rec_insert.y = max(r1.y, r2.y);
-  //  rec_insert.width = min(r1.x + r1.width, r2.x + r2.width) - rec_insert.x;
-  // rec_insert.height = min(r1.y + r2.height, r2.y + r2.height) - rec_insert.y;
-  // if (rec_insert.width < 0 || rec_insert.height < 0) {
-  //rec_insert.width = 0;
-  // rec_insert.height = 0;
-  // }
-  //  return rec_insert;
+        rt.x = r1.x;
+        rt.y = r1.y;
+        rt.width = 0;
+        rt.height = 0;
+    }else {
+        rt.x = max(r1.x, r2.x);
+        rt.y = max(r1.y, r2.y);
+        rt.width = min(r1.x + r1.width, r2.x + r2.width) - rt.x;
+        rt.height = min(r1.y + r1.height, r2.y + r2.height) - rt.y;
+    }
+    return rt;
 }
 
 //You should not need to modify any code below this line
