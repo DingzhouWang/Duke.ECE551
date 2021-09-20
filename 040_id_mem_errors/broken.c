@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-
-int * initArray(int * array, int n){
-  for (int i = 0; i < n; i++){
+int * initArray(int * array, int n) {
+  for (int i = 0; i < n; i++) {
     array[i] = i;
   }
   return array;
@@ -12,8 +10,8 @@ int * initArray(int * array, int n){
 
 int * aFunction(int n) {
   int myArray[n];
-  
-  int * ptr = initArray(myArray, n-1);
+
+  int * ptr = initArray(myArray, n - 1);
   int total = 0;
   for (int i = 0; i <= n; i++) {
     printf("%d\n", myArray[i]);
@@ -23,7 +21,7 @@ int * aFunction(int n) {
   return myArray;
 }
 
-int main (void) {
+int main(void) {
   int * ptr = aFunction(8);
   printf("%d\n", ptr[0]);
   return EXIT_SUCCESS;
