@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+
 int * initArray(int * array, int n) {
   for (int i = 0; i < n; i++) {
     array[i] = i;
