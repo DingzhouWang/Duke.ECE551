@@ -1,0 +1,158 @@
+#include "pandemic.h"
+
+#include <errno.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/*
+check_country_name is used to check whether the country name is valid
+to be sure the length of the name is less than 64
+*/
+bool check_country_name(char * begin, char * end) {
+  if (end - begin >= 63 || end - begin <= 0) {
+    return false;
+  }
+  return true;
+}
+
+/*
+isNumber
+*/
+bool isNumber(char c) {
+  if ((c - '0') >= 0 && (c - '0') <= 9) {
+    return true;
+  }
+  return false;
+}
+
+/*
+check_population is used to check whether the population is valid
+to be sure the population is valid(no char in it) 
+*/
+bool check_population(char * start, char * end) {
+  bool num_flag = false;
+  while (start <= end) {
+    if (*start == ' ' && !num_flag) {
+      start++;
+    }
+    else if (!isNumber(*start) && !num_flag) {
+      fprintf(stderr, "The beginning of population is not number! Please check it. \n");
+      return false;
+    }
+    else if (isNumber(*start)) {
+      num_flag = true;
+      start++;
+    }
+    else if (!isNumber(*start) && num_flag) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/*
+copy country name from line to name
+*/
+void copy_name(char * start, char * end, char * name) {
+  size_t i = 0;
+  while (start != end) {
+    name[i] = *start;
+    start++;
+    i++;
+  }
+  name[i] = '\0';
+}
+
+/*
+convert
+*/
+unsigned long convert_population(char * population_start, char * ending) {
+  char * s;
+  //bool num_flag = false;
+  while (population_start != ending) {
+    if (isNumber(*population_start)) {
+      s = population_start;
+      //num_flag = true;
+      break;
+    }
+    population_start++;
+  }
+  unsigned long population = strtoul(s, NULL, 10);
+  if (errno == ERANGE) {
+    fprintf(stderr, "The population is too large!\n");
+    exit(EXIT_FAILURE);
+  }
+  errno = 0;
+  if (population == 0) {
+    fprintf(stderr, "The population is 0! Please check it. \n");
+    exit(EXIT_FAILURE);
+  }
+  return population;
+}
+
+country_t parseLine(char * line) {
+  //WRITE ME
+  country_t ans;
+  ans.name[0] = '\0';
+  ans.population = 0;
+
+  //check the input line is valid
+  if (!line) {
+    fprintf(stderr, "Input line is empty! Please check it. \n");
+    exit(EXIT_FAILURE);
+  }
+
+  //try to find the comma
+  char * comma_pos = strchr(line, ',');
+
+  //if there is no comma, it's an invalid input
+  if (comma_pos == NULL) {
+    fprintf(stderr, "Input line don't have comma! Please check it. \n");
+    exit(EXIT_FAILURE);
+  }
+
+  //check name
+  if (check_country_name(line, comma_pos)) {
+    char * start = line;
+    copy_name(start, comma_pos, ans.name);
+  }
+  else {
+    fprintf(stderr, "name lenght is invalid (too long or empty)! \n");
+    exit(EXIT_FAILURE);
+  }
+
+  //check population
+  char * ending = strchr(line, '\n');
+  char * population_start = comma_pos;
+
+  //  printf("place a: %c \n", *population_start);
+  if (check_population(++population_start, ending)) {
+    //if (population_start == comma_pos)
+    //  printf("same same");
+    // printf("place b: %c \n", *population_start);
+    ans.population = convert_population(population_start, ending);
+  }
+  else {
+    fprintf(stderr, "population is invalid! Please check it. \n");
+    exit(EXIT_FAILURE);
+  }
+
+  return ans;
+}
+
+void calcRunningAvg(unsigned * data, size_t n_days, double * avg) {
+  //WRITE ME
+}
+
+void calcCumulative(unsigned * data, size_t n_days, uint64_t pop, double * cum) {
+  //WRITE ME
+}
+
+void printCountryWithMax(country_t * countries,
+                         size_t n_countries,
+                         unsigned ** data,
+                         size_t n_days) {
+  //WRITE ME
+}
