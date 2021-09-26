@@ -1,10 +1,2 @@
-Country,Population
-Brazil,2125b9409
-China,14393 23774
-Germany,  83783945
-India,1380004385
-Nigeria,206139587dsf
-Norway,542sdfs1242
-South Korea,512 69183
-United Kingdom,67886004   
-United States,331002647
+printCountries population.csv
+printCountries test1_1.csv
