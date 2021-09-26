@@ -1,8 +1,19 @@
-Grading at 09/26/2021:23:05:29.793049
-For commit ID 6eff797b9c6d6e81d15fcd54ee76e6c8bcfad5d0
-Grading at Sun Sep 26 19:05:29 EDT 2021
+Grading at 09/26/2021:23:14:07.463493
+For commit ID 73440a9f3731992ee13b5d441f7a0234abff7382
+Grading at Sun Sep 26 19:14:05 EDT 2021
 Running your test cases
-Program must be one of printCountries printRunningAvg printCumulative printDailyMax
-But found "Country,Population"
+
+Compiling printCountries
+rm -f *~ printCountries printRunningAvg printCumulative printDailyMax
+gcc -std=gnu99 -Werror -Wall -pedantic -ggdb3 pandemic.c printCountries.o -o printCountries
++-----------------------------------------------------------------------+
+Test case printCountries population.csv
+Your file matched the expected output
++-----------------------------------------------------------------------+
+Test case printCountries test1_1.csv
+Your file matched the expected output
+
+You have PASSED all of your test cases
+Keep adding test cases until you are satisfied your program is correct
 
 Overall Grade: NO GRADE YET
