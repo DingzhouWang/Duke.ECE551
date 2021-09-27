@@ -144,6 +144,34 @@ country_t parseLine(char * line) {
 
 void calcRunningAvg(unsigned * data, size_t n_days, double * avg) {
   //WRITE ME
+  if (data == NULL) {
+    fprintf(stderr, "The input data is invalid! Please check it. \n");
+    exit(EXIT_FAILURE);
+  }
+  if (n_days < 7) {
+    fprintf(stderr, "The n_days is invalid. Please check it. \n");
+    exit(EXIT_FAILURE);
+  }
+
+  for (size_t i = 0; i < (n_days - 6); i++) {
+    double x;
+    double total = 0;
+    for (size_t j = 0; j < 7; j++) {
+      x = (double)data[i + j];
+      if (x < 0) {
+        fprintf(stderr, "The input data is negative! \n");
+        exit(EXIT_FAILURE);
+      }
+      else if (x > 0 && (total + x) <= total) {
+        fprintf(stderr, "Double Overflow! \n");
+        exit(EXIT_FAILURE);
+      }
+      else {
+        total += x;
+      }
+    }
+    avg[i] = (double)total / 7;
+  }
 }
 
 void calcCumulative(unsigned * data, size_t n_days, uint64_t pop, double * cum) {
