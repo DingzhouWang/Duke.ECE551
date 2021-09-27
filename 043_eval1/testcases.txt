@@ -1,2 +1,1 @@
-printCountries population.csv
 printCountries test1_1.csv
