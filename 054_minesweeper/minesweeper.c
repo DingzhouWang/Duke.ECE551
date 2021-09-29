@@ -110,8 +110,19 @@ void printBoard(board_t * b) {
   printf("\nFound %d of %d mines\n", found, b->totalMines);
 }
 int countMines(board_t * b, int x, int y) {
+  int cnt = 0;
+  for (int i = -1; i < 2; i++) {
+    for (int j = -1; j < 2; j++) {
+      if ((x + i) < 0 || (x + i) >= b->width || (y + j) < 0 || (y + j) >= b->height) {
+        continue;
+      }
+      else if (IS_MINE(b->board[y + j][x + i])) {
+        cnt++;
+      }
+    }
+  }
   //WRITE ME!
-  return 0;
+  return cnt;
 }
 int click(board_t * b, int x, int y) {
   if (x < 0 || x >= b->width || y < 0 || y >= b->height) {
