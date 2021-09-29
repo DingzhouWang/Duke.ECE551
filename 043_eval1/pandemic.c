@@ -235,7 +235,7 @@ void printCountryWithMax(country_t * countries,
     for (size_t j = 0; j < n_days; j++) {
       //printf("num = %d, i = %d, flag = %d \n", data[i][j], (int)i, (int)flag);
       //printf("%d",(int)flag);
-      if (data[i][j] == maxNumberCase && (int)flag != (int)i) {
+      if (data[i][j] == maxNumberCase && flag != i) {
         count++;
       }
     }
