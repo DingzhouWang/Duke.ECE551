@@ -1,6 +1,6 @@
-Grading at 09/29/2021:02:08:51.732763
-For commit ID 8d5aea912ff153974bf856c48dba024d8b2aac40
-Grading at Tue Sep 28 22:08:48 EDT 2021
+Grading at 09/29/2021:02:30:41.606071
+For commit ID 9b172589d48cce6c26501830e6399f2a89e303a4
+Grading at Tue Sep 28 22:30:37 EDT 2021
 Running your test cases
 
 Compiling printCountries
@@ -23,7 +23,14 @@ gcc -std=gnu99 -Werror -Wall -pedantic -ggdb3 pandemic.c printRunningAvg.o -o pr
 Test case printRunningAvg population.csv daily_small.csv
 Your file matched the expected output
 
-You have PASSED all of your test cases
-Keep adding test cases until you are satisfied your program is correct
+Compiling printCumulative
+rm -f *~ printCountries printRunningAvg printCumulative printDailyMax
+gcc -std=gnu99 -Werror -Wall -pedantic -ggdb3 pandemic.c printCumulative.o -o printCumulative
++-----------------------------------------------------------------------+
+Test case printCumulative population.csv daily_small.csv
+Valgrind reported memory errors
+
+You have FAILED one or more of your test cases
+Keep debugging
 
 Overall Grade: NO GRADE YET
