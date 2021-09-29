@@ -4,3 +4,4 @@ printCountries test1_p.csv
 #success
 printCountries population.csv
 printCountries test1_1.csv
+printRunningAvg population.csv daily_small.csv
