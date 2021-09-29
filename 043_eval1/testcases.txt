@@ -1,13 +1,10 @@
 #error
 printCountries test1_p.csv
-printCountries test1_2.csv
 
 #success
 printCountries population.csv
 printCountries test1_1.csv
-
 printRunningAvg population.csv daily_small.csv
 printCumulative population.csv daily_small.csv
 printDailyMax population.csv daily_small.csv
 printDailyMax population.csv test4_1.csv
-printDailyMax population.csv test4_2.csv
