@@ -33,24 +33,25 @@ to be sure the population is valid(no char in it)
 */
 bool check_population(char * start, char * end) {
   bool num_flag = false;
+  bool sign_ = false;
   while (start <= end) {
-    //printf("1\n");
     if (*start == ' ' && !num_flag) {
-      //  printf("2\n");
       start++;
+    }
+    else if (!sign_ && *start == '-' && isNumber(*(start + 1))) {
+      sign_ = true;
+      return true;
     }
     else if (!isNumber(*start) && !num_flag) {
       fprintf(stderr, "The beginning of population is not number! Please check it. \n");
       return false;
     }
     else if (isNumber(*start)) {
-      //printf("3\n");
       num_flag = true;
       start++;
       return true;
     }
     else if (!isNumber(*start) && num_flag) {
-      //printf("4\n");
       return true;
     }
   }
@@ -77,7 +78,8 @@ unsigned long convert_population(char * population_start, char * ending) {
   char * s;
   //bool num_flag = false;
   while (population_start != ending) {
-    if (isNumber(*population_start)) {
+    if (isNumber(*population_start) ||
+        (*population_start == '-' && isNumber(*(population_start + 1)))) {
       s = population_start;
       //num_flag = true;
       break;
