@@ -34,9 +34,9 @@ to be sure the population is valid(no char in it)
 bool check_population(char * start, char * end) {
   bool num_flag = false;
   while (start <= end) {
-    printf("1\n");
+    //printf("1\n");
     if (*start == ' ' && !num_flag) {
-      printf("2\n");
+      //  printf("2\n");
       start++;
     }
     else if (!isNumber(*start) && !num_flag) {
@@ -44,13 +44,13 @@ bool check_population(char * start, char * end) {
       return false;
     }
     else if (isNumber(*start)) {
-      printf("3\n");
+      //printf("3\n");
       num_flag = true;
       start++;
       return true;
     }
     else if (!isNumber(*start) && num_flag) {
-      printf("4\n");
+      //printf("4\n");
       return true;
     }
   }
