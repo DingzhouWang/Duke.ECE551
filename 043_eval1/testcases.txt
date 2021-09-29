@@ -6,3 +6,4 @@ printCountries population.csv
 printCountries test1_1.csv
 printRunningAvg population.csv daily_small.csv
 printCumulative population.csv daily_small.csv
+printDailyMax population.csv daily_small.csv
