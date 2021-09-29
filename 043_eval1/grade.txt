@@ -1,6 +1,6 @@
-Grading at 09/29/2021:03:47:04.796452
-For commit ID e55f89436ae348ba38babb96f9f69e3c16ecbba1
-Grading at Tue Sep 28 23:47:00 EDT 2021
+Grading at 09/29/2021:04:17:33.430219
+For commit ID f1b88fa1e244c59c080e2ec8a038ec7b2a580724
+Grading at Wed Sep 29 00:17:28 EDT 2021
 Running your test cases
 
 Compiling printCountries
@@ -37,8 +37,7 @@ gcc -std=gnu99 -Werror -Wall -pedantic -ggdb3 pandemic.c printDailyMax.o -o prin
 Test case printDailyMax population.csv daily_small.csv
 Line_1_did_not_match
 Your file did not match the expected output
-
-You have FAILED one or more of your test cases
-Keep debugging
+Program must be one of printCountries printRunningAvg printCumulative printDailyMax
+But found "printDailymax"
 
 Overall Grade: NO GRADE YET
