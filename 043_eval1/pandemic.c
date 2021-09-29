@@ -181,6 +181,30 @@ void calcRunningAvg(unsigned * data, size_t n_days, double * avg) {
 
 void calcCumulative(unsigned * data, size_t n_days, uint64_t pop, double * cum) {
   //WRITE ME
+  if (data == NULL) {
+    fprintf(stderr, "Invalid data in calcCumulative is empty! Please check it! \n");
+    exit(EXIT_FAILURE);
+  }
+  else if (n_days <= 0) {
+    fprintf(stderr,
+            "Invalid n_days in calcCumulative is less than 1! Please check it! \n");
+    exit(EXIT_FAILURE);
+  }
+  else if (pop <= 0) {
+    fprintf(stderr,
+            "Invalid population in calcCumulative is less than 1! Please check it! \n");
+    exit(EXIT_FAILURE);
+  }
+  else if (cum == NULL) {
+    fprintf(stderr,
+            "Invalid cum_array in calcCumulative is invalid! Please check it! \n");
+    exit(EXIT_FAILURE);
+  }
+  uint64_t total = 0;
+  for (size_t i = 0; i < n_days; i++) {
+    total += cum[i];
+    cum[i] = (double)total / pop * 100000;
+  }
 }
 
 void printCountryWithMax(country_t * countries,
