@@ -1,1 +1,6 @@
-printCountries test1_1.csv
+#error
+printCountries test1_p.csv
+
+#success
+printcountries population.csv
+printcountries test1_1.csv

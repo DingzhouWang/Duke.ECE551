@@ -127,17 +127,15 @@ country_t parseLine(char * line) {
   char * ending = strchr(line, '\n');
   char * population_start = comma_pos;
 
-  //  printf("place a: %c \n", *population_start);
   if (check_population(++population_start, ending)) {
-    //if (population_start == comma_pos)
-    //  printf("same same");
-    // printf("place b: %c \n", *population_start);
     ans.population = convert_population(population_start, ending);
   }
   else {
     fprintf(stderr, "population is invalid! Please check it. \n");
     exit(EXIT_FAILURE);
   }
+  //char* end_p;
+  //long population_ = strtoul(++comma_pos, &end_p, 10);
 
   return ans;
 }
