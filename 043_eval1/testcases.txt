@@ -2,5 +2,5 @@
 printCountries test1_p.csv
 
 #success
-printcountries population.csv
-printcountries test1_1.csv
+printCountries population.csv
+printCountries test1_1.csv
