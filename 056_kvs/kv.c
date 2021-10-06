@@ -24,6 +24,10 @@ kvarray_t * readKVs(const char * fname) {
                 sizeof(*my_kv_pair->kv_pair_array) * my_kv_pair->arr_len);
     kvpair_t * kvp = malloc(sizeof(*kvp));
 
+    if (my_kv_pair->kv_pair_array == NULL) {
+      fprintf(stderr, "Malloc Failed!");
+      exit(EXIT_FAILURE);
+    }
     //char* p1 = line;
     // int cnt_len1 = 0;
 
