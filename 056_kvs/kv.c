@@ -41,10 +41,16 @@ kvarray_t * readKVs(const char * fname) {
     if (tmp != NULL) {
       *tmp = '\0';
     }
+    else {
+      exit(EXIT_FAILURE);
+    }
     kvp->value = tmp + 1;
-    char * end = strchr(tmp + 1, '\n');
+    char * end = strchr(kvp->value, '\n');
     if (end != NULL) {
       *end = '\0';
+    }
+    else {
+      exit(EXIT_FAILURE);
     }
     my_kv_pair->kv_pair_array[count] = kvp;
     count++;
@@ -79,11 +85,11 @@ void printKVs(kvarray_t * pairs) {
 
 char * lookupValue(kvarray_t * pairs, const char * key) {
   //WRITE ME
-  char * v = NULL;
+  char * res = NULL;
   for (size_t i = 0; i < pairs->arr_len; i++) {
     if (strcmp(pairs->kv_pair_array[i]->key, key) == 0) {
-      v = pairs->kv_pair_array[i]->value;
+      res = pairs->kv_pair_array[i]->value;
     }
   }
-  return v;
+  return res;
 }
