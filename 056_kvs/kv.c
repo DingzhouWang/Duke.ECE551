@@ -9,10 +9,14 @@ kvarray_t * readKVs(const char * fname) {
   FILE * f = fopen(fname, "r");
   if (f == NULL) {
     fprintf(stderr, "The file cannot open!");
-    //exit(EXIT_FAILURE);
-    return NULL;
+    exit(EXIT_FAILURE);
+    //return NULL;
   }
   kvarray_t * my_kv_pair = malloc(sizeof(*my_kv_pair));
+  if (my_kv_pair == NULL) {
+    fprintf(stderr, "Do not have enough memory");
+    exit(EXIT_FAILURE);
+  }
   my_kv_pair->arr_len = 0;
   my_kv_pair->kv_pair_array = NULL;
   size_t count = 0;
@@ -59,7 +63,7 @@ kvarray_t * readKVs(const char * fname) {
     line = NULL;
   }
   free(line);
-  if (fclose(f) != 0) {
+  if (fclose(f)) {
     fprintf(stderr, "Cannot close the file!");
     return NULL;
   }
