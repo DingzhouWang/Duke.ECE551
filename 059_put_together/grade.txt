@@ -1,6 +1,6 @@
-Grading at 10/09/2021:20:42:01.500271
-For commit ID 62ad0032cf4ef82d3a2e6b56df15f7944fd00257
-Grading at Sat Oct  9 16:41:56 EDT 2021
+Grading at 10/09/2021:20:47:03.181101
+For commit ID 52ca1042af94018bbc62783c65ba8a04e16fac7e
+Grading at Sat Oct  9 16:46:57 EDT 2021
 Attempting to compile:
 rm -f  outname.o  counts.o  main.o  kv.o count_values *~
 gcc -c -Wall -Werror -std=gnu99 -pedantic -ggdb3 outname.c
@@ -10,7 +10,9 @@ gcc -c -Wall -Werror -std=gnu99 -pedantic -ggdb3 kv.c
 gcc -Wall -Werror -std=gnu99 -pedantic -ggdb3 -o count_values  outname.o  counts.o  main.o  kv.o
 #################################################
 testcase1:
-valgrind reported memory errors
+testcase1 passed, your program successfully indicated a failure
+  - Valgrind was clean (no errors, no memory leaks)
+valgrind was clean
 #################################################
 testcase2:
 Your file matched the expected output
@@ -21,31 +23,31 @@ Your file matched the expected output
 Your output is correct
   - Valgrind reported errors
 valgrind was not clean
-==67694== Memcheck, a memory error detector
-==67694== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==67694== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==67694== 
-==67694== Parent PID: 67693
-==67694== 
-==67694== 
-==67694== HEAP SUMMARY:
-==67694==     in use at exit: 3,024 bytes in 43 blocks
-==67694==   total heap usage: 103 allocs, 60 frees, 28,856 bytes allocated
-==67694== 
-==67694== 3,024 (168 direct, 2,856 indirect) bytes in 1 blocks are definitely lost in loss record 3 of 3
-==67694==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==67694==    by 0x1091C2: readKVs (kv.c:28)
-==67694==    by 0x108F8C: main (main.c:38)
-==67694== 
-==67694== LEAK SUMMARY:
-==67694==    definitely lost: 168 bytes in 1 blocks
-==67694==    indirectly lost: 2,856 bytes in 42 blocks
-==67694==      possibly lost: 0 bytes in 0 blocks
-==67694==    still reachable: 0 bytes in 0 blocks
-==67694==         suppressed: 0 bytes in 0 blocks
-==67694== 
-==67694== For counts of detected and suppressed errors, rerun with: -v
-==67694== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==70146== Memcheck, a memory error detector
+==70146== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==70146== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==70146== 
+==70146== Parent PID: 70145
+==70146== 
+==70146== 
+==70146== HEAP SUMMARY:
+==70146==     in use at exit: 3,024 bytes in 43 blocks
+==70146==   total heap usage: 103 allocs, 60 frees, 28,856 bytes allocated
+==70146== 
+==70146== 3,024 (168 direct, 2,856 indirect) bytes in 1 blocks are definitely lost in loss record 3 of 3
+==70146==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==70146==    by 0x1091F2: readKVs (kv.c:28)
+==70146==    by 0x108FBC: main (main.c:42)
+==70146== 
+==70146== LEAK SUMMARY:
+==70146==    definitely lost: 168 bytes in 1 blocks
+==70146==    indirectly lost: 2,856 bytes in 42 blocks
+==70146==      possibly lost: 0 bytes in 0 blocks
+==70146==    still reachable: 0 bytes in 0 blocks
+==70146==         suppressed: 0 bytes in 0 blocks
+==70146== 
+==70146== For counts of detected and suppressed errors, rerun with: -v
+==70146== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
 #################################################
 testcase3:
 Your file matched the expected output
@@ -59,31 +61,31 @@ Your file matched the expected output
 Your output is correct
   - Valgrind reported errors
 valgrind was not clean
-==67721== Memcheck, a memory error detector
-==67721== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==67721== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==67721== 
-==67721== Parent PID: 67720
-==67721== 
-==67721== 
-==67721== HEAP SUMMARY:
-==67721==     in use at exit: 1,728 bytes in 25 blocks
-==67721==   total heap usage: 87 allocs, 62 frees, 35,884 bytes allocated
-==67721== 
-==67721== 1,728 (96 direct, 1,632 indirect) bytes in 1 blocks are definitely lost in loss record 3 of 3
-==67721==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==67721==    by 0x1091C2: readKVs (kv.c:28)
-==67721==    by 0x108F8C: main (main.c:38)
-==67721== 
-==67721== LEAK SUMMARY:
-==67721==    definitely lost: 96 bytes in 1 blocks
-==67721==    indirectly lost: 1,632 bytes in 24 blocks
-==67721==      possibly lost: 0 bytes in 0 blocks
-==67721==    still reachable: 0 bytes in 0 blocks
-==67721==         suppressed: 0 bytes in 0 blocks
-==67721== 
-==67721== For counts of detected and suppressed errors, rerun with: -v
-==67721== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==70188== Memcheck, a memory error detector
+==70188== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==70188== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==70188== 
+==70188== Parent PID: 70187
+==70188== 
+==70188== 
+==70188== HEAP SUMMARY:
+==70188==     in use at exit: 1,728 bytes in 25 blocks
+==70188==   total heap usage: 87 allocs, 62 frees, 35,884 bytes allocated
+==70188== 
+==70188== 1,728 (96 direct, 1,632 indirect) bytes in 1 blocks are definitely lost in loss record 3 of 3
+==70188==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==70188==    by 0x1091F2: readKVs (kv.c:28)
+==70188==    by 0x108FBC: main (main.c:42)
+==70188== 
+==70188== LEAK SUMMARY:
+==70188==    definitely lost: 96 bytes in 1 blocks
+==70188==    indirectly lost: 1,632 bytes in 24 blocks
+==70188==      possibly lost: 0 bytes in 0 blocks
+==70188==    still reachable: 0 bytes in 0 blocks
+==70188==         suppressed: 0 bytes in 0 blocks
+==70188== 
+==70188== For counts of detected and suppressed errors, rerun with: -v
+==70188== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
 #################################################
 testcase4:
 Your file matched the expected output
@@ -91,30 +93,30 @@ Comparing file list3a.txt.counts with answer
 Your output is correct
   - Valgrind reported errors
 valgrind was not clean
-==67759== Memcheck, a memory error detector
-==67759== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==67759== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==67759== 
-==67759== Parent PID: 67758
-==67759== 
-==67759== 
-==67759== HEAP SUMMARY:
-==67759==     in use at exit: 31,612 bytes in 17 blocks
-==67759==   total heap usage: 53 allocs, 36 frees, 73,116 bytes allocated
-==67759== 
-==67759== 31,612 (64 direct, 31,548 indirect) bytes in 1 blocks are definitely lost in loss record 4 of 4
-==67759==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
-==67759==    by 0x1091C2: readKVs (kv.c:28)
-==67759==    by 0x108F8C: main (main.c:38)
-==67759== 
-==67759== LEAK SUMMARY:
-==67759==    definitely lost: 64 bytes in 1 blocks
-==67759==    indirectly lost: 31,548 bytes in 16 blocks
-==67759==      possibly lost: 0 bytes in 0 blocks
-==67759==    still reachable: 0 bytes in 0 blocks
-==67759==         suppressed: 0 bytes in 0 blocks
-==67759== 
-==67759== For counts of detected and suppressed errors, rerun with: -v
-==67759== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==70220== Memcheck, a memory error detector
+==70220== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==70220== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==70220== 
+==70220== Parent PID: 70218
+==70220== 
+==70220== 
+==70220== HEAP SUMMARY:
+==70220==     in use at exit: 31,612 bytes in 17 blocks
+==70220==   total heap usage: 53 allocs, 36 frees, 73,116 bytes allocated
+==70220== 
+==70220== 31,612 (64 direct, 31,548 indirect) bytes in 1 blocks are definitely lost in loss record 4 of 4
+==70220==    at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==70220==    by 0x1091F2: readKVs (kv.c:28)
+==70220==    by 0x108FBC: main (main.c:42)
+==70220== 
+==70220== LEAK SUMMARY:
+==70220==    definitely lost: 64 bytes in 1 blocks
+==70220==    indirectly lost: 31,548 bytes in 16 blocks
+==70220==      possibly lost: 0 bytes in 0 blocks
+==70220==    still reachable: 0 bytes in 0 blocks
+==70220==         suppressed: 0 bytes in 0 blocks
+==70220== 
+==70220== For counts of detected and suppressed errors, rerun with: -v
+==70220== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
 
-Overall Grade: C
+Overall Grade: B
