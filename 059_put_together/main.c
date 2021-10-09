@@ -66,6 +66,6 @@ int main(int argc, char ** argv) {
     //free the memory for kv
     freeCounts(c);
   }
-  free(kv);
+  freeKVs(kv);
   return EXIT_SUCCESS;
 }
