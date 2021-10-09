@@ -10,7 +10,7 @@ counts_t * countFile(const char * filename, kvarray_t * kvPairs) {
   //WRITE ME
   FILE * f = fopen(filename, "r");
   if (f == NULL) {
-    fprintf(stderr, "Cannot open the file!");
+    fprintf(stderr, "Cannot open the file!\n");
     return NULL;
   }
   counts_t * ans = createCounts();
@@ -34,6 +34,10 @@ counts_t * countFile(const char * filename, kvarray_t * kvPairs) {
 
 int main(int argc, char ** argv) {
   //WRITE ME (plus add appropriate error checking!)
+  if (argc < 2) {
+    fprintf(stderr, "lack of arguments!\n");
+    exit(EXIT_FAILURE);
+  }
   //read the key/value pairs from the file named by argv[1] (call the result kv)
   kvarray_t * kv = readKVs(argv[1]);
   //count from 2 to argc (call the number you count i)
