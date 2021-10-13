@@ -19,6 +19,8 @@ Vector2D Vector2D::operator+(const Vector2D & rhs) const {
   ans.initVector(x, y);
   ans.x = this->x + rhs.x;
   ans.y = this->x + rhs.y;
+  //ans.x += rhs.x;
+  //ans.y += rhs.y;
   return ans;
 }
 
