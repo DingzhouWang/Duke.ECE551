@@ -1,16 +1,10 @@
-Grading at 10/13/2021:02:01:19.793851
-For commit ID 1e79fb611cf64a8952450612afd9b352af98fee0
-Grading at Tue Oct 12 22:01:19 EDT 2021
+Grading at 10/13/2021:02:02:51.004664
+For commit ID 87b28be2252e45713575737a4dd11137b2c09fa1
+Grading at Tue Oct 12 22:02:50 EDT 2021
 Attempting to compile Vector2D
 Tring to run Vector-2D
-Line_3_did_not_match
-Your file did not match the expected output
-Your output did not match what we expected. Here is what you printed
-Vector v1 = <1.00, 2.00> and has magnitude 2.24
-Vector v2 = <-1.50, 3.00> and has magnitude 3.35
-v1 + v2 = <-0.50, 4.00>
-v1 += v2 = <-0.50, 5.00>
-Now v1 = <-0.50, 5.00>
-v1 . v2 = 15.75
+Your file matched the expected output
+Running hidden test...
+Your file matched the expected output
 
-Overall Grade: F
+Overall Grade: A
