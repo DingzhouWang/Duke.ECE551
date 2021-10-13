@@ -1,0 +1,16 @@
+Grading at 10/13/2021:01:55:05.193306
+For commit ID 654b4221ca87d6c35cec58a9ccf30e350074e4ed
+Grading at Tue Oct 12 21:55:04 EDT 2021
+Attempting to compile Vector2D
+Tring to run Vector-2D
+Line_3_did_not_match
+Your file did not match the expected output
+Your output did not match what we expected. Here is what you printed
+Vector v1 = <1.00, 2.00> and has magnitude 2.24
+Vector v2 = <-1.50, 3.00> and has magnitude 3.35
+v1 + v2 = <-0.50, 4.00>
+v1 += v2 = <-0.50, 5.00>
+Now v1 = <-0.50, 5.00>
+v1 . v2 = 15.75
+
+Overall Grade: F
