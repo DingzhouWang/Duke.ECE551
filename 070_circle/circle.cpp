@@ -26,7 +26,7 @@ double Circle::intersectionArea(const Circle & otherCircle) {
     return M_PI * r2 * r2;
   }
   else {
-    double d1 = (r1 * r1 - r2 * r2 + d * d) * d / 2;
+    double d1 = (r1 * r1 - r2 * r2 + d * d) / 2 / d;
     double d2 = d - d1;
     return r1 * r1 * acos(d1 / r1) + r2 * r2 * acos(d2 / r2) -
            d1 * sqrt(r1 * r1 - d1 * d1) - d2 * sqrt(r2 * r2 - d2 * d2);
