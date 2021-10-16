@@ -14,7 +14,7 @@ int main(int argc, char ** argv) {
     exit(EXIT_FAILURE);
   }
   //todo something
-  read_template(f, NULL);
+  read_template(f, NULL, 1);
 
   if (fclose(f) != 0) {
     fprintf(stderr, "Cannot close the file! \n");

@@ -6,7 +6,7 @@
 #include <string.h>
 
 //step1
-void parse_template(char * line, catarray_t * cats, category_t * record) {
+void parse_template(char * line, catarray_t * cats, category_t * record, int reuse) {
   size_t idx = 0, cat_len = 0;
   char * cat = NULL;
   bool blank = false;
@@ -36,6 +36,7 @@ void parse_template(char * line, catarray_t * cats, category_t * record) {
       }
       cat[cat_len] = '\0';
       //idx -= 1;
+      //printf("%s", cat);
     }
     else if (line[idx] == '_' && blank) {  //end of blank
       //do something
@@ -48,6 +49,14 @@ void parse_template(char * line, catarray_t * cats, category_t * record) {
       record->n_words++;
       record->words = realloc(record->words, sizeof(*record->words) * (record->n_words));
       record->words[record->n_words - 1] = strdup(word);
+      if (cat != NULL && reuse == 0) {
+        // not track use
+        //printf("%s", cat);
+        int index = contain_cat(cats, cat);
+        //printf("%d", index);
+        if (atoi(cat) < 1 && index != -1 && cats->arr[idx].n_words != 0)
+          update_cats(cats, cat, word);
+      }
     }
   }
   free(cat);
@@ -57,18 +66,27 @@ void parse_template(char * line, catarray_t * cats, category_t * record) {
   }
 }
 
-void read_template(FILE * f, catarray_t * cats) {
+void freeRecord(category_t * record) {
+  for (size_t i = 0; i < record->n_words; i++) {
+    free(record->words[i]);
+  }
+  free(record->words);
+  free(record->name);
+  free(record);
+}
+
+void read_template(FILE * f, catarray_t * cats, int reuse) {
   char * line = NULL;
   size_t size_ = 0;
   category_t * record = malloc(sizeof(record));
   record->n_words = 0;
-  record->name = strdup("have been used");
+  record->name = strdup("USED");
   record->words = NULL;
   while (getline(&line, &size_, f) >= 0) {
-    parse_template(line, cats, record);
+    parse_template(line, cats, record, reuse);
   }
   free(line);
-  free(record);
+  freeRecord(record);
 }
 
 //step2
@@ -102,6 +120,7 @@ char * parse_input_cat(char * line) {
 
 int contain_cat(catarray_t * cats, char * cat) {
   size_t idx = 0;
+  //printf("qqq \n");
   while (idx < cats->n) {
     if (strcmp(cat, cats->arr[idx].name) == 0)
       return idx;
@@ -150,6 +169,7 @@ void freeCat(catarray_t * cats) {
   free(cats->arr);
   free(cats);
 }
+
 //step3
 const char * My_Choose_Word(char * cat, catarray_t * cats, category_t * record) {
   if (cats == NULL) {
@@ -176,4 +196,40 @@ const char * My_Choose_Word(char * cat, catarray_t * cats, category_t * record) 
     fprintf(stderr, "Other Error from My_Choose_Word!");
     exit(EXIT_FAILURE);
   }
+}
+
+//step4
+void update_cats(catarray_t * cats, char * cat, const char * word) {
+  //printf("check");
+  int idx = contain_cat(cats, cat);
+  size_t i = 0;
+  size_t w_idx;
+  while (i < cats->arr[idx].n_words) {
+    if (strcmp(word, cats->arr[idx].words[i]) == 0)
+      w_idx = i;
+    i++;
+  }
+
+  //update cats
+  free(cats->arr[idx].words[w_idx]);
+  cats->arr[idx].n_words--;
+
+  char ** t = malloc(sizeof(*t) * cats->arr[idx].n_words);
+  size_t m = 0;
+  size_t n = 0;
+  size_t k = 0;
+  while (m < cats->arr[idx].n_words + 1) {
+    if (w_idx != m) {
+      t[n] = cats->arr[idx].words[m];
+      n++;
+    }
+    m++;
+  }
+  free(cats->arr[idx].words);
+  cats->arr[idx].words = malloc(sizeof(*cats->arr[idx].words) * cats->arr[idx].n_words);
+  while (k < cats->arr[idx].n_words) {
+    cats->arr[idx].words[k] = t[k];
+    k++;
+  }
+  free(t);
 }

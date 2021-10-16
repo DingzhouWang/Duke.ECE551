@@ -23,7 +23,7 @@ int main(int argc, char ** argv) {
   if (f_temp != NULL) {
     //do something
     // parse template ans print story with proper words
-    read_template(f_temp, cats);
+    read_template(f_temp, cats, 1);
   }
   else {
     fprintf(stderr, "Can not open %s. \n", argv[2]);
