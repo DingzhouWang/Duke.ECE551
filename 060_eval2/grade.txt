@@ -1,7 +1,32 @@
-Grading at 10/16/2021:19:44:41.844768
-For commit ID ff13491c773414bb98c313f9cd0703acdd8c40f7
-Grading at Sat Oct 16 15:44:41 EDT 2021
+Grading at 10/16/2021:19:45:44.301745
+For commit ID cd00f5e7527ecb6182b3089c0f9b60ec08bb22d1
+Grading at Sat Oct 16 15:45:41 EDT 2021
 Running your test cases
-Cannot proceed without testcases.txt
+
+Compiling story-step2
+rm -f *~ story-step1 story-step2 story-step3 story-step4 story-step1.o story-step2.o story-step3.o story-step4.o rand_story.o
+gcc -std=gnu99 -pedantic -Wall -Werror -ggdb3 -c rand_story.c
+gcc -std=gnu99 -pedantic -Wall -Werror -ggdb3 -c story-step2.c
+gcc -o story-step2 story-step2.o rand_story.o provided.o
+rm story-step2.o
++-----------------------------------------------------------------------+
+Test case story-step2 words.txt
+Valgrind reported memory errors
+
+Compiling story-step4
+rm -f *~ story-step1 story-step2 story-step3 story-step4 story-step1.o story-step2.o story-step3.o story-step4.o rand_story.o
+gcc -std=gnu99 -pedantic -Wall -Werror -ggdb3 -c rand_story.c
+gcc -std=gnu99 -pedantic -Wall -Werror -ggdb3 -c story-step4.c
+gcc -o story-step4 story-step4.o rand_story.o provided.o
+rm story-step4.o
++-----------------------------------------------------------------------+
+Test case story-step4 -n words.txt story2.txt
+Valgrind reported memory errors
++-----------------------------------------------------------------------+
+Test case story-step4 -n words2.txt story4.txt
+Valgrind reported memory errors
+
+You have FAILED one or more of your test cases
+Keep debugging
 
 Overall Grade: NO GRADE YET
