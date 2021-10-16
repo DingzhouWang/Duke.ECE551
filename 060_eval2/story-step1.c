@@ -4,6 +4,7 @@
 #include "rand_story.h"
 
 int main(int argc, char ** argv) {
+  //check number of arguments
   if (argc != 2) {
     fprintf(stderr, "Error input: Please use ./story-step1.c storyFlie. \n");
     exit(EXIT_FAILURE);
@@ -13,7 +14,7 @@ int main(int argc, char ** argv) {
     fprintf(stderr, "Cannot open the file! \n");
     exit(EXIT_FAILURE);
   }
-  //todo something
+  //read and parse the tamplate.
   read_template(f, NULL, 1);
 
   if (fclose(f) != 0) {

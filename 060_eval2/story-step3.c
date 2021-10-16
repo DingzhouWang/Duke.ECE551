@@ -5,6 +5,7 @@
 #include "rand_story.h"
 
 int main(int argc, char ** argv) {
+  //check number of arguments
   if (argc != 3) {
     fprintf(stderr, "Error input: please use ./story-step3 wordfile templtefile. \n");
     exit(EXIT_FAILURE);

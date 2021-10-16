@@ -5,6 +5,7 @@
 #include "rand_story.h"
 
 int main(int argc, char ** argv) {
+  //check arguments
   if (argc != 2) {
     fprintf(stderr, "Error input: please use ./story-step2 wordFile. \n");
     exit(EXIT_FAILURE);
@@ -14,7 +15,7 @@ int main(int argc, char ** argv) {
     fprintf(stderr, "Cannot open the file. \n");
     exit(EXIT_FAILURE);
   }
-  //do something
+  //read words.txt and get category and instances
   catarray_t * cat_arr = parse_cat_file(f);
   printWords(cat_arr);
   freeCat(cat_arr);
