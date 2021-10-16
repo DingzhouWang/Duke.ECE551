@@ -6,7 +6,7 @@
 #include <string.h>
 
 //step1
-void parse_template(char * line) {
+void parse_template(char * line, catarray_t * cats, category_t * record) {
   size_t idx = 0, cat_len = 0;
   char * cat = NULL;
   bool blank = false;
@@ -40,11 +40,14 @@ void parse_template(char * line) {
     else if (line[idx] == '_' && blank) {  //end of blank
       //do something
       //printf("123 \n");
-      const char * word = chooseWord(cat, NULL);
+      const char * word = My_Choose_Word(cat, cats, record);
       cat_len = 0;
       blank = false;
       idx++;
       printf("%s", word);
+      record->n_words++;
+      record->words = realloc(record->words, sizeof(*record->words) * (record->n_words));
+      record->words[record->n_words - 1] = strdup(word);
     }
   }
   free(cat);
@@ -54,13 +57,18 @@ void parse_template(char * line) {
   }
 }
 
-void read_template(FILE * f) {
+void read_template(FILE * f, catarray_t * cats) {
   char * line = NULL;
   size_t size_ = 0;
+  category_t * record = malloc(sizeof(record));
+  record->n_words = 0;
+  record->name = strdup("have been used");
+  record->words = NULL;
   while (getline(&line, &size_, f) >= 0) {
-    parse_template(line);
+    parse_template(line, cats, record);
   }
   free(line);
+  free(record);
 }
 
 //step2
@@ -118,7 +126,6 @@ catarray_t * parse_cat_file(FILE * f) {
       cats->arr[cats->n].words[0] = inst;
       cats->arr[cats->n].n_words = 1;
       cats->n++;
-      //free(cat);
     }
     else {
       int idx = contain_cat(cats, cat);
@@ -132,4 +139,41 @@ catarray_t * parse_cat_file(FILE * f) {
   return cats;
 }
 
+void freeCat(catarray_t * cats) {
+  for (size_t i = 0; i < cats->n; i++) {
+    for (size_t j = 0; j < cats->arr[i].n_words; j++) {
+      free(cats->arr[i].words[j]);
+    }
+    free(cats->arr[i].words);
+    free(cats->arr[i].name);
+  }
+  free(cats->arr);
+  free(cats);
+}
 //step3
+const char * My_Choose_Word(char * cat, catarray_t * cats, category_t * record) {
+  if (cats == NULL) {
+    const char * ans = chooseWord(cat, NULL);
+    return ans;
+  }
+  int tmp_num = atoi(cat);
+  int idx = contain_cat(cats, cat);
+  if (tmp_num >= 1) {
+    if ((size_t)tmp_num > record->n_words) {
+      fprintf(stderr, "Do not have enough words. \n");
+      exit(EXIT_FAILURE);
+    }
+    else {
+      const char * ans = record->words[record->n_words - tmp_num];
+      return ans;
+    }
+  }
+  else if (idx != -1 && cats->arr[idx].n_words) {
+    const char * ans = chooseWord(cat, cats);
+    return ans;
+  }
+  else {
+    fprintf(stderr, "Other Error from My_Choose_Word!");
+    exit(EXIT_FAILURE);
+  }
+}

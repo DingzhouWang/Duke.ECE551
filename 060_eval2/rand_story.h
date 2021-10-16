@@ -8,16 +8,18 @@
 
 //any functions you want your main to use
 //step1
-void parse_template(char * line);
-void read_template(FILE * f);
+void parse_template(char * line, catarray_t * cats, category_t * record);
+void read_template(FILE * f, catarray_t * cats);
 
 //step2
 char * parse_input_inst(char * line);
 char * parse_input_cat(char * line);
 int contain_cat(catarray_t * cats, char * cat);
 catarray_t * parse_cat_file(FILE * f);
+void freeCat(catarray_t * cats);
 
 //step3
+const char * My_Choose_Word(char * cat, catarray_t * cats, category_t * record);
 
 //step4
 

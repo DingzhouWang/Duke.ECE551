@@ -17,7 +17,7 @@ int main(int argc, char ** argv) {
   //do something
   catarray_t * cat_arr = parse_cat_file(f);
   printWords(cat_arr);
-  //freeCat();
+  freeCat(cat_arr);
   if (fclose(f) != 0) {
     fprintf(stderr, "Cannot close the file. \n");
     exit(EXIT_FAILURE);
