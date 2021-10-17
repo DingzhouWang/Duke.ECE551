@@ -67,13 +67,11 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
       idx++;
       printf("%s", word);
 
+      //update record
       record->n_words++;
       record->words = realloc(record->words, sizeof(*record->words) * (record->n_words));
       record->words[record->n_words - 1] = strdup(word);
       if (t_index != -1 && !reuse) {
-        //if (cat != NULL && reuse == 0) {
-        //int index = contain_cat(cats, cat);
-        //if (atoi(cat) < 1 && index != -1 && cats->arr[index].n_words != 0)
         if (tmp_num < 1 && cats->arr[t_index].n_words != 0)
           update_cats(cats, cat, word);
       }
@@ -86,27 +84,21 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
   }
 }
 
-void freeRecord(category_t * record) {
-  for (size_t i = 0; i < record->n_words; i++) {
-    free(record->words[i]);
-  }
-  free(record->words);
-  free(record->name);
-  free(record);
-}
-
+//reading template and parse it
 void read_template(FILE * f, catarray_t * cats, int reuse) {
   char * line = NULL;
   size_t size_ = 0;
+  //init Record
   category_t * record = malloc(sizeof(*record));
   record->n_words = 0;
   record->name = strdup("USED");
   record->words = NULL;
+  //parse it!
   while (getline(&line, &size_, f) >= 0) {
     parse_template(line, cats, record, reuse);
   }
   free(line);
-  //freeRecord(record);
+  //freeRecord
   for (size_t i = 0; i < record->n_words; i++) {
     free(record->words[i]);
   }
@@ -121,9 +113,18 @@ char * parse_input_inst(char * line) {
   char * l_end = strchr(line, '\n');
   *l_end = '\0';
   char * w_start = strchr(line, ':');
+  int len_ = 0;
   if (w_start != NULL) {
     w_start += 1;
-    char * instance = strdup(w_start);
+    len_ = l_end - w_start + 1;
+    char * instance = malloc(sizeof(instance) * len_);
+    int i = 0;
+    while (w_start <= l_end) {
+      instance[i] = *w_start;
+      i++;
+      w_start++;
+    }
+    //char * instance = strdup(w_start);
     return instance;
   }
   else {
