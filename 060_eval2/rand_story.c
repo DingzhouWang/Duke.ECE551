@@ -178,6 +178,7 @@ const char * My_Choose_Word(char * cat, catarray_t * cats, category_t * record) 
   }
   else {
     int tmp_num = atoi(cat);
+    //printf("%d", tmp_num);
     int idx = contain_cat(cats, cat);
     if (tmp_num >= 1) {
       if ((size_t)tmp_num > record->n_words) {
@@ -196,6 +197,7 @@ const char * My_Choose_Word(char * cat, catarray_t * cats, category_t * record) 
       //return ans;
     }
     else {
+      printf("tmp_num = %d, idx = %d", tmp_num, idx);  //0 -1
       fprintf(stderr, "Error from: doesn't contain enough words in category\n");
       exit(EXIT_FAILURE);
     }
