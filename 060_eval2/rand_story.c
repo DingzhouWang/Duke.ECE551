@@ -6,6 +6,7 @@
 #include <string.h>
 
 //step1
+//read and parse the template file
 void parse_template(char * line, catarray_t * cats, category_t * record, int reuse) {
   size_t idx = 0, cat_len = 0;
   char * cat = NULL;
@@ -69,9 +70,11 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
       record->n_words++;
       record->words = realloc(record->words, sizeof(*record->words) * (record->n_words));
       record->words[record->n_words - 1] = strdup(word);
-      if (cat != NULL && reuse == 0) {
-        int index = contain_cat(cats, cat);
-        if (atoi(cat) < 1 && index != -1 && cats->arr[index].n_words != 0)
+      if (t_index != -1 && !reuse) {
+        //if (cat != NULL && reuse == 0) {
+        //int index = contain_cat(cats, cat);
+        //if (atoi(cat) < 1 && index != -1 && cats->arr[index].n_words != 0)
+        if (tmp_num < 1 && cats->arr[t_index].n_words != 0)
           update_cats(cats, cat, word);
       }
     }
@@ -103,7 +106,13 @@ void read_template(FILE * f, catarray_t * cats, int reuse) {
     parse_template(line, cats, record, reuse);
   }
   free(line);
-  freeRecord(record);
+  //freeRecord(record);
+  for (size_t i = 0; i < record->n_words; i++) {
+    free(record->words[i]);
+  }
+  free(record->words);
+  free(record->name);
+  free(record);
 }
 
 //step2
