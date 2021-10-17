@@ -197,7 +197,7 @@ const char * My_Choose_Word(char * cat, catarray_t * cats, category_t * record) 
       //return ans;
     }
     else {
-      printf("tmp_num = %d, idx = %d", tmp_num, idx);  //0 -1
+      printf("cat = %s, tmp_num = %d, idx = %d", cat, tmp_num, idx);  //0 -1
       fprintf(stderr, "Error from: doesn't contain enough words in category\n");
       exit(EXIT_FAILURE);
     }

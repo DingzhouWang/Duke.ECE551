@@ -1,8 +1,7 @@
 #error
 story-step1 story.txt
-
+story-step4 -n words.txt story4.txt
 #success
 story-step2 words.txt
 story-step4 -n words.txt story2.txt
 story-step4 -n words2.txt story4.txt
-story-step4 -n words.txt story4.txt
