@@ -1,6 +1,6 @@
-Grading at 10/17/2021:02:47:04.940093
-For commit ID 86da7dd493d234f895abbc223b44fe6389fe6767
-Grading at Sat Oct 16 22:47:02 EDT 2021
+Grading at 10/17/2021:02:53:17.654293
+For commit ID d2b7b2a0d63ac94ac85ecbe9c20df9a960356885
+Grading at Sat Oct 16 22:53:14 EDT 2021
 Running your test cases
 
 Compiling story-step2
@@ -25,8 +25,12 @@ Your file matched the expected output
 +-----------------------------------------------------------------------+
 Test case story-step4 -n words2.txt story4.txt
 Your file matched the expected output
++-----------------------------------------------------------------------+
+Test case story-step4 -n words.txt story4.txt
+Line_1_did_not_match
+Your file did not match the expected output
 
-You have PASSED all of your test cases
-Keep adding test cases until you are satisfied your program is correct
+You have FAILED one or more of your test cases
+Keep debugging
 
 Overall Grade: NO GRADE YET
