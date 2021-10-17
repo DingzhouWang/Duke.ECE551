@@ -17,8 +17,8 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
       idx += 1;
     }
     else if (line[idx] == '_' && !blank) {  //here is a new blank
-      idx += 1;
       blank = true;
+      idx += 1;
     }
     else if (line[idx] != '_' && blank) {  //in the blank
       //do something
@@ -28,6 +28,7 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
         cat_len++;
         idx++;
       }
+      //get category
       cat = realloc(cat, (cat_len + 1) * sizeof(*cat));
       while (start < idx) {
         cat[tmp_i] = line[start];
@@ -35,12 +36,8 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
         start++;
       }
       cat[cat_len] = '\0';
-      //idx -= 1;
-      //printf("%s", cat);
     }
     else if (line[idx] == '_' && blank) {  //end of blank
-      //do something
-      //printf("123 \n");
       const char * word = My_Choose_Word(cat, cats, record);
       cat_len = 0;
       blank = false;
@@ -54,7 +51,7 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
         //printf("%s", cat);
         int index = contain_cat(cats, cat);
         //printf("%d", index);
-        if (atoi(cat) < 1 && index != -1 && cats->arr[idx].n_words != 0)
+        if (atoi(cat) < 1 && index != -1 && cats->arr[index].n_words != 0)
           update_cats(cats, cat, word);
       }
     }
@@ -78,7 +75,7 @@ void freeRecord(category_t * record) {
 void read_template(FILE * f, catarray_t * cats, int reuse) {
   char * line = NULL;
   size_t size_ = 0;
-  category_t * record = malloc(sizeof(record));
+  category_t * record = malloc(sizeof(*record));
   record->n_words = 0;
   record->name = strdup("USED");
   record->words = NULL;
@@ -137,6 +134,7 @@ catarray_t * parse_cat_file(FILE * f) {
   while (getline(&line, &size_, f) >= 0) {
     char * inst = parse_input_inst(line);
     char * cat = parse_input_cat(line);
+    int idx = contain_cat(cats, cat);
     if (-1 == contain_cat(cats, cat)) {  //new type
       cats->arr = realloc(cats->arr, (cats->n + 1) * sizeof(*cats->arr));
       cats->arr[cats->n].name = cat;
@@ -144,10 +142,11 @@ catarray_t * parse_cat_file(FILE * f) {
       cats->arr[cats->n].words[0] = inst;
       cats->arr[cats->n].n_words = 1;
       cats->n++;
-      free(cat);
+      //free(cat);
     }
     else {
-      int idx = contain_cat(cats, cat);
+      free(cat);
+      //int idx = contain_cat(cats, cat);
       cats->arr[idx].n_words++;
       cats->arr[idx].words = realloc(
           cats->arr[idx].words, cats->arr[idx].n_words * sizeof(*cats->arr[idx].words));
@@ -173,28 +172,33 @@ void freeCat(catarray_t * cats) {
 //step3
 const char * My_Choose_Word(char * cat, catarray_t * cats, category_t * record) {
   if (cats == NULL) {
-    const char * ans = chooseWord(cat, NULL);
-    return ans;
-  }
-  int tmp_num = atoi(cat);
-  int idx = contain_cat(cats, cat);
-  if (tmp_num >= 1) {
-    if ((size_t)tmp_num > record->n_words) {
-      fprintf(stderr, "Do not have enough words. \n");
-      exit(EXIT_FAILURE);
-    }
-    else {
-      const char * ans = record->words[record->n_words - tmp_num];
-      return ans;
-    }
-  }
-  else if (idx != -1 && cats->arr[idx].n_words) {
-    const char * ans = chooseWord(cat, cats);
-    return ans;
+    //const char * ans =
+    return chooseWord(cat, NULL);
+    //return ans;
   }
   else {
-    fprintf(stderr, "Other Error from My_Choose_Word!");
-    exit(EXIT_FAILURE);
+    int tmp_num = atoi(cat);
+    int idx = contain_cat(cats, cat);
+    if (tmp_num >= 1) {
+      if ((size_t)tmp_num > record->n_words) {
+        fprintf(stderr, "Do not have enough words. \n");
+        exit(EXIT_FAILURE);
+      }
+      else {
+        //const char * ans =
+        return record->words[record->n_words - tmp_num];
+        //return ans;
+      }
+    }
+    else if (idx != -1 && cats->arr[idx].n_words) {
+      //const char * ans =
+      return chooseWord(cat, cats);
+      //return ans;
+    }
+    else {
+      fprintf(stderr, "Error from: doesn't contain enough words in category\n");
+      exit(EXIT_FAILURE);
+    }
   }
 }
 
