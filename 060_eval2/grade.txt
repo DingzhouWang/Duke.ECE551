@@ -1,6 +1,6 @@
-Grading at 10/17/2021:14:43:21.084474
-For commit ID edc7eb5c5075348e83922c14ea35bc61a5568b79
-Grading at Sun Oct 17 10:43:16 EDT 2021
+Grading at 10/17/2021:15:00:01.281409
+For commit ID ea4023a5cac651431115dbfc47a34974abc4ce3a
+Grading at Sun Oct 17 10:59:57 EDT 2021
 Running your test cases
 
 Compiling story-step1
@@ -11,7 +11,7 @@ gcc -o story-step1 story-step1.o rand_story.o provided.o
 rm story-step1.o
 +-----------------------------------------------------------------------+
 Test case story-step1 story.txt
-Once upon a time, there was a Valgrind reported memory errors
+Once upon a time, there was a Your program successfully indicated a failure case
 
 Compiling story-step4
 rm -f *~ story-step1 story-step2 story-step3 story-step4 story-step1.o story-step2.o story-step3.o story-step4.o rand_story.o
@@ -47,7 +47,7 @@ Your file matched the expected output
 Test case story-step4 -n words2.txt story4.txt
 Your file matched the expected output
 
-You have FAILED one or more of your test cases
-Keep debugging
+You have PASSED all of your test cases
+Keep adding test cases until you are satisfied your program is correct
 
 Overall Grade: NO GRADE YET
