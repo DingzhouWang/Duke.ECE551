@@ -1,7 +1,17 @@
-Grading at 10/17/2021:02:53:17.654293
-For commit ID d2b7b2a0d63ac94ac85ecbe9c20df9a960356885
-Grading at Sat Oct 16 22:53:14 EDT 2021
+Grading at 10/17/2021:03:32:16.404064
+For commit ID 05f10e22a509eed53a31d17afccf0a385b47f94b
+Grading at Sat Oct 16 23:32:13 EDT 2021
 Running your test cases
+
+Compiling story-step1
+rm -f *~ story-step1 story-step2 story-step3 story-step4 story-step1.o story-step2.o story-step3.o story-step4.o rand_story.o
+gcc -std=gnu99 -pedantic -Wall -Werror -ggdb3 -c rand_story.c
+gcc -std=gnu99 -pedantic -Wall -Werror -ggdb3 -c story-step1.c
+gcc -o story-step1 story-step1.o rand_story.o provided.o
+rm story-step1.o
++-----------------------------------------------------------------------+
+Test case story-step1 story.txt
+Our story-step1 does not consider this an error case
 
 Compiling story-step2
 rm -f *~ story-step1 story-step2 story-step3 story-step4 story-step1.o story-step2.o story-step3.o story-step4.o rand_story.o
@@ -28,6 +38,7 @@ Your file matched the expected output
 +-----------------------------------------------------------------------+
 Test case story-step4 -n words.txt story4.txt
 Line_1_did_not_match
+Line_3_did_not_match
 Your file did not match the expected output
 
 You have FAILED one or more of your test cases
