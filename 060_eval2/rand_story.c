@@ -63,6 +63,7 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
       blank = false;
       idx++;
       printf("%s", word);
+
       record->n_words++;
       record->words = realloc(record->words, sizeof(*record->words) * (record->n_words));
       record->words[record->n_words - 1] = strdup(word);
@@ -225,31 +226,42 @@ void update_cats(catarray_t * cats, char * cat, const char * word) {
   size_t i = 0;
   size_t w_idx;
   while (i < cats->arr[idx].n_words) {
-    if (strcmp(word, cats->arr[idx].words[i]) == 0)
-      w_idx = i;
+    w_idx = strcmp(word, cats->arr[idx].words[i]) == 0 ? i : 0;
+    //w_idx = i;
     i++;
   }
 
   //update cats
-  free(cats->arr[idx].words[w_idx]);
-  cats->arr[idx].n_words--;
+  //free(cats->arr[idx].words[w_idx]);
+  //cats->arr[idx].n_words--;
 
-  char ** t = malloc(sizeof(*t) * cats->arr[idx].n_words);
-  size_t m = 0;
-  size_t n = 0;
-  size_t k = 0;
-  while (m < cats->arr[idx].n_words + 1) {
-    if (w_idx != m) {
-      t[n] = cats->arr[idx].words[m];
-      n++;
-    }
-    m++;
+  //new code
+  if (w_idx == cats->arr[idx].n_words - 1) {
+    free(cats->arr[idx].words[w_idx]);
+    cats->arr[idx].n_words--;
+    return;
   }
-  free(cats->arr[idx].words);
-  cats->arr[idx].words = malloc(sizeof(*cats->arr[idx].words) * cats->arr[idx].n_words);
-  while (k < cats->arr[idx].n_words) {
-    cats->arr[idx].words[k] = t[k];
+
+  //char ** t = malloc(sizeof(*t) * cats->arr[idx].n_words);
+  //size_t m = 0;
+  //size_t n = 0;
+  size_t k = w_idx;
+  //while (m < cats->arr[idx].n_words + 1) {
+  //  if (w_idx != m) {
+  //    t[n] = cats->arr[idx].words[m];
+  //    n++;
+  //  }
+  //  m++;
+  //}
+  //free(cats->arr[idx].words);
+  //cats->arr[idx].words = malloc(sizeof(*cats->arr[idx].words) * cats->arr[idx].n_words);
+
+  //new code
+  while (k < cats->arr[idx].n_words - 1) {
+    cats->arr[idx].words[k] = cats->arr[idx].words[k + 1];
     k++;
   }
-  free(t);
+  free(cats->arr[idx].words[cats->arr[idx].n_words - 1]);
+  cats->arr[idx].n_words--;
+  //free(t);
 }
