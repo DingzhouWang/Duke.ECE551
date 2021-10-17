@@ -1,6 +1,6 @@
-Grading at 10/17/2021:03:41:14.468103
-For commit ID c369c2689f1478e74b4fa84c57a067944c40c288
-Grading at Sat Oct 16 23:41:10 EDT 2021
+Grading at 10/17/2021:14:43:21.084474
+For commit ID edc7eb5c5075348e83922c14ea35bc61a5568b79
+Grading at Sun Oct 17 10:43:16 EDT 2021
 Running your test cases
 
 Compiling story-step1
@@ -11,7 +11,7 @@ gcc -o story-step1 story-step1.o rand_story.o provided.o
 rm story-step1.o
 +-----------------------------------------------------------------------+
 Test case story-step1 story.txt
-Once upon a time, there was a cat who lived in a very Your program successfully indicated a failure case
+Once upon a time, there was a Valgrind reported memory errors
 
 Compiling story-step4
 rm -f *~ story-step1 story-step2 story-step3 story-step4 story-step1.o story-step2.o story-step3.o story-step4.o rand_story.o
@@ -22,7 +22,7 @@ rm story-step4.o
 +-----------------------------------------------------------------------+
 Test case story-step4 -n words.txt story4.txt
 skjakfghjs;, there was a walrus. This walrus lived in a very
-scary cave. One day, it left its scary cave and met a cat = newcat, tmp_num = 0, idx = -1Your program successfully indicated a failure case
+scary cave. One day, it left its scary cave and met a Your program successfully indicated a failure case
 
 Compiling story-step2
 rm -f *~ story-step1 story-step2 story-step3 story-step4 story-step1.o story-step2.o story-step3.o story-step4.o rand_story.o
@@ -47,7 +47,7 @@ Your file matched the expected output
 Test case story-step4 -n words2.txt story4.txt
 Your file matched the expected output
 
-You have PASSED all of your test cases
-Keep adding test cases until you are satisfied your program is correct
+You have FAILED one or more of your test cases
+Keep debugging
 
 Overall Grade: NO GRADE YET
