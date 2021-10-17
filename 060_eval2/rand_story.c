@@ -120,7 +120,6 @@ char * parse_input_cat(char * line) {
 
 int contain_cat(catarray_t * cats, char * cat) {
   size_t idx = 0;
-  //printf("qqq \n");
   while (idx < cats->n) {
     if (strcmp(cat, cats->arr[idx].name) == 0)
       return idx;
@@ -145,6 +144,7 @@ catarray_t * parse_cat_file(FILE * f) {
       cats->arr[cats->n].words[0] = inst;
       cats->arr[cats->n].n_words = 1;
       cats->n++;
+      free(cat);
     }
     else {
       int idx = contain_cat(cats, cat);

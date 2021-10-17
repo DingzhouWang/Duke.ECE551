@@ -34,5 +34,5 @@ int main(int argc, char ** argv) {
     fprintf(stderr, "Can not close %s. \n", argv[2]);
     exit(EXIT_FAILURE);
   }
-  return EXIT_SUCCESS;
+  freeCat(cats);
 }
