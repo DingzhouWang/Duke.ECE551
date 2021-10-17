@@ -52,7 +52,7 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
         word = chooseWord(cat, cats);
       }
       else {
-        fprintf(stderr, "Other Error from My_Choose_Word!");
+        fprintf(stderr, "Other Error from M!");
         exit(EXIT_FAILURE);
       }
 

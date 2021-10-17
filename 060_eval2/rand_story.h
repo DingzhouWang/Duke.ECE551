@@ -20,7 +20,11 @@ catarray_t * parse_cat_file(FILE * f);
 void freeCat(catarray_t * cats);
 
 //step3
-const char * My_Choose_Word(char * cat, catarray_t * cats, category_t * record);
+const char * My_Choose_Word(char * cat,
+                            catarray_t * cats,
+                            category_t * record,
+                            int t_index,
+                            int tmp_num);
 
 //step4
 void update_cats(catarray_t * cats, char * cat, const char * word);

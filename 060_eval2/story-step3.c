@@ -11,16 +11,23 @@ int main(int argc, char ** argv) {
     exit(EXIT_FAILURE);
   }
   FILE * f_word = fopen(argv[1], "r");
-  if (f_word == NULL) {
+  catarray_t * cats;
+  //check open word file
+  if (f_word != NULL) {
+    //parse category file
+    cats = parse_cat_file(f_word);
+  }
+  else {
     fprintf(stderr, "Cannot open %s. \n", argv[1]);
     exit(EXIT_FAILURE);
   }
-  catarray_t * cats = parse_cat_file(f_word);
+  //check close word file
   if (fclose(f_word) != 0) {
     fprintf(stderr, "Can not close %s. \n", argv[1]);
     exit(EXIT_FAILURE);
   }
   FILE * f_temp = fopen(argv[2], "r");
+  //check open template file
   if (f_temp != NULL) {
     //do something
     // parse template ans print story with proper words
@@ -30,9 +37,11 @@ int main(int argc, char ** argv) {
     fprintf(stderr, "Can not open %s. \n", argv[2]);
     exit(EXIT_FAILURE);
   }
+  //check close template file
   if (fclose(f_temp) != 0) {
     fprintf(stderr, "Can not close %s. \n", argv[2]);
     exit(EXIT_FAILURE);
   }
+  //free
   freeCat(cats);
 }
