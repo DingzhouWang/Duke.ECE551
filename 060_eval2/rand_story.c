@@ -241,7 +241,6 @@ void update_cats(catarray_t * cats, char * cat, const char * word) {
     cats->arr[idx].n_words--;
     return;
   }
-
   //char ** t = malloc(sizeof(*t) * cats->arr[idx].n_words);
   //size_t m = 0;
   //size_t n = 0;
@@ -257,11 +256,16 @@ void update_cats(catarray_t * cats, char * cat, const char * word) {
   //cats->arr[idx].words = malloc(sizeof(*cats->arr[idx].words) * cats->arr[idx].n_words);
 
   //new code
+  char * tmp;
+  free(cats->arr[idx].words[w_idx]);
   while (k < cats->arr[idx].n_words - 1) {
-    cats->arr[idx].words[k] = cats->arr[idx].words[k + 1];
+    tmp = cats->arr[idx].words[k + 1];
+    //free(cats->arr[idx].words[k + 1]);
+    cats->arr[idx].words[k] = tmp;
+    //cats->arr[idx].words[k + 1];
     k++;
   }
-  free(cats->arr[idx].words[cats->arr[idx].n_words - 1]);
+  //free(cats->arr[idx].words[cats->arr[idx].n_words - 1]);
   cats->arr[idx].n_words--;
   //free(t);
 }
