@@ -10,7 +10,6 @@
 //step1
 void parse_template(char * line, catarray_t * cats, category_t * record, int reuse);
 void read_template(FILE * f, catarray_t * cats, int reuse);
-void freeRecord(category_t * record);
 
 //step2
 char * parse_input_inst(char * line);

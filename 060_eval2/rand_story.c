@@ -46,7 +46,7 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
       //init temporary index of cats, and get 'cat' number
       int t_index = cats == NULL ? -1 : contain_cat(cats, cat);
       int tmp_num = atoi(cat);
-      //tmp_num >= 1 means cat is number
+      //tmp_num >= 1 means cat is a number
       if (tmp_num >= 1) {
         if ((size_t)tmp_num > record->n_words) {
           fprintf(stderr, "Error template! Do not have enough words.\n");
@@ -67,7 +67,7 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
       idx++;
       printf("%s", word);
 
-      //update record
+      //update varibles in record
       record->n_words++;
       record->words = realloc(record->words, sizeof(*record->words) * (record->n_words));
       record->words[record->n_words - 1] = strdup(word);
@@ -114,6 +114,7 @@ char * parse_input_inst(char * line) {
   *l_end = '\0';
   char * w_start = strchr(line, ':');
   int len_ = 0;
+  //get word
   if (w_start != NULL) {
     w_start += 1;
     len_ = l_end - w_start + 1;
@@ -137,6 +138,7 @@ char * parse_input_cat(char * line) {
   char * cat_end = strchr(line, ':');
   char * cat_ins;
   int i = 0;
+  //get category
   if (cat_end != NULL) {
     *cat_end = '\0';
     //char * cat_ins = strdup(line);
@@ -175,7 +177,8 @@ catarray_t * parse_cat_file(FILE * f) {
     char * inst = parse_input_inst(line);
     char * cat = parse_input_cat(line);
     int idx = contain_cat(cats, cat);
-    if (-1 == contain_cat(cats, cat)) {  //new type
+    //when cat is a new type
+    if (-1 == contain_cat(cats, cat)) {
       cats->arr = realloc(cats->arr, (cats->n + 1) * sizeof(*cats->arr));
       cats->arr[cats->n].name = cat;
       cats->arr[cats->n].words = malloc(sizeof(*cats->arr[cats->n].words));
@@ -183,7 +186,7 @@ catarray_t * parse_cat_file(FILE * f) {
       cats->arr[cats->n].n_words = 1;
       cats->n++;
     }
-    else {
+    else {  //when cat is an old type
       free(cat);
       cats->arr[idx].n_words++;
       cats->arr[idx].words = realloc(
@@ -208,6 +211,7 @@ void freeCat(catarray_t * cats) {
 }
 
 //step3
+//choose word diff from chooseword
 const char * My_Choose_Word(char * cat,
                             catarray_t * cats,
                             category_t * record,
