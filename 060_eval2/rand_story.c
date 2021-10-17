@@ -39,11 +39,13 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
     }
     else if (line[idx] == '_' && blank) {  //end of blank
       const char * word;
+      //if cats is empty.
       if (cats == NULL)
         word = chooseWord(cat, cats);
+      //init temporary index of cats, and get 'cat' number
       int t_index = cats == NULL ? -1 : contain_cat(cats, cat);
       int tmp_num = atoi(cat);
-      //const char * word;
+      //tmp_num >= 1 means cat is number
       if (tmp_num >= 1) {
         if ((size_t)tmp_num > record->n_words) {
           fprintf(stderr, "Error template! Do not have enough words.\n");
@@ -105,6 +107,7 @@ void read_template(FILE * f, catarray_t * cats, int reuse) {
 }
 
 //step2
+//parse the words.txt and get the word
 char * parse_input_inst(char * line) {
   char * l_end = strchr(line, '\n');
   *l_end = '\0';
@@ -120,6 +123,7 @@ char * parse_input_inst(char * line) {
   }
 }
 
+//parse the words.txt and get the category word
 char * parse_input_cat(char * line) {
   char * cat_end = strchr(line, ':');
   if (cat_end != NULL) {
@@ -133,6 +137,7 @@ char * parse_input_cat(char * line) {
   }
 }
 
+//find the index of category int cats[], if there is no category return -1
 int contain_cat(catarray_t * cats, char * cat) {
   size_t idx = 0;
   while (idx < cats->n) {
@@ -160,11 +165,9 @@ catarray_t * parse_cat_file(FILE * f) {
       cats->arr[cats->n].words[0] = inst;
       cats->arr[cats->n].n_words = 1;
       cats->n++;
-      //free(cat);
     }
     else {
       free(cat);
-      //int idx = contain_cat(cats, cat);
       cats->arr[idx].n_words++;
       cats->arr[idx].words = realloc(
           cats->arr[idx].words, cats->arr[idx].n_words * sizeof(*cats->arr[idx].words));
@@ -196,24 +199,13 @@ const char * My_Choose_Word(char * cat,
   if (cats == NULL) {
     return chooseWord(cat, NULL);
   }
-
-  //int tmp_num = atoi(cat);
-  //int idx = contain_cat(cats, cat);
-
-  //if (tmp_num >= 1) {
   if ((size_t)tmp_num <= record->n_words) {
-    //fprintf(stderr, "Do not have enough words. \n");
-    //exit(EXIT_FAILURE);
-    //}
-    //else {
     return record->words[record->n_words - tmp_num];
   }
-
   else if (t_index >= 0 && cats->arr[t_index].n_words) {
     return chooseWord(cat, cats);
   }
   else {
-    //printf("cat = %s, tmp_num = %d, idx = %d", cat, tmp_num, idx);
     fprintf(stderr, "Error from: doesn't contain enough words in category\n");
     exit(EXIT_FAILURE);
   }
@@ -221,51 +213,31 @@ const char * My_Choose_Word(char * cat,
 
 //step4
 void update_cats(catarray_t * cats, char * cat, const char * word) {
-  //printf("check");
+  //calculate index
   int idx = contain_cat(cats, cat);
   size_t i = 0;
   size_t w_idx;
+  //try to find the used word's index
   while (i < cats->arr[idx].n_words) {
     w_idx = strcmp(word, cats->arr[idx].words[i]) == 0 ? i : 0;
-    //w_idx = i;
     i++;
   }
 
-  //update cats
-  //free(cats->arr[idx].words[w_idx]);
-  //cats->arr[idx].n_words--;
-
-  //new code
+  //if word index is the last element, we can just remove it
   if (w_idx == cats->arr[idx].n_words - 1) {
     free(cats->arr[idx].words[w_idx]);
     cats->arr[idx].n_words--;
     return;
   }
-  //char ** t = malloc(sizeof(*t) * cats->arr[idx].n_words);
-  //size_t m = 0;
-  //size_t n = 0;
-  size_t k = w_idx;
-  //while (m < cats->arr[idx].n_words + 1) {
-  //  if (w_idx != m) {
-  //    t[n] = cats->arr[idx].words[m];
-  //    n++;
-  //  }
-  //  m++;
-  //}
-  //free(cats->arr[idx].words);
-  //cats->arr[idx].words = malloc(sizeof(*cats->arr[idx].words) * cats->arr[idx].n_words);
 
-  //new code
+  //if word index is not the last element, update it
+  size_t k = w_idx;
   char * tmp;
   free(cats->arr[idx].words[w_idx]);
   while (k < cats->arr[idx].n_words - 1) {
     tmp = cats->arr[idx].words[k + 1];
-    //free(cats->arr[idx].words[k + 1]);
     cats->arr[idx].words[k] = tmp;
-    //cats->arr[idx].words[k + 1];
     k++;
   }
-  //free(cats->arr[idx].words[cats->arr[idx].n_words - 1]);
   cats->arr[idx].n_words--;
-  //free(t);
 }
