@@ -38,9 +38,12 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
       cat[cat_len] = '\0';
     }
     else if (line[idx] == '_' && blank) {  //end of blank
-      int t_index = contain_cat(cats, cat);
-      int tmp_num = atoi(cat);
       const char * word;
+      if (cats == NULL)
+        word = chooseWord(cat, cats);
+      int t_index = cats == NULL ? -1 : contain_cat(cats, cat);
+      int tmp_num = atoi(cat);
+      //const char * word;
       if (tmp_num >= 1) {
         if ((size_t)tmp_num > record->n_words) {
           fprintf(stderr, "Error template! Do not have enough words.\n");
