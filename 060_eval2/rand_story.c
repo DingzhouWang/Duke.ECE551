@@ -124,7 +124,6 @@ char * parse_input_inst(char * line) {
       i++;
       w_start++;
     }
-    //char * instance = strdup(w_start);
     return instance;
   }
   else {
@@ -136,9 +135,17 @@ char * parse_input_inst(char * line) {
 //parse the words.txt and get the category word
 char * parse_input_cat(char * line) {
   char * cat_end = strchr(line, ':');
+  char * cat_ins;
+  int i = 0;
   if (cat_end != NULL) {
     *cat_end = '\0';
-    char * cat_ins = strdup(line);
+    //char * cat_ins = strdup(line);
+    int len_ = cat_end - &line[0] + 1;
+    cat_ins = malloc(sizeof(cat_ins) * len_);
+    while (i <= len_) {
+      cat_ins[i] = line[i];
+      i++;
+    }
     return cat_ins;
   }
   else {
