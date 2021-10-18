@@ -46,6 +46,8 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
       //init temporary index of cats, and get 'cat' number
       int t_index = cats == NULL ? -1 : contain_cat(cats, cat);
       int tmp_num = atoi(cat);
+      if (strchr(cat, ' ') && tmp_num != 0)
+        tmp_num = 0;
       //tmp_num >= 1 means cat is a number
       if (tmp_num >= 1) {
         if ((size_t)tmp_num > record->n_words) {
