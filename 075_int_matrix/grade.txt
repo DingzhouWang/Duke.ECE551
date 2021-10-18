@@ -1,35 +1,39 @@
-Grading at 10/18/2021:02:43:55.366883
-For commit ID b410066640f537485c4e70017d3e1bb8bc5b7208
-Grading at Sun Oct 17 22:43:45 EDT 2021
+Grading at 10/18/2021:03:21:42.310715
+For commit ID 420e505936465fcdf85f4d32cca3498fc3a57aba
+Grading at Sun Oct 17 23:21:27 EDT 2021
 Attempting to compile:
 rm -f *.o  *~ intMatrixTest
 #################################################
 testcase1:
-valgrind reported memory errors
+Your output is correct
+  - Valgrind was clean (no errors, no memory leaks)
+valgrind was clean
 #################################################
 testcase2:
-valgrind reported memory errors
+Your output is correct
+  - Valgrind was clean (no errors, no memory leaks)
+valgrind was clean
 #################################################
 testcase3:
-valgrind reported memory errors
+Your output is incorrect
 #################################################
 testcase4:
 valgrind reported memory errors
 #################################################
 testcase5:
-valgrind reported memory errors
+Your output is incorrect
 #################################################
 testcase6:
 valgrind reported memory errors
 #################################################
 testcase7:
-valgrind reported memory errors
+Your output is incorrect
 #################################################
 testcase8:
 valgrind reported memory errors
 #################################################
 testcase9:
-valgrind reported memory errors
+Your output is incorrect
 #################################################
 testcase10:
 valgrind reported memory errors
