@@ -12,7 +12,7 @@ IntArray::IntArray(int n) : data(new int[n]), numElements(n) {
 IntArray::IntArray(const IntArray & rhs) {
   this->numElements = rhs.numElements;
   this->data = new int[this->numElements];
-  for (int i = 0; i < numElements; i++) {
+  for (int i = 0; i < this->numElements; i++) {
     this->data[i] = rhs.data[i];
   }
 }
