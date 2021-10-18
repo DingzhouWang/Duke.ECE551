@@ -29,6 +29,7 @@ IntMatrix & IntMatrix::operator=(const IntMatrix & rhs) {
   for (int i = 0; i < numRows; i++) {
     delete rows[i];
   }
+  delete[] rows;
   this->numRows = rhs.numRows;
   this->numColumns = rhs.numColumns;
   this->rows = new IntArray *[numRows];
