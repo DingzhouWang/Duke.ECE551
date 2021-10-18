@@ -11,10 +11,11 @@ IntMatrix::IntMatrix(int r, int c) : numRows(r), numColumns(c) {
 IntMatrix::IntMatrix(const IntMatrix & rhs) {
   this->numRows = rhs.numRows;
   this->numColumns = rhs.numColumns;
-  this->rows = new IntArray *[numRows];
-  for (int i = 0; i < numRows; i++) {
-    rows[i] = new IntArray(numColumns);
-    *rows[i] = *rhs.rows[i];
+  rows = new IntArray *[rhs.numRows];
+  for (int i = 0; i < rhs.numRows; i++) {
+    //rows[i] = new IntArray(numColumns);
+    //*rows[i] = *rhs.rows[i];
+    rows[i] = new IntArray(*rhs.rows[i]);
   }
 }
 IntMatrix::~IntMatrix() {
@@ -24,21 +25,37 @@ IntMatrix::~IntMatrix() {
   delete[] rows;
 }
 IntMatrix & IntMatrix::operator=(const IntMatrix & rhs) {
-  if (*this == rhs)
-    return *this;
-  for (int i = 0; i < numRows; i++) {
-    delete rows[i];
-  }
-  delete[] rows;
-  this->numRows = rhs.numRows;
-  this->numColumns = rhs.numColumns;
-  this->rows = new IntArray *[numRows];
-  for (int i = 0; i < numRows; i++) {
-    rows[i] = new IntArray(numColumns);
-    *rows[i] = *rhs.rows[i];
+  //if (this == &rhs)
+  //  return *this;
+  //for (int i = 0; i < numRows; i++) {
+  //  delete rows[i];
+  // }
+  //delete[] rows;
+  //this->numRows = rhs.numRows;
+  //this->numColumns = rhs.numColumns;
+  //this->rows = new IntArray *[numRows];
+  //for (int i = 0; i < numRows; i++) {
+  //  rows[i] = new IntArray(numColumns);
+  //  *rows[i] = *rhs.rows[i];
+  //}
+  //return *this;
+
+  if (this != &rhs) {
+    IntArray ** temp = new IntArray *[rhs.numRows]();
+    for (int i = 0; i < rhs.numRows; i++) {
+      temp[i] = new IntArray(*rhs.rows[i]);
+    }
+    for (int i = 0; i < numRows; i++) {
+      delete rows[i];
+    }
+    delete[] rows;
+    rows = temp;
+    numRows = rhs.numRows;
+    numColumns = rhs.numColumns;
   }
   return *this;
 }
+
 int IntMatrix::getRows() const {
   return numRows;
 }
@@ -58,7 +75,7 @@ bool IntMatrix::operator==(const IntMatrix & rhs) const {
   if (this->numRows != rhs.numRows || this->numColumns != rhs.numColumns)
     return false;
   for (int i = 0; i < numRows; i++) {
-    if (*rows[i] != *rhs.rows[i])
+    if (*rows[i] != rhs[i])
       return false;
   }
   return true;
@@ -66,7 +83,7 @@ bool IntMatrix::operator==(const IntMatrix & rhs) const {
 
 IntMatrix IntMatrix::operator+(const IntMatrix & rhs) const {
   assert(this->numRows == rhs.numRows && this->numColumns == rhs.numColumns);
-  IntMatrix ans(rhs.numRows, rhs.numColumns);
+  IntMatrix ans(rhs);
   for (int i = 0; i < numRows; i++) {
     for (int j = 0; j < numColumns; j++) {
       ans[i][j] = (*this)[i][j] + rhs[i][j];
