@@ -6,3 +6,5 @@ adjective:scary
 adjective:peaceful
 newcat:qwewr 
  2 : 1234
+0:asd
+ 0 :zxc
