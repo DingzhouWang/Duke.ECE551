@@ -1,6 +1,6 @@
-Grading at 10/18/2021:02:53:42.204319
-For commit ID 7a7c49957625592b399822e4df19b1c4b6868b28
-Grading at Sun Oct 17 22:53:38 EDT 2021
+Grading at 10/18/2021:03:00:26.982707
+For commit ID 335cbf1569a5e500eed446b5a386992ed29ed136
+Grading at Sun Oct 17 23:00:22 EDT 2021
 Running your test cases
 
 Compiling story-step1
@@ -22,7 +22,7 @@ rm story-step4.o
 +-----------------------------------------------------------------------+
 Test case story-step4 -n words.txt story4.txt
 skjakfghjs;, there was a walrus. This walrus lived in a very
-scary cave. One day, it left its scary cave and met a Your program successfully indicated a failure case
+scary cave. One day, it left its Your program successfully indicated a failure case
 
 Compiling story-step2
 rm -f *~ story-step1 story-step2 story-step3 story-step4 story-step1.o story-step2.o story-step3.o story-step4.o rand_story.o
@@ -45,10 +45,9 @@ Test case story-step4 -n words.txt story2.txt
 Your file matched the expected output
 +-----------------------------------------------------------------------+
 Test case story-step4 -n words2.txt story4.txt
-Line_2_did_not_match
-Your file did not match the expected output
+Your file matched the expected output
 
-You have FAILED one or more of your test cases
-Keep debugging
+You have PASSED all of your test cases
+Keep adding test cases until you are satisfied your program is correct
 
 Overall Grade: NO GRADE YET
