@@ -1,6 +1,6 @@
 #include "IntMatrix.h"
 
-IntMatrix::IntMatrix() : numRows(0), numColumns(0) {
+IntMatrix::IntMatrix() : numRows(0), numColumns(0), rows(NULL) {
 }
 IntMatrix::IntMatrix(int r, int c) : numRows(r), numColumns(c) {
   rows = new IntArray *[numRows];
