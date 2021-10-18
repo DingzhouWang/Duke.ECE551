@@ -80,7 +80,7 @@ std::ostream & operator<<(std::ostream & s, const IntMatrix & rhs) {
     s << "[]";
   else {
     s << '[';
-    for (int i = 0; i < rhs.getRows(); i++) {
+    for (int i = 0; i < rhs.getRows() - 1; i++) {
       s << rhs[i] << ",\n";
     }
     s << rhs[rhs.getRows() - 1];
