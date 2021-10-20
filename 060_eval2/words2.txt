@@ -5,6 +5,7 @@ adjective:peculiar
 adjective:scary
 adjective:peaceful
 newcat:qwewr 
+2: rty
  2 : 1234
 0:asd
  0:zxc
