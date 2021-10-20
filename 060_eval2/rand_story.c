@@ -12,6 +12,7 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
   char * cat = NULL;
   bool blank = false;
 
+  //print the output when we read the line
   while (line[idx] != '\0') {
     if (line[idx] != '_' && !blank) {  //not in the blank
       printf("%c", line[idx]);
@@ -59,7 +60,7 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
         }
         //debugging: printf("cat:%s, t_idx=%d, t_num=%d \n", cat, t_index, tmp_num);
         word = My_Choose_Word(cat, cats, record, t_index, tmp_num);
-      }
+      }  //category is number
       else if (t_index >= 0 && cats->arr[t_index].n_words) {
         word = chooseWord(cat, cats);
       }
@@ -118,7 +119,6 @@ void read_template(FILE * f, catarray_t * cats, int reuse) {
     free(record->words[i]);
   }
   free(record->words);
-  //free(record->name);
   free(record);
 }
 
@@ -241,7 +241,9 @@ void freeCat(catarray_t * cats) {
 }
 
 //step3
-//choose word diff from chooseword
+//choose word different from chooseword
+//1.input category
+//2.input number
 const char * My_Choose_Word(char * cat,
                             catarray_t * cats,
                             category_t * record,
@@ -263,6 +265,7 @@ const char * My_Choose_Word(char * cat,
 }
 
 //step4
+//update cats, if there is word has been used
 void update_cats(catarray_t * cats, char * cat, const char * word) {
   //calculate index
   int idx = contain_cat(cats, cat);
