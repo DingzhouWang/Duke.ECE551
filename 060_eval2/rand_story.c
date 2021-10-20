@@ -193,24 +193,23 @@ catarray_t * parse_cat_file(FILE * f) {
       cats->n++;
     }
     else {  //when cat is an old type
-      //free(cat);
-      for (size_t i = 0; i < cats->arr[idx].n_words; i++) {
-        if (cat != cats->arr[idx].words[i]) {
-          free(cat);
-          cats->arr[idx].n_words++;
-          cats->arr[idx].words =
-              realloc(cats->arr[idx].words,
-                      cats->arr[idx].n_words * sizeof(*cats->arr[idx].words));
-          cats->arr[idx].words[cats->arr[idx].n_words - 1] = inst;
-        }
-        else {
-          break;
-        }
-      }
+            //free(cat);
+            //for (size_t i = 0; i < cats->arr[idx].n_words; i++) {
+            //  if (cat != cats->arr[idx].words[i]) {
+      free(cat);
+      cats->arr[idx].n_words++;
+      cats->arr[idx].words = realloc(
+          cats->arr[idx].words, cats->arr[idx].n_words * sizeof(*cats->arr[idx].words));
+      cats->arr[idx].words[cats->arr[idx].n_words - 1] = inst;
+      //}
+      //else {
+      //break;
+      // }
     }
-    //free(line);
-    //return cats;
   }
+  //free(line);
+  //return cats;
+  //}
   free(line);
   return cats;
 }
