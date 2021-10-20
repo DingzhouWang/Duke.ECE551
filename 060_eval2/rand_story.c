@@ -57,7 +57,7 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
           fprintf(stderr, "Error template! Do not have enough words.\n");
           exit(EXIT_FAILURE);
         }
-        printf("cat:%s, t_idx=%d, t_num=%d \n", cat, t_index, tmp_num);
+        //printf("cat:%s, t_idx=%d, t_num=%d \n", cat, t_index, tmp_num);
         word = My_Choose_Word(cat, cats, record, t_index, tmp_num);
       }
       else if (t_index >= 0 && cats->arr[t_index].n_words) {
