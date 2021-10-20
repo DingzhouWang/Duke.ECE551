@@ -204,8 +204,15 @@ catarray_t * parse_cat_file(FILE * f) {
     }
     else {  //when cat is an old type
             //free(cat);
-            //for (size_t i = 0; i < cats->arr[idx].n_words; i++) {
-            //  if (cat != cats->arr[idx].words[i]) {
+      bool has_word = false;
+      for (size_t i = 0; i < cats->arr[idx].n_words; i++) {
+        if (cat == cats->arr[idx].words[i]) {
+          has_word = true;
+          break;
+        }
+      }
+      if (has_word)
+        continue;
       free(cat);
       cats->arr[idx].n_words++;
       cats->arr[idx].words = realloc(
