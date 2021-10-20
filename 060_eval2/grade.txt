@@ -1,6 +1,6 @@
-Grading at 10/18/2021:20:19:26.924621
-For commit ID 8ac475fdf4a05de5ff2610324b435bb7124728d8
-Grading at Mon Oct 18 16:19:22 EDT 2021
+Grading at 10/20/2021:18:39:36.066714
+For commit ID 3794f0a60a01640a8aa59902c74b80ddb19ebfbe
+Grading at Wed Oct 20 14:39:13 EDT 2021
 Running your test cases
 
 Compiling story-step1
@@ -10,7 +10,7 @@ gcc -std=gnu99 -pedantic -Wall -Werror -ggdb3 -c story-step1.c
 gcc -o story-step1 story-step1.o rand_story.o provided.o
 rm story-step1.o
 +-----------------------------------------------------------------------+
-Test case story-step1 story.txt
+Test case 1 (error): story-step1 story.txt
 Once upon a time, there was a Your program successfully indicated a failure case
 
 Compiling story-step4
@@ -20,8 +20,8 @@ gcc -std=gnu99 -pedantic -Wall -Werror -ggdb3 -c story-step4.c
 gcc -o story-step4 story-step4.o rand_story.o provided.o
 rm story-step4.o
 +-----------------------------------------------------------------------+
-Test case story-step4 -n words.txt story4.txt
-skjakfghjs;, there Your program successfully indicated a failure case
+Test case 2 (error): story-step4 -n words.txt story4.txt
+Valgrind reported memory errors
 
 Compiling story-step2
 rm -f *~ story-step1 story-step2 story-step3 story-step4 story-step1.o story-step2.o story-step3.o story-step4.o rand_story.o
@@ -30,8 +30,8 @@ gcc -std=gnu99 -pedantic -Wall -Werror -ggdb3 -c story-step2.c
 gcc -o story-step2 story-step2.o rand_story.o provided.o
 rm story-step2.o
 +-----------------------------------------------------------------------+
-Test case story-step2 words.txt
-Your file matched the expected output
+Test case 3 (success): story-step2 words.txt
+Valgrind reported memory errors
 
 Compiling story-step4
 rm -f *~ story-step1 story-step2 story-step3 story-step4 story-step1.o story-step2.o story-step3.o story-step4.o rand_story.o
@@ -40,13 +40,13 @@ gcc -std=gnu99 -pedantic -Wall -Werror -ggdb3 -c story-step4.c
 gcc -o story-step4 story-step4.o rand_story.o provided.o
 rm story-step4.o
 +-----------------------------------------------------------------------+
-Test case story-step4 -n words.txt story2.txt
-Your file matched the expected output
+Test case 4 (success): story-step4 -n words.txt story2.txt
+Valgrind reported memory errors
 +-----------------------------------------------------------------------+
-Test case story-step4 -n words2.txt story4.txt
-Your file matched the expected output
+Test case 5 (success): story-step4 -n words2.txt story4.txt
+Valgrind reported memory errors
 
-You have PASSED all of your test cases
-Keep adding test cases until you are satisfied your program is correct
+You have FAILED one or more of your test cases
+Keep debugging
 
 Overall Grade: NO GRADE YET
