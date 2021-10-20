@@ -207,10 +207,10 @@ catarray_t * parse_cat_file(FILE * f) {
         }
       }
     }
-    //free(line);
+    free(line);
     //return cats;
   }
-  free(line);
+  //free(line);
   return cats;
 }
 
