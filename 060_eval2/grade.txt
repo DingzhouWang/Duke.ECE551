@@ -1,6 +1,6 @@
-Grading at 10/20/2021:18:51:05.539378
-For commit ID 3ebbb5850f059d5cb6eb06dec7040fda88255dd6
-Grading at Wed Oct 20 14:51:01 EDT 2021
+Grading at 10/20/2021:18:52:26.026815
+For commit ID 6a2bd0d89148a09e78ef2f3c9696f1ad61b1628f
+Grading at Wed Oct 20 14:52:21 EDT 2021
 Running your test cases
 
 Compiling story-step1
@@ -49,7 +49,8 @@ Line_5_did_not_match
 Your file did not match the expected output
 +-----------------------------------------------------------------------+
 Test case 5 (success): story-step4 -n words2.txt story4.txt
-Line_1_did_not_match
+Line_2_did_not_match
+Line_3_did_not_match
 Your file did not match the expected output
 
 You have FAILED one or more of your test cases
