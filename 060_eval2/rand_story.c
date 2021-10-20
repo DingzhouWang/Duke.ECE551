@@ -76,7 +76,16 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
       //update varibles in record
       record->n_words++;
       record->words = realloc(record->words, sizeof(*record->words) * (record->n_words));
-      record->words[record->n_words - 1] = strdup(word);
+      //record->words[record->n_words - 1] = strdup(word);
+      char * tmp = malloc((strlen(word) + 1) * sizeof(*tmp));
+      int j = 0;
+      while (word[j] != 0) {
+        tmp[j] = word[j];
+        j++;
+      }
+      tmp[j] = '\0';
+      record->words[record->n_words - 1] = tmp;
+
       if (t_index != -1 && !reuse) {
         if (tmp_num < 1 && cats->arr[t_index].n_words != 0)
           update_cats(cats, cat, word);
@@ -84,6 +93,7 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
     }
   }
   free(cat);
+
   if (blank == true) {  //no matching '_'
     fprintf(stderr, "Cannot match the '_': %s \n", line);
     exit(EXIT_FAILURE);
