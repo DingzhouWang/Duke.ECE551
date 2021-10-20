@@ -118,7 +118,7 @@ void read_template(FILE * f, catarray_t * cats, int reuse) {
     free(record->words[i]);
   }
   free(record->words);
-  free(record->name);
+  //free(record->name);
   free(record);
 }
 
