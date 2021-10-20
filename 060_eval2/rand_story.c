@@ -194,7 +194,7 @@ catarray_t * parse_cat_file(FILE * f) {
     char * cat = parse_input_cat(line);
     int idx = contain_cat(cats, cat);
     //when cat is a new type
-    if (-1 == contain_cat(cats, cat)) {
+    if (!(contain_cat(cats, cat) + 1)) {
       cats->arr = realloc(cats->arr, (cats->n + 1) * sizeof(*cats->arr));
       cats->arr[cats->n].name = cat;
       cats->arr[cats->n].words = malloc(sizeof(*cats->arr[cats->n].words));
@@ -203,7 +203,8 @@ catarray_t * parse_cat_file(FILE * f) {
       cats->n++;
     }
     else {  //when cat is an old type
-            //free(cat);
+            //we need free(cat);
+      //we need a varibles to record whether is has recorded in cats structure
       bool has_word = false;
       for (size_t i = 0; i < cats->arr[idx].n_words; i++) {
         if (cat == cats->arr[idx].words[i]) {
@@ -211,22 +212,17 @@ catarray_t * parse_cat_file(FILE * f) {
           break;
         }
       }
+      //if the word has been record, then go to the next loop
       if (has_word)
         continue;
+      //else add a new word to the cats
       free(cat);
       cats->arr[idx].n_words++;
       cats->arr[idx].words = realloc(
           cats->arr[idx].words, cats->arr[idx].n_words * sizeof(*cats->arr[idx].words));
       cats->arr[idx].words[cats->arr[idx].n_words - 1] = inst;
-      //}
-      //else {
-      //break;
-      // }
     }
   }
-  //free(line);
-  //return cats;
-  //}
   free(line);
   return cats;
 }
