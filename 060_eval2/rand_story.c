@@ -22,7 +22,7 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
       idx += 1;
     }
     else if (line[idx] != '_' && blank) {  //in the blank
-      //do something
+      //find the last '_' and get the length
       size_t start = idx;
       size_t tmp_i = 0;
       while (line[idx] != '\0' && line[idx] != '_') {
@@ -57,7 +57,7 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
           fprintf(stderr, "Error template! Do not have enough words.\n");
           exit(EXIT_FAILURE);
         }
-        //printf("cat:%s, t_idx=%d, t_num=%d \n", cat, t_index, tmp_num);
+        //debugging: printf("cat:%s, t_idx=%d, t_num=%d \n", cat, t_index, tmp_num);
         word = My_Choose_Word(cat, cats, record, t_index, tmp_num);
       }
       else if (t_index >= 0 && cats->arr[t_index].n_words) {
@@ -76,7 +76,6 @@ void parse_template(char * line, catarray_t * cats, category_t * record, int reu
       //update varibles in record
       record->n_words++;
       record->words = realloc(record->words, sizeof(*record->words) * (record->n_words));
-      //record->words[record->n_words - 1] = strdup(word);
       char * tmp = malloc((strlen(word) + 1) * sizeof(*tmp));
       int j = 0;
       while (word[j] != 0) {
@@ -107,7 +106,7 @@ void read_template(FILE * f, catarray_t * cats, int reuse) {
   //init Record
   category_t * record = malloc(sizeof(*record));
   record->n_words = 0;
-  record->name = strdup("USED");
+  record->name = "USED";
   record->words = NULL;
   //parse it!
   while (getline(&line, &size_, f) >= 0) {
@@ -183,6 +182,7 @@ int contain_cat(catarray_t * cats, char * cat) {
   return -1;
 }
 
+//read the file and parse it
 catarray_t * parse_cat_file(FILE * f) {
   char * line = NULL;
   size_t size_ = 0;
@@ -227,6 +227,7 @@ catarray_t * parse_cat_file(FILE * f) {
   return cats;
 }
 
+//function to free the category
 void freeCat(catarray_t * cats) {
   for (size_t i = 0; i < cats->n; i++) {
     for (size_t j = 0; j < cats->arr[i].n_words; j++) {
