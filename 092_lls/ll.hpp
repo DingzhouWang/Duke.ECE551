@@ -5,14 +5,10 @@
 
 #include <cstdlib>
 #include <exception>
+#include <iostream>
+#include <stdexcept>
 
 //YOUR CODE GOES HERE
-class myexception : public std::exception {
- public:
-  virtual const char * what() const throw() {
-    return "The requested item does not exist\n";
-  }
-};
 
 template<typename T>
 class LinkedList {
@@ -33,10 +29,10 @@ class LinkedList {
   LinkedList() : head(NULL), tail(NULL), size(0){};
 
   LinkedList(const LinkedList & rhs) : head(NULL), tail(NULL), size(0) {
-    Node * tmp = rhs.head;
-    while (tmp != NULL) {
-      this->addBack(tmp->item);
-      tmp = tmp->next;
+    Node * cur = rhs.head;
+    while (cur != NULL) {
+      this->addBack(cur->item);
+      cur = cur->next;
     }
   }
 
@@ -65,9 +61,13 @@ class LinkedList {
     }
     if (cur == NULL)
       return 0;
-    if (this->size == 1)
+    if (this->size == 1) {
+      head = NULL;
+      tail = NULL;
+      delete cur;
+      size--;
       return 1;
-    //Node * tmp = cur;
+    }
     if (cur->next == NULL) {
       cur->prev->next = NULL;
       tail = cur->prev;
@@ -86,29 +86,25 @@ class LinkedList {
   }
 
   T & operator[](int index) {
-    if (index < 0 || index >= size) {
-      throw myexception();
+    assert(index >= 0 && index < size);
+    Node * cur = head;
+    int i = 0;
+    while (i != index) {
+      i++;
+      cur = cur->next;
     }
-    else {
-      Node * cur = head;
-      for (int i = 0; i < index; i++) {
-        cur = cur->next;
-      }
-      return cur->item;
-    }
+    return cur->item;
   }
 
   const T & operator[](int index) const {
-    if (index < 0 || index >= size) {
-      throw myexception();
+    assert(index >= 0 && index < size);
+    Node * cur = head;
+    int i = 0;
+    while (i != index) {
+      i++;
+      cur = cur->next;
     }
-    else {
-      Node * cur = head;
-      for (int i = 0; i < index; i++) {
-        cur = cur->next;
-      }
-      return cur->item;
-    }
+    return cur->item;
   }
 
   //find an item
@@ -127,6 +123,33 @@ class LinkedList {
 
   //getSize function
   int getSize() const { return size; }
+
+  LinkedList & operator=(const LinkedList & rhs) {
+    Node * tmp = new Node(rhs[0], NULL, NULL);
+    Node * cur = tmp;
+    for (int i = 1; i < rhs.getSize(); i++) {
+      cur->next = new Node(rhs[i], NULL, cur);
+      cur = cur->next;
+    }
+    while (head != NULL) {
+      Node * temp1 = head->next;
+      delete head;
+      head = temp1;
+    }
+    head = tmp;
+    tail = cur;
+    size = rhs.getSize();
+    return *this;
+  }
+
+  //destructor
+  ~LinkedList() {
+    while (head != NULL) {
+      Node * tmp = head->next;
+      delete head;
+      head = tmp;
+    }
+  }
 };
 
 #endif
