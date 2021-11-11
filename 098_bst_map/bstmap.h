@@ -92,11 +92,11 @@ class BstMap : public Map<K, V> {
   virtual void remove(const K & key) {
     Node ** cur = &root;
     while (*cur && *cur->key != key) {
-      if (key > *cur->key) {
-        cur = cur->right;
+      if (key > &(*cur)->key) {
+        cur = &(*cur)->right;
       }
       else {
-        cur = cur->left;
+        cur = &(*cur)->left;
       }
     }
     if (!*cur)
@@ -112,9 +112,9 @@ class BstMap : public Map<K, V> {
       *cur = tem;
     }
     else {
-      Node ** tem = cur->left;
+      Node ** tem = &(*cur)->left;
       while (*tem->right) {
-        tem = tem->right;
+        tem = &(*tem)->right;
       }
       *cur->key = *tem->key;
       *cur->val = *tem->val;
