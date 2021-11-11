@@ -90,37 +90,37 @@ class BstMap : public Map<K, V> {
     }
   }
   virtual void remove(const K & key) {
-    Node * cur = root;
-    while (cur != NULL && cur->key != key) {
-      if (key > cur->key) {
+    Node ** cur = &root;
+    while (*cur && *cur->key != key) {
+      if (key > *cur->key) {
         cur = cur->right;
       }
       else {
         cur = cur->left;
       }
     }
-    if (cur == NULL)
+    if (!*cur)
       return;
-    if (!cur->left) {
-      Node * tem = cur->right;
-      delete cur;
-      cur = tem;
+    if (!*cur->left) {
+      Node * tem = *cur->right;
+      delete *cur;
+      *cur = tem;
     }
-    else if (!cur->right) {
-      Node * tem = cur->left;
-      delete cur;
-      cur = tem;
+    else if (!*cur->right) {
+      Node * tem = *cur->left;
+      delete *cur;
+      *cur = tem;
     }
     else {
-      Node * tem = cur->left;
-      while (tem->right) {
+      Node ** tem = cur->left;
+      while (*tem->right) {
         tem = tem->right;
       }
-      cur->key = tem->key;
-      cur->val = tem->val;
-      Node * lT = tem->left;
-      delete tem;
-      tem = lT;
+      *cur->key = *tem->key;
+      *cur->val = *tem->val;
+      Node * T = *tem->left;
+      delete *tem;
+      *tem = T;
     }
   }
 };
