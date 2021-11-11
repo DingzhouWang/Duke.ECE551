@@ -1,0 +1,95 @@
+Grading at 11/11/2021:22:20:49.739761
+For commit ID 8577e07c73191ec387e84ec248f4f73b24c517d2
+Grading at Thu Nov 11 17:20:48 EST 2021
+-----------------------------------------------
+testcase 1 : Testing with BstMap<int,int>
+...compiling...
+In file included from 89-tester.cpp:1:0:
+bstmap.h: In instantiation of ‘BstMap<K, V>::BstMap(const BstMap<K, V>&) [with K = int; V = int]’:
+89-tester.cpp:95:36:   required from here
+bstmap.h:38:49: error: ‘copyhelper’ was not declared in this scope
+   BstMap(const BstMap & rhs) { root = copyhelper(rhs.root); }
+                                       ~~~~~~~~~~^~~~~~~~~~
+The code did not compile.  This test failed.
+-----------------------------------------------
+testcase 2 : Testing with BstMap<int,std::string>
+...compiling...
+In file included from 89-tester.cpp:1:0:
+bstmap.h: In instantiation of ‘BstMap<K, V>::BstMap(const BstMap<K, V>&) [with K = int; V = std::__cxx11::basic_string<char>]’:
+89-tester.cpp:95:36:   required from here
+bstmap.h:38:49: error: ‘copyhelper’ was not declared in this scope
+   BstMap(const BstMap & rhs) { root = copyhelper(rhs.root); }
+                                       ~~~~~~~~~~^~~~~~~~~~
+The code did not compile.  This test failed.
+-----------------------------------------------
+testcase 3 : Testing with BstMap<int,(a custom class we wrote)>
+...compiling...
+In file included from 89-tester.cpp:1:0:
+bstmap.h: In instantiation of ‘BstMap<K, V>::BstMap(const BstMap<K, V>&) [with K = int; V = Tester]’:
+89-tester.cpp:95:36:   required from here
+bstmap.h:38:49: error: ‘copyhelper’ was not declared in this scope
+   BstMap(const BstMap & rhs) { root = copyhelper(rhs.root); }
+                                       ~~~~~~~~~~^~~~~~~~~~
+The code did not compile.  This test failed.
+-----------------------------------------------
+testcase 4 : Testing with BstMap<std::string,int>
+...compiling...
+In file included from 89-tester.cpp:1:0:
+bstmap.h: In instantiation of ‘BstMap<K, V>::BstMap(const BstMap<K, V>&) [with K = std::__cxx11::basic_string<char>; V = int]’:
+89-tester.cpp:95:36:   required from here
+bstmap.h:38:49: error: ‘copyhelper’ was not declared in this scope
+   BstMap(const BstMap & rhs) { root = copyhelper(rhs.root); }
+                                       ~~~~~~~~~~^~~~~~~~~~
+The code did not compile.  This test failed.
+-----------------------------------------------
+testcase 5 : Testing with BstMap<std::string,std::string>
+...compiling...
+In file included from 89-tester.cpp:1:0:
+bstmap.h: In instantiation of ‘BstMap<K, V>::BstMap(const BstMap<K, V>&) [with K = std::__cxx11::basic_string<char>; V = std::__cxx11::basic_string<char>]’:
+89-tester.cpp:95:36:   required from here
+bstmap.h:38:49: error: ‘copyhelper’ was not declared in this scope
+   BstMap(const BstMap & rhs) { root = copyhelper(rhs.root); }
+                                       ~~~~~~~~~~^~~~~~~~~~
+The code did not compile.  This test failed.
+-----------------------------------------------
+testcase 6 : Testing with BstMap<std::string,(a custom class we wrote)>
+...compiling...
+In file included from 89-tester.cpp:1:0:
+bstmap.h: In instantiation of ‘BstMap<K, V>::BstMap(const BstMap<K, V>&) [with K = std::__cxx11::basic_string<char>; V = Tester]’:
+89-tester.cpp:95:36:   required from here
+bstmap.h:38:49: error: ‘copyhelper’ was not declared in this scope
+   BstMap(const BstMap & rhs) { root = copyhelper(rhs.root); }
+                                       ~~~~~~~~~~^~~~~~~~~~
+The code did not compile.  This test failed.
+-----------------------------------------------
+testcase 7 : Testing with BstMap<(a custom class we wrote),int>
+...compiling...
+In file included from 89-tester.cpp:1:0:
+bstmap.h: In instantiation of ‘BstMap<K, V>::BstMap(const BstMap<K, V>&) [with K = Tester; V = int]’:
+89-tester.cpp:95:36:   required from here
+bstmap.h:38:49: error: ‘copyhelper’ was not declared in this scope
+   BstMap(const BstMap & rhs) { root = copyhelper(rhs.root); }
+                                       ~~~~~~~~~~^~~~~~~~~~
+The code did not compile.  This test failed.
+-----------------------------------------------
+testcase 8 : Testing with BstMap<(a custom class we wrote),std::string>
+...compiling...
+In file included from 89-tester.cpp:1:0:
+bstmap.h: In instantiation of ‘BstMap<K, V>::BstMap(const BstMap<K, V>&) [with K = Tester; V = std::__cxx11::basic_string<char>]’:
+89-tester.cpp:95:36:   required from here
+bstmap.h:38:49: error: ‘copyhelper’ was not declared in this scope
+   BstMap(const BstMap & rhs) { root = copyhelper(rhs.root); }
+                                       ~~~~~~~~~~^~~~~~~~~~
+The code did not compile.  This test failed.
+-----------------------------------------------
+testcase 9 : Testing with BstMap<(a custom class we wrote),(a custom class we wrote)>
+...compiling...
+In file included from 89-tester.cpp:1:0:
+bstmap.h: In instantiation of ‘BstMap<K, V>::BstMap(const BstMap<K, V>&) [with K = Tester; V = Tester]’:
+89-tester.cpp:95:36:   required from here
+bstmap.h:38:49: error: ‘copyhelper’ was not declared in this scope
+   BstMap(const BstMap & rhs) { root = copyhelper(rhs.root); }
+                                       ~~~~~~~~~~^~~~~~~~~~
+The code did not compile.  This test failed.
+
+Overall Grade: F
