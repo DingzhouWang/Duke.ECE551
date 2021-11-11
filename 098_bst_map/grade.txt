@@ -1,48 +1,15 @@
-Grading at 11/11/2021:22:35:15.104079
-For commit ID 09685db46d07099721d25e1cc77d46349de4d93d
-Grading at Thu Nov 11 17:35:13 EST 2021
+Grading at 11/11/2021:22:39:47.585800
+For commit ID 0e0668b1db55f7302730b216c85e670e1dcb4f39
+Grading at Thu Nov 11 17:39:46 EST 2021
 -----------------------------------------------
 testcase 1 : Testing with BstMap<int,int>
 ...compiling...
 In file included from 89-tester.cpp:1:0:
 bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = int; V = int]’:
 89-tester.cpp:197:1:   required from here
-bstmap.h:94:26: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<int, int>::Node*’ (maybe you meant to use ‘->’ ?)
-     while (*cur && *cur->key != key) {
-                     ~~~~~^~~
-bstmap.h:95:15: error: ISO C++ forbids comparison between pointer and integer [-fpermissive]
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-bstmap.h:104:16: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<int, int>::Node*’ (maybe you meant to use ‘->’ ?)
-     if (!*cur->left) {
-           ~~~~~^~~~
-bstmap.h:105:26: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<int, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->right;
-                     ~~~~~^~~~~
 bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<int, int>::Node*’ (maybe you meant to use ‘->’ ?)
      else if (!*cur->right) {
                 ~~~~~^~~~~
-bstmap.h:110:26: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<int, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->left;
-                     ~~~~~^~~~
-bstmap.h:116:20: error: request for member ‘right’ in ‘* tem’, which is of pointer type ‘BstMap<int, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       while (*tem->right) {
-               ~~~~~^~~~~
-bstmap.h:119:13: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<int, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-        ~~~~~^~~
-bstmap.h:119:25: error: request for member ‘key’ in ‘* tem’, which is of pointer type ‘BstMap<int, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-                    ~~~~~^~~
-bstmap.h:120:13: error: request for member ‘val’ in ‘* cur’, which is of pointer type ‘BstMap<int, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-        ~~~~~^~~
-bstmap.h:120:25: error: request for member ‘val’ in ‘* tem’, which is of pointer type ‘BstMap<int, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-                    ~~~~~^~~
-bstmap.h:121:24: error: request for member ‘left’ in ‘* tem’, which is of pointer type ‘BstMap<int, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * T = *tem->left;
-                   ~~~~~^~~~
 The code did not compile.  This test failed.
 -----------------------------------------------
 testcase 2 : Testing with BstMap<int,std::string>
@@ -50,42 +17,9 @@ testcase 2 : Testing with BstMap<int,std::string>
 In file included from 89-tester.cpp:1:0:
 bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = int; V = std::__cxx11::basic_string<char>]’:
 89-tester.cpp:197:1:   required from here
-bstmap.h:94:26: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<int, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-     while (*cur && *cur->key != key) {
-                     ~~~~~^~~
-bstmap.h:95:15: error: ISO C++ forbids comparison between pointer and integer [-fpermissive]
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-bstmap.h:104:16: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<int, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-     if (!*cur->left) {
-           ~~~~~^~~~
-bstmap.h:105:26: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<int, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->right;
-                     ~~~~~^~~~~
 bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<int, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
      else if (!*cur->right) {
                 ~~~~~^~~~~
-bstmap.h:110:26: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<int, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->left;
-                     ~~~~~^~~~
-bstmap.h:116:20: error: request for member ‘right’ in ‘* tem’, which is of pointer type ‘BstMap<int, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       while (*tem->right) {
-               ~~~~~^~~~~
-bstmap.h:119:13: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<int, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-        ~~~~~^~~
-bstmap.h:119:25: error: request for member ‘key’ in ‘* tem’, which is of pointer type ‘BstMap<int, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-                    ~~~~~^~~
-bstmap.h:120:13: error: request for member ‘val’ in ‘* cur’, which is of pointer type ‘BstMap<int, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-        ~~~~~^~~
-bstmap.h:120:25: error: request for member ‘val’ in ‘* tem’, which is of pointer type ‘BstMap<int, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-                    ~~~~~^~~
-bstmap.h:121:24: error: request for member ‘left’ in ‘* tem’, which is of pointer type ‘BstMap<int, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * T = *tem->left;
-                   ~~~~~^~~~
 The code did not compile.  This test failed.
 -----------------------------------------------
 testcase 3 : Testing with BstMap<int,(a custom class we wrote)>
@@ -93,42 +27,9 @@ testcase 3 : Testing with BstMap<int,(a custom class we wrote)>
 In file included from 89-tester.cpp:1:0:
 bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = int; V = Tester]’:
 89-tester.cpp:197:1:   required from here
-bstmap.h:94:26: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<int, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-     while (*cur && *cur->key != key) {
-                     ~~~~~^~~
-bstmap.h:95:15: error: ISO C++ forbids comparison between pointer and integer [-fpermissive]
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-bstmap.h:104:16: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<int, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-     if (!*cur->left) {
-           ~~~~~^~~~
-bstmap.h:105:26: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<int, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->right;
-                     ~~~~~^~~~~
 bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<int, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
      else if (!*cur->right) {
                 ~~~~~^~~~~
-bstmap.h:110:26: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<int, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->left;
-                     ~~~~~^~~~
-bstmap.h:116:20: error: request for member ‘right’ in ‘* tem’, which is of pointer type ‘BstMap<int, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       while (*tem->right) {
-               ~~~~~^~~~~
-bstmap.h:119:13: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<int, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-        ~~~~~^~~
-bstmap.h:119:25: error: request for member ‘key’ in ‘* tem’, which is of pointer type ‘BstMap<int, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-                    ~~~~~^~~
-bstmap.h:120:13: error: request for member ‘val’ in ‘* cur’, which is of pointer type ‘BstMap<int, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-        ~~~~~^~~
-bstmap.h:120:25: error: request for member ‘val’ in ‘* tem’, which is of pointer type ‘BstMap<int, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-                    ~~~~~^~~
-bstmap.h:121:24: error: request for member ‘left’ in ‘* tem’, which is of pointer type ‘BstMap<int, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * T = *tem->left;
-                   ~~~~~^~~~
 The code did not compile.  This test failed.
 -----------------------------------------------
 testcase 4 : Testing with BstMap<std::string,int>
@@ -136,165 +37,9 @@ testcase 4 : Testing with BstMap<std::string,int>
 In file included from 89-tester.cpp:1:0:
 bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = std::__cxx11::basic_string<char>; V = int]’:
 89-tester.cpp:197:1:   required from here
-bstmap.h:94:26: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, int>::Node*’ (maybe you meant to use ‘->’ ?)
-     while (*cur && *cur->key != key) {
-                     ~~~~~^~~
-bstmap.h:95:15: error: no match for ‘operator>’ (operand types are ‘const std::__cxx11::basic_string<char>’ and ‘std::__cxx11::basic_string<char>*’)
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/string:52:0,
-                 from /usr/include/c++/7/bits/locale_classes.h:40,
-                 from /usr/include/c++/7/bits/ios_base.h:41,
-                 from /usr/include/c++/7/ios:42,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/basic_string.h:6157:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator>(const _CharT*, const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&)
-     operator>(const _CharT* __lhs,
-     ^~~~~~~~
-/usr/include/c++/7/bits/basic_string.h:6157:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   mismatched types ‘const _CharT*’ and ‘std::__cxx11::basic_string<char>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/string:52:0,
-                 from /usr/include/c++/7/bits/locale_classes.h:40,
-                 from /usr/include/c++/7/bits/ios_base.h:41,
-                 from /usr/include/c++/7/ios:42,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/basic_string.h:6145:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator>(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*)
-     operator>(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
-     ^~~~~~~~
-/usr/include/c++/7/bits/basic_string.h:6145:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   deduced conflicting types for parameter ‘const _CharT’ (‘char’ and ‘std::__cxx11::basic_string<char>’)
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/string:52:0,
-                 from /usr/include/c++/7/bits/locale_classes.h:40,
-                 from /usr/include/c++/7/bits/ios_base.h:41,
-                 from /usr/include/c++/7/ios:42,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/basic_string.h:6132:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator>(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&)
-     operator>(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
-     ^~~~~~~~
-/usr/include/c++/7/bits/basic_string.h:6132:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   mismatched types ‘const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>’ and ‘std::__cxx11::basic_string<char>*’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
-                 from /usr/include/c++/7/bits/char_traits.h:39,
-                 from /usr/include/c++/7/ios:40,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/stl_iterator.h:358:5: note: candidate: template<class _IteratorL, class _IteratorR> bool std::operator>(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)
-     operator>(const reverse_iterator<_IteratorL>& __x,
-     ^~~~~~~~
-/usr/include/c++/7/bits/stl_iterator.h:358:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   ‘const std::__cxx11::basic_string<char>’ is not derived from ‘const std::reverse_iterator<_Iterator>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
-                 from /usr/include/c++/7/bits/char_traits.h:39,
-                 from /usr/include/c++/7/ios:40,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/stl_iterator.h:320:5: note: candidate: template<class _Iterator> bool std::operator>(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_Iterator>&)
-     operator>(const reverse_iterator<_Iterator>& __x,
-     ^~~~~~~~
-/usr/include/c++/7/bits/stl_iterator.h:320:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   ‘const std::__cxx11::basic_string<char>’ is not derived from ‘const std::reverse_iterator<_Iterator>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/bits/stl_algobase.h:64:0,
-                 from /usr/include/c++/7/bits/char_traits.h:39,
-                 from /usr/include/c++/7/ios:40,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/stl_pair.h:467:5: note: candidate: template<class _T1, class _T2> bool std::operator>(const std::pair<_T1, _T2>&, const std::pair<_T1, _T2>&)
-     operator>(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
-     ^~~~~~~~
-/usr/include/c++/7/bits/stl_pair.h:467:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   ‘const std::__cxx11::basic_string<char>’ is not derived from ‘const std::pair<_T1, _T2>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
-                 from /usr/include/c++/7/bits/char_traits.h:39,
-                 from /usr/include/c++/7/ios:40,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/stl_iterator.h:912:5: note: candidate: template<class _Iterator, class _Container> bool __gnu_cxx::operator>(const __gnu_cxx::__normal_iterator<_Iterator, _Container>&, const __gnu_cxx::__normal_iterator<_Iterator, _Container>&)
-     operator>(const __normal_iterator<_Iterator, _Container>& __lhs,
-     ^~~~~~~~
-/usr/include/c++/7/bits/stl_iterator.h:912:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   ‘const std::__cxx11::basic_string<char>’ is not derived from ‘const __gnu_cxx::__normal_iterator<_Iterator, _Container>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
-                 from /usr/include/c++/7/bits/char_traits.h:39,
-                 from /usr/include/c++/7/ios:40,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/stl_iterator.h:905:5: note: candidate: template<class _IteratorL, class _IteratorR, class _Container> bool __gnu_cxx::operator>(const __gnu_cxx::__normal_iterator<_IteratorL, _Container>&, const __gnu_cxx::__normal_iterator<_IteratorR, _Container>&)
-     operator>(const __normal_iterator<_IteratorL, _Container>& __lhs,
-     ^~~~~~~~
-/usr/include/c++/7/bits/stl_iterator.h:905:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   ‘const std::__cxx11::basic_string<char>’ is not derived from ‘const __gnu_cxx::__normal_iterator<_IteratorL, _Container>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-bstmap.h:104:16: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, int>::Node*’ (maybe you meant to use ‘->’ ?)
-     if (!*cur->left) {
-           ~~~~~^~~~
-bstmap.h:105:26: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->right;
-                     ~~~~~^~~~~
 bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, int>::Node*’ (maybe you meant to use ‘->’ ?)
      else if (!*cur->right) {
                 ~~~~~^~~~~
-bstmap.h:110:26: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->left;
-                     ~~~~~^~~~
-bstmap.h:116:20: error: request for member ‘right’ in ‘* tem’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       while (*tem->right) {
-               ~~~~~^~~~~
-bstmap.h:119:13: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-        ~~~~~^~~
-bstmap.h:119:25: error: request for member ‘key’ in ‘* tem’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-                    ~~~~~^~~
-bstmap.h:120:13: error: request for member ‘val’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-        ~~~~~^~~
-bstmap.h:120:25: error: request for member ‘val’ in ‘* tem’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-                    ~~~~~^~~
-bstmap.h:121:24: error: request for member ‘left’ in ‘* tem’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * T = *tem->left;
-                   ~~~~~^~~~
 The code did not compile.  This test failed.
 -----------------------------------------------
 testcase 5 : Testing with BstMap<std::string,std::string>
@@ -302,165 +47,9 @@ testcase 5 : Testing with BstMap<std::string,std::string>
 In file included from 89-tester.cpp:1:0:
 bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = std::__cxx11::basic_string<char>; V = std::__cxx11::basic_string<char>]’:
 89-tester.cpp:197:1:   required from here
-bstmap.h:94:26: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-     while (*cur && *cur->key != key) {
-                     ~~~~~^~~
-bstmap.h:95:15: error: no match for ‘operator>’ (operand types are ‘const std::__cxx11::basic_string<char>’ and ‘std::__cxx11::basic_string<char>*’)
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/string:52:0,
-                 from /usr/include/c++/7/bits/locale_classes.h:40,
-                 from /usr/include/c++/7/bits/ios_base.h:41,
-                 from /usr/include/c++/7/ios:42,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/basic_string.h:6157:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator>(const _CharT*, const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&)
-     operator>(const _CharT* __lhs,
-     ^~~~~~~~
-/usr/include/c++/7/bits/basic_string.h:6157:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   mismatched types ‘const _CharT*’ and ‘std::__cxx11::basic_string<char>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/string:52:0,
-                 from /usr/include/c++/7/bits/locale_classes.h:40,
-                 from /usr/include/c++/7/bits/ios_base.h:41,
-                 from /usr/include/c++/7/ios:42,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/basic_string.h:6145:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator>(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*)
-     operator>(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
-     ^~~~~~~~
-/usr/include/c++/7/bits/basic_string.h:6145:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   deduced conflicting types for parameter ‘const _CharT’ (‘char’ and ‘std::__cxx11::basic_string<char>’)
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/string:52:0,
-                 from /usr/include/c++/7/bits/locale_classes.h:40,
-                 from /usr/include/c++/7/bits/ios_base.h:41,
-                 from /usr/include/c++/7/ios:42,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/basic_string.h:6132:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator>(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&)
-     operator>(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
-     ^~~~~~~~
-/usr/include/c++/7/bits/basic_string.h:6132:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   mismatched types ‘const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>’ and ‘std::__cxx11::basic_string<char>*’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
-                 from /usr/include/c++/7/bits/char_traits.h:39,
-                 from /usr/include/c++/7/ios:40,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/stl_iterator.h:358:5: note: candidate: template<class _IteratorL, class _IteratorR> bool std::operator>(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)
-     operator>(const reverse_iterator<_IteratorL>& __x,
-     ^~~~~~~~
-/usr/include/c++/7/bits/stl_iterator.h:358:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   ‘const std::__cxx11::basic_string<char>’ is not derived from ‘const std::reverse_iterator<_Iterator>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
-                 from /usr/include/c++/7/bits/char_traits.h:39,
-                 from /usr/include/c++/7/ios:40,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/stl_iterator.h:320:5: note: candidate: template<class _Iterator> bool std::operator>(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_Iterator>&)
-     operator>(const reverse_iterator<_Iterator>& __x,
-     ^~~~~~~~
-/usr/include/c++/7/bits/stl_iterator.h:320:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   ‘const std::__cxx11::basic_string<char>’ is not derived from ‘const std::reverse_iterator<_Iterator>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/bits/stl_algobase.h:64:0,
-                 from /usr/include/c++/7/bits/char_traits.h:39,
-                 from /usr/include/c++/7/ios:40,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/stl_pair.h:467:5: note: candidate: template<class _T1, class _T2> bool std::operator>(const std::pair<_T1, _T2>&, const std::pair<_T1, _T2>&)
-     operator>(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
-     ^~~~~~~~
-/usr/include/c++/7/bits/stl_pair.h:467:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   ‘const std::__cxx11::basic_string<char>’ is not derived from ‘const std::pair<_T1, _T2>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
-                 from /usr/include/c++/7/bits/char_traits.h:39,
-                 from /usr/include/c++/7/ios:40,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/stl_iterator.h:912:5: note: candidate: template<class _Iterator, class _Container> bool __gnu_cxx::operator>(const __gnu_cxx::__normal_iterator<_Iterator, _Container>&, const __gnu_cxx::__normal_iterator<_Iterator, _Container>&)
-     operator>(const __normal_iterator<_Iterator, _Container>& __lhs,
-     ^~~~~~~~
-/usr/include/c++/7/bits/stl_iterator.h:912:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   ‘const std::__cxx11::basic_string<char>’ is not derived from ‘const __gnu_cxx::__normal_iterator<_Iterator, _Container>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
-                 from /usr/include/c++/7/bits/char_traits.h:39,
-                 from /usr/include/c++/7/ios:40,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/stl_iterator.h:905:5: note: candidate: template<class _IteratorL, class _IteratorR, class _Container> bool __gnu_cxx::operator>(const __gnu_cxx::__normal_iterator<_IteratorL, _Container>&, const __gnu_cxx::__normal_iterator<_IteratorR, _Container>&)
-     operator>(const __normal_iterator<_IteratorL, _Container>& __lhs,
-     ^~~~~~~~
-/usr/include/c++/7/bits/stl_iterator.h:905:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   ‘const std::__cxx11::basic_string<char>’ is not derived from ‘const __gnu_cxx::__normal_iterator<_IteratorL, _Container>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-bstmap.h:104:16: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-     if (!*cur->left) {
-           ~~~~~^~~~
-bstmap.h:105:26: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->right;
-                     ~~~~~^~~~~
 bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
      else if (!*cur->right) {
                 ~~~~~^~~~~
-bstmap.h:110:26: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->left;
-                     ~~~~~^~~~
-bstmap.h:116:20: error: request for member ‘right’ in ‘* tem’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       while (*tem->right) {
-               ~~~~~^~~~~
-bstmap.h:119:13: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-        ~~~~~^~~
-bstmap.h:119:25: error: request for member ‘key’ in ‘* tem’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-                    ~~~~~^~~
-bstmap.h:120:13: error: request for member ‘val’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-        ~~~~~^~~
-bstmap.h:120:25: error: request for member ‘val’ in ‘* tem’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-                    ~~~~~^~~
-bstmap.h:121:24: error: request for member ‘left’ in ‘* tem’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * T = *tem->left;
-                   ~~~~~^~~~
 The code did not compile.  This test failed.
 -----------------------------------------------
 testcase 6 : Testing with BstMap<std::string,(a custom class we wrote)>
@@ -468,165 +57,9 @@ testcase 6 : Testing with BstMap<std::string,(a custom class we wrote)>
 In file included from 89-tester.cpp:1:0:
 bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = std::__cxx11::basic_string<char>; V = Tester]’:
 89-tester.cpp:197:1:   required from here
-bstmap.h:94:26: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-     while (*cur && *cur->key != key) {
-                     ~~~~~^~~
-bstmap.h:95:15: error: no match for ‘operator>’ (operand types are ‘const std::__cxx11::basic_string<char>’ and ‘std::__cxx11::basic_string<char>*’)
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/string:52:0,
-                 from /usr/include/c++/7/bits/locale_classes.h:40,
-                 from /usr/include/c++/7/bits/ios_base.h:41,
-                 from /usr/include/c++/7/ios:42,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/basic_string.h:6157:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator>(const _CharT*, const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&)
-     operator>(const _CharT* __lhs,
-     ^~~~~~~~
-/usr/include/c++/7/bits/basic_string.h:6157:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   mismatched types ‘const _CharT*’ and ‘std::__cxx11::basic_string<char>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/string:52:0,
-                 from /usr/include/c++/7/bits/locale_classes.h:40,
-                 from /usr/include/c++/7/bits/ios_base.h:41,
-                 from /usr/include/c++/7/ios:42,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/basic_string.h:6145:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator>(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*)
-     operator>(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
-     ^~~~~~~~
-/usr/include/c++/7/bits/basic_string.h:6145:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   deduced conflicting types for parameter ‘const _CharT’ (‘char’ and ‘std::__cxx11::basic_string<char>’)
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/string:52:0,
-                 from /usr/include/c++/7/bits/locale_classes.h:40,
-                 from /usr/include/c++/7/bits/ios_base.h:41,
-                 from /usr/include/c++/7/ios:42,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/basic_string.h:6132:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator>(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&)
-     operator>(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
-     ^~~~~~~~
-/usr/include/c++/7/bits/basic_string.h:6132:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   mismatched types ‘const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>’ and ‘std::__cxx11::basic_string<char>*’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
-                 from /usr/include/c++/7/bits/char_traits.h:39,
-                 from /usr/include/c++/7/ios:40,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/stl_iterator.h:358:5: note: candidate: template<class _IteratorL, class _IteratorR> bool std::operator>(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)
-     operator>(const reverse_iterator<_IteratorL>& __x,
-     ^~~~~~~~
-/usr/include/c++/7/bits/stl_iterator.h:358:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   ‘const std::__cxx11::basic_string<char>’ is not derived from ‘const std::reverse_iterator<_Iterator>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
-                 from /usr/include/c++/7/bits/char_traits.h:39,
-                 from /usr/include/c++/7/ios:40,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/stl_iterator.h:320:5: note: candidate: template<class _Iterator> bool std::operator>(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_Iterator>&)
-     operator>(const reverse_iterator<_Iterator>& __x,
-     ^~~~~~~~
-/usr/include/c++/7/bits/stl_iterator.h:320:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   ‘const std::__cxx11::basic_string<char>’ is not derived from ‘const std::reverse_iterator<_Iterator>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/bits/stl_algobase.h:64:0,
-                 from /usr/include/c++/7/bits/char_traits.h:39,
-                 from /usr/include/c++/7/ios:40,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/stl_pair.h:467:5: note: candidate: template<class _T1, class _T2> bool std::operator>(const std::pair<_T1, _T2>&, const std::pair<_T1, _T2>&)
-     operator>(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
-     ^~~~~~~~
-/usr/include/c++/7/bits/stl_pair.h:467:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   ‘const std::__cxx11::basic_string<char>’ is not derived from ‘const std::pair<_T1, _T2>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
-                 from /usr/include/c++/7/bits/char_traits.h:39,
-                 from /usr/include/c++/7/ios:40,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/stl_iterator.h:912:5: note: candidate: template<class _Iterator, class _Container> bool __gnu_cxx::operator>(const __gnu_cxx::__normal_iterator<_Iterator, _Container>&, const __gnu_cxx::__normal_iterator<_Iterator, _Container>&)
-     operator>(const __normal_iterator<_Iterator, _Container>& __lhs,
-     ^~~~~~~~
-/usr/include/c++/7/bits/stl_iterator.h:912:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   ‘const std::__cxx11::basic_string<char>’ is not derived from ‘const __gnu_cxx::__normal_iterator<_Iterator, _Container>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
-                 from /usr/include/c++/7/bits/char_traits.h:39,
-                 from /usr/include/c++/7/ios:40,
-                 from /usr/include/c++/7/ostream:38,
-                 from /usr/include/c++/7/iostream:39,
-                 from bstmap.h:3,
-                 from 89-tester.cpp:1:
-/usr/include/c++/7/bits/stl_iterator.h:905:5: note: candidate: template<class _IteratorL, class _IteratorR, class _Container> bool __gnu_cxx::operator>(const __gnu_cxx::__normal_iterator<_IteratorL, _Container>&, const __gnu_cxx::__normal_iterator<_IteratorR, _Container>&)
-     operator>(const __normal_iterator<_IteratorL, _Container>& __lhs,
-     ^~~~~~~~
-/usr/include/c++/7/bits/stl_iterator.h:905:5: note:   template argument deduction/substitution failed:
-In file included from 89-tester.cpp:1:0:
-bstmap.h:95:15: note:   ‘const std::__cxx11::basic_string<char>’ is not derived from ‘const __gnu_cxx::__normal_iterator<_IteratorL, _Container>’
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-bstmap.h:104:16: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-     if (!*cur->left) {
-           ~~~~~^~~~
-bstmap.h:105:26: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->right;
-                     ~~~~~^~~~~
 bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
      else if (!*cur->right) {
                 ~~~~~^~~~~
-bstmap.h:110:26: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->left;
-                     ~~~~~^~~~
-bstmap.h:116:20: error: request for member ‘right’ in ‘* tem’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       while (*tem->right) {
-               ~~~~~^~~~~
-bstmap.h:119:13: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-        ~~~~~^~~
-bstmap.h:119:25: error: request for member ‘key’ in ‘* tem’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-                    ~~~~~^~~
-bstmap.h:120:13: error: request for member ‘val’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-        ~~~~~^~~
-bstmap.h:120:25: error: request for member ‘val’ in ‘* tem’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-                    ~~~~~^~~
-bstmap.h:121:24: error: request for member ‘left’ in ‘* tem’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * T = *tem->left;
-                   ~~~~~^~~~
 The code did not compile.  This test failed.
 -----------------------------------------------
 testcase 7 : Testing with BstMap<(a custom class we wrote),int>
@@ -634,47 +67,9 @@ testcase 7 : Testing with BstMap<(a custom class we wrote),int>
 In file included from 89-tester.cpp:1:0:
 bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = Tester; V = int]’:
 89-tester.cpp:197:1:   required from here
-bstmap.h:94:26: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, int>::Node*’ (maybe you meant to use ‘->’ ?)
-     while (*cur && *cur->key != key) {
-                     ~~~~~^~~
-bstmap.h:95:15: error: no match for ‘operator>’ (operand types are ‘const Tester’ and ‘Tester*’)
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-89-tester.cpp:40:8: note: candidate: bool Tester::operator>(const Tester&) const
-   bool operator>(const Tester & rhs) const {
-        ^~~~~~~~
-89-tester.cpp:40:8: note:   no known conversion for argument 1 from ‘Tester*’ to ‘const Tester&’
-In file included from 89-tester.cpp:1:0:
-bstmap.h:104:16: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, int>::Node*’ (maybe you meant to use ‘->’ ?)
-     if (!*cur->left) {
-           ~~~~~^~~~
-bstmap.h:105:26: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->right;
-                     ~~~~~^~~~~
 bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, int>::Node*’ (maybe you meant to use ‘->’ ?)
      else if (!*cur->right) {
                 ~~~~~^~~~~
-bstmap.h:110:26: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->left;
-                     ~~~~~^~~~
-bstmap.h:116:20: error: request for member ‘right’ in ‘* tem’, which is of pointer type ‘BstMap<Tester, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       while (*tem->right) {
-               ~~~~~^~~~~
-bstmap.h:119:13: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-        ~~~~~^~~
-bstmap.h:119:25: error: request for member ‘key’ in ‘* tem’, which is of pointer type ‘BstMap<Tester, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-                    ~~~~~^~~
-bstmap.h:120:13: error: request for member ‘val’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-        ~~~~~^~~
-bstmap.h:120:25: error: request for member ‘val’ in ‘* tem’, which is of pointer type ‘BstMap<Tester, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-                    ~~~~~^~~
-bstmap.h:121:24: error: request for member ‘left’ in ‘* tem’, which is of pointer type ‘BstMap<Tester, int>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * T = *tem->left;
-                   ~~~~~^~~~
 The code did not compile.  This test failed.
 -----------------------------------------------
 testcase 8 : Testing with BstMap<(a custom class we wrote),std::string>
@@ -682,47 +77,9 @@ testcase 8 : Testing with BstMap<(a custom class we wrote),std::string>
 In file included from 89-tester.cpp:1:0:
 bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = Tester; V = std::__cxx11::basic_string<char>]’:
 89-tester.cpp:197:1:   required from here
-bstmap.h:94:26: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-     while (*cur && *cur->key != key) {
-                     ~~~~~^~~
-bstmap.h:95:15: error: no match for ‘operator>’ (operand types are ‘const Tester’ and ‘Tester*’)
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-89-tester.cpp:40:8: note: candidate: bool Tester::operator>(const Tester&) const
-   bool operator>(const Tester & rhs) const {
-        ^~~~~~~~
-89-tester.cpp:40:8: note:   no known conversion for argument 1 from ‘Tester*’ to ‘const Tester&’
-In file included from 89-tester.cpp:1:0:
-bstmap.h:104:16: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-     if (!*cur->left) {
-           ~~~~~^~~~
-bstmap.h:105:26: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->right;
-                     ~~~~~^~~~~
 bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
      else if (!*cur->right) {
                 ~~~~~^~~~~
-bstmap.h:110:26: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->left;
-                     ~~~~~^~~~
-bstmap.h:116:20: error: request for member ‘right’ in ‘* tem’, which is of pointer type ‘BstMap<Tester, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       while (*tem->right) {
-               ~~~~~^~~~~
-bstmap.h:119:13: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-        ~~~~~^~~
-bstmap.h:119:25: error: request for member ‘key’ in ‘* tem’, which is of pointer type ‘BstMap<Tester, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-                    ~~~~~^~~
-bstmap.h:120:13: error: request for member ‘val’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-        ~~~~~^~~
-bstmap.h:120:25: error: request for member ‘val’ in ‘* tem’, which is of pointer type ‘BstMap<Tester, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-                    ~~~~~^~~
-bstmap.h:121:24: error: request for member ‘left’ in ‘* tem’, which is of pointer type ‘BstMap<Tester, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * T = *tem->left;
-                   ~~~~~^~~~
 The code did not compile.  This test failed.
 -----------------------------------------------
 testcase 9 : Testing with BstMap<(a custom class we wrote),(a custom class we wrote)>
@@ -730,47 +87,9 @@ testcase 9 : Testing with BstMap<(a custom class we wrote),(a custom class we wr
 In file included from 89-tester.cpp:1:0:
 bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = Tester; V = Tester]’:
 89-tester.cpp:197:1:   required from here
-bstmap.h:94:26: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-     while (*cur && *cur->key != key) {
-                     ~~~~~^~~
-bstmap.h:95:15: error: no match for ‘operator>’ (operand types are ‘const Tester’ and ‘Tester*’)
-       if (key > &(*cur)->key) {
-           ~~~~^~~~~~~~~~~~~~
-89-tester.cpp:40:8: note: candidate: bool Tester::operator>(const Tester&) const
-   bool operator>(const Tester & rhs) const {
-        ^~~~~~~~
-89-tester.cpp:40:8: note:   no known conversion for argument 1 from ‘Tester*’ to ‘const Tester&’
-In file included from 89-tester.cpp:1:0:
-bstmap.h:104:16: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-     if (!*cur->left) {
-           ~~~~~^~~~
-bstmap.h:105:26: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->right;
-                     ~~~~~^~~~~
 bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
      else if (!*cur->right) {
                 ~~~~~^~~~~
-bstmap.h:110:26: error: request for member ‘left’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * tem = *cur->left;
-                     ~~~~~^~~~
-bstmap.h:116:20: error: request for member ‘right’ in ‘* tem’, which is of pointer type ‘BstMap<Tester, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       while (*tem->right) {
-               ~~~~~^~~~~
-bstmap.h:119:13: error: request for member ‘key’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-        ~~~~~^~~
-bstmap.h:119:25: error: request for member ‘key’ in ‘* tem’, which is of pointer type ‘BstMap<Tester, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->key = *tem->key;
-                    ~~~~~^~~
-bstmap.h:120:13: error: request for member ‘val’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-        ~~~~~^~~
-bstmap.h:120:25: error: request for member ‘val’ in ‘* tem’, which is of pointer type ‘BstMap<Tester, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       *cur->val = *tem->val;
-                    ~~~~~^~~
-bstmap.h:121:24: error: request for member ‘left’ in ‘* tem’, which is of pointer type ‘BstMap<Tester, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-       Node * T = *tem->left;
-                   ~~~~~^~~~
 The code did not compile.  This test failed.
 
 Overall Grade: F
