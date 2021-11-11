@@ -1,0 +1,19 @@
+#include <cstdio>
+#include <exception>
+#include <iostream>
+#include <stdexcept>
+
+#include "map.h"
+
+template<typename K, typename V>
+class BstMap : public Map<K, V> {
+ private:
+  class Node {
+   public:
+    K key;
+    V val;
+    Node * left;
+    Node * right;
+    Node(K k, V v, Node * l_n, Node * r_n) : key(k), val(v), left(l_n), right(r_n) {}
+  };
+}
