@@ -1,95 +1,68 @@
-Grading at 11/11/2021:22:39:47.585800
-For commit ID 0e0668b1db55f7302730b216c85e670e1dcb4f39
-Grading at Thu Nov 11 17:39:46 EST 2021
+Grading at 11/11/2021:22:41:49.245528
+For commit ID 278eed09c3536a2b15d51dd81acc420ba7152975
+Grading at Thu Nov 11 17:41:38 EST 2021
 -----------------------------------------------
 testcase 1 : Testing with BstMap<int,int>
 ...compiling...
-In file included from 89-tester.cpp:1:0:
-bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = int; V = int]’:
-89-tester.cpp:197:1:   required from here
-bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<int, int>::Node*’ (maybe you meant to use ‘->’ ?)
-     else if (!*cur->right) {
-                ~~~~~^~~~~
-The code did not compile.  This test failed.
+The code compiled.
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 2 : Testing with BstMap<int,std::string>
 ...compiling...
-In file included from 89-tester.cpp:1:0:
-bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = int; V = std::__cxx11::basic_string<char>]’:
-89-tester.cpp:197:1:   required from here
-bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<int, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-     else if (!*cur->right) {
-                ~~~~~^~~~~
-The code did not compile.  This test failed.
+The code compiled.
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 3 : Testing with BstMap<int,(a custom class we wrote)>
 ...compiling...
-In file included from 89-tester.cpp:1:0:
-bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = int; V = Tester]’:
-89-tester.cpp:197:1:   required from here
-bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<int, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-     else if (!*cur->right) {
-                ~~~~~^~~~~
-The code did not compile.  This test failed.
+The code compiled.
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 4 : Testing with BstMap<std::string,int>
 ...compiling...
-In file included from 89-tester.cpp:1:0:
-bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = std::__cxx11::basic_string<char>; V = int]’:
-89-tester.cpp:197:1:   required from here
-bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, int>::Node*’ (maybe you meant to use ‘->’ ?)
-     else if (!*cur->right) {
-                ~~~~~^~~~~
-The code did not compile.  This test failed.
+The code compiled.
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 5 : Testing with BstMap<std::string,std::string>
 ...compiling...
-In file included from 89-tester.cpp:1:0:
-bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = std::__cxx11::basic_string<char>; V = std::__cxx11::basic_string<char>]’:
-89-tester.cpp:197:1:   required from here
-bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-     else if (!*cur->right) {
-                ~~~~~^~~~~
-The code did not compile.  This test failed.
+The code compiled.
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 6 : Testing with BstMap<std::string,(a custom class we wrote)>
 ...compiling...
-In file included from 89-tester.cpp:1:0:
-bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = std::__cxx11::basic_string<char>; V = Tester]’:
-89-tester.cpp:197:1:   required from here
-bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<std::__cxx11::basic_string<char>, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-     else if (!*cur->right) {
-                ~~~~~^~~~~
-The code did not compile.  This test failed.
+The code compiled.
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 7 : Testing with BstMap<(a custom class we wrote),int>
 ...compiling...
-In file included from 89-tester.cpp:1:0:
-bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = Tester; V = int]’:
-89-tester.cpp:197:1:   required from here
-bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, int>::Node*’ (maybe you meant to use ‘->’ ?)
-     else if (!*cur->right) {
-                ~~~~~^~~~~
-The code did not compile.  This test failed.
+The code compiled.
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 8 : Testing with BstMap<(a custom class we wrote),std::string>
 ...compiling...
-In file included from 89-tester.cpp:1:0:
-bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = Tester; V = std::__cxx11::basic_string<char>]’:
-89-tester.cpp:197:1:   required from here
-bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, std::__cxx11::basic_string<char> >::Node*’ (maybe you meant to use ‘->’ ?)
-     else if (!*cur->right) {
-                ~~~~~^~~~~
-The code did not compile.  This test failed.
+The code compiled.
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 9 : Testing with BstMap<(a custom class we wrote),(a custom class we wrote)>
 ...compiling...
-In file included from 89-tester.cpp:1:0:
-bstmap.h: In instantiation of ‘void BstMap<K, V>::remove(const K&) [with K = Tester; V = Tester]’:
-89-tester.cpp:197:1:   required from here
-bstmap.h:109:21: error: request for member ‘right’ in ‘* cur’, which is of pointer type ‘BstMap<Tester, Tester>::Node*’ (maybe you meant to use ‘->’ ?)
-     else if (!*cur->right) {
-                ~~~~~^~~~~
-The code did not compile.  This test failed.
+The code compiled.
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 
-Overall Grade: F
+Overall Grade: A
