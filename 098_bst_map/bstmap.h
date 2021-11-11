@@ -35,7 +35,7 @@ class BstMap : public Map<K, V> {
 
  public:
   BstMap() : root(NULL){};
-  BstMap(const BstMap & rhs) { root = copyhelper(rhs.root); }
+  BstMap(const BstMap & rhs) { root = copy_(rhs.root); }
   BstMap & operator=(const BstMap & rhs) {
     BstMap tmp(rhs);
     std::swap(tmp.root, root);
