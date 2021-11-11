@@ -91,34 +91,34 @@ class BstMap : public Map<K, V> {
   }
   virtual void remove(const K & key) {
     Node ** cur = &root;
-    while (*cur && *cur->key != key) {
-      if (key > &(*cur)->key) {
+    while (*cur && (*cur)->key != key) {
+      if (key > (*cur)->key) {
         cur = &(*cur)->right;
       }
       else {
         cur = &(*cur)->left;
       }
     }
-    if (!*cur)
+    if (*cur == NULL)
       return;
-    if (!*cur->left) {
-      Node * tem = *cur->right;
+    if (!(*cur)->left) {
+      Node * tem = (*cur)->right;
       delete *cur;
       *cur = tem;
     }
     else if (!*cur->right) {
-      Node * tem = *cur->left;
+      Node * tem = (*cur)->left;
       delete *cur;
       *cur = tem;
     }
     else {
       Node ** tem = &(*cur)->left;
-      while (*tem->right) {
+      while ((*tem)->right) {
         tem = &(*tem)->right;
       }
-      *cur->key = *tem->key;
-      *cur->val = *tem->val;
-      Node * T = *tem->left;
+      (*cur)->key = (*tem)->key;
+      (*cur)->val = (*tem)->val;
+      Node * T = (*tem)->left;
       delete *tem;
       *tem = T;
     }
