@@ -35,9 +35,9 @@ void process_cmd(const std::string & line) {
     }
   }
   else if (p1 == 0) {
-    char * tmp = (char *)line.c_str();
-    char * cmd[] = {tmp, NULL};
-    if (execve(tmp, cmd, NULL) < 0)
+    char * tmp_cmd = (char *)line.c_str();
+    char * cmd[] = {tmp_cmd, NULL};
+    if (execve(tmp_cmd, cmd, NULL) < 0)
       exit(EXIT_FAILURE);
   }
 }
@@ -46,8 +46,11 @@ int main() {
   std::string line;
   std::cout << "ffosh$ ";
   while (getline(std::cin, line)) {
-    if (line == "exit()")
+    if (line == "exit()") {
+      std::cout << "break now!!!!" << std::endl;
       break;
+    }
+    std::cout << line << std::endl;
     process_cmd(line);
     std::cout << "ffosh$ ";
   }

@@ -4,4 +4,4 @@ myShell: ffosh.cpp
 	g++ $(CFLAGS) -o ffosh ffosh.cpp
 
 clean:
-	rm -f *~
+	rm -f test *~
