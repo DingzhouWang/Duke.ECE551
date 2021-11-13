@@ -17,8 +17,7 @@ void process_cmd(const std::string & line) {
   }
   else if (p1 > 0) {
     int status;
-    //cite from linux man page
-
+    //learn from linux man page
     pid_t wpid = waitpid(p1, &status, WUNTRACED);
     if (wpid == -1) {
       std::cerr << "waitpid error!" << std::endl;
