@@ -1,0 +1,6 @@
+#include "my_shell.hpp"
+
+#include <iostream>
+#include <string>
+
+std::string shell::simplifyPath(std::string path)
