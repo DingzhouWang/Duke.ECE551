@@ -50,7 +50,7 @@ void Shell::free_path() {
   }
 }
 
-//set argv[] not used
+//set argv[] not used!!!!!!!
 void Shell::set_argv() {  //also have to remember free
   int size_ = argument_p.size() + 1;
   argv = new char *[size_];
@@ -146,35 +146,100 @@ void Shell::parse_input(const std::string & input) {
   //std::cout << "parse input" << std::endl;
   std::string res;
   bool find_arg = false;
-  //bool find_quo = false;
+  bool find_quo = false;
+  //bool find_slash = false;
   int start = 0;
-  for (size_t i = 0; i < input.size(); i++) {
-    if (input[i] == ' ' && !find_arg)
-      continue;
-    else if (input[i] != ' ' && !find_arg) {
-      //std::cout << "index: " << i << std::endl;
-      start = i;
-      find_arg = true;
-    }
-    else if (i == input.size() - 1 && find_arg && input[i] != ' ') {
-      std::string tmp_arg = input.substr(start, i - start + 1);
-      //std::cout << "tmp_arg: " << tmp_arg << std::endl;
-      argument_p.push_back(tmp_arg);
-      find_arg = false;
-    }
-    else if (input[i] == ' ' && find_arg) {
-      std::string tmp_arg = input.substr(start, i - start);
-      //std::cout << "tmp_arg: " << tmp_arg << std::endl;
-      argument_p.push_back(tmp_arg);
-      find_arg = false;
-    }
-    else {
-      continue;
+  if (input.find('"') == std::string::npos) {
+    for (size_t i = 0; i < input.size(); i++) {
+      if (input[i] == ' ' && !find_arg)
+        continue;
+      else if (input[i] != ' ' && !find_arg) {
+        //std::cout << "index: " << i << std::endl;
+        start = i;
+        find_arg = true;
+      }
+      else if (i == input.size() - 1 && find_arg && input[i] != ' ') {
+        std::string tmp_arg = input.substr(start, i - start + 1);
+        //std::cout << "tmp_arg: " << tmp_arg << std::endl;
+        argument_p.push_back(tmp_arg);
+        find_arg = false;
+      }
+      else if (input[i] == ' ' && find_arg) {
+        std::string tmp_arg = input.substr(start, i - start);
+        //std::cout << "tmp_arg: " << tmp_arg << std::endl;
+        argument_p.push_back(tmp_arg);
+        find_arg = false;
+      }
+      else {
+        continue;
+      }
     }
   }
-  //std::cout << argument_p[0] << std::endl;
+  else if (input.find('"') != std::string::npos) {
+    for (size_t i = 0; i < input.size(); i++) {
+      if (input[i] == ' ' && !find_arg && !find_quo) {
+        continue;
+      }
+      else if (input[i] == '"' && !find_quo) {
+        find_quo = true;
+        find_arg = true;
+        //if (input[i + 1] != '\\')
+        start = i + 1;
+        // else {
+        //if (input[i + 2] == '"' || input[i + 2] == '\\') {
+        //  start = i + 2;
+        //  i = i + 2;
+        // }
+        //}
+      }
+      else if (input[i] == '"' && find_quo) {
+        std::string tmp_arg = input.substr(start, i - start);
+        argument_p.push_back(tmp_arg);
+        find_quo = false;
+        find_arg = false;
+      }
+      else if (input[i] != '"' && !find_arg && !find_quo) {
+        start = i;
+        find_arg = true;
+      }
+      else if (i == input.size() - 1 && find_arg && input[i] != ' ') {
+        std::string tmp_arg = input.substr(start, i - start + 1);
+        //std::cout << "tmp_arg: " << tmp_arg << std::endl;
+        argument_p.push_back(tmp_arg);
+        find_arg = false;
+      }
+      else if (input[i] == ' ' && find_arg) {
+        std::string tmp_arg = input.substr(start, i - start);
+        argument_p.push_back(tmp_arg);
+        find_arg = false;
+      }
+    }
+    if (find_quo) {
+      std::cerr << "unclosed quotation mark!" << std::endl;
+      std::cout << "unclosed quotation mark!" << std::endl;
+    }
+    std::cout << argument_p.size() << std::endl;
+  }
+  //simplify();
 }
-
+/*
+void Shell::simplify() {
+  std::vector<std::string> tmp_vec(argument_p.begin(), argument_p.end());
+  argument_p.clear();
+  for (auto & s : tmp_vec) {
+    size_t tmp = s.size();
+    for (size_t i = 0; i < tmp; i++) {
+      if (s[i] == '\\') {
+        if (i + 1 < s.size() && (s[i + 1] == '\\' || s[i + 1] == '"')) {
+          s.erase(i, 1);
+          tmp--;
+        }
+      }
+    }
+    argument_p.push_back(s);
+  }
+}
+*/
 //simplify path
 std::string Shell::simplifyPath(std::string path) {
   /*

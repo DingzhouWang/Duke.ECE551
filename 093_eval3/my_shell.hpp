@@ -23,4 +23,5 @@ class Shell {
   void free_argv();
   void free_path();
   void parse_input(const std::string & input);
+  void simplify();
 };
