@@ -98,6 +98,7 @@ void Shell::execute(const std::string & line) {
     bool find_cmd = false;
     process_cmd(line);  //init env_path
     parse_input(line);  //init argument_p
+    //std::cout << line << std::endl;
     //std::cout << argument_p[0] << std::endl;
     //std::cout << argument_p.size() << std::endl;
     if (argument_p[0].find('/') != std::string::npos) {
@@ -120,6 +121,7 @@ void Shell::execute(const std::string & line) {
         //std::cout << tmp_cmd << std::endl;
         char ** cmd = new char *[argument_p.size()];
         for (size_t i = 0; i < argument_p.size(); i++) {
+          //std::cout << argument_p[i] << std::endl;
           cmd[i] = (char *)argument_p[i].c_str();
           //std::cout << cmd[i] << std::endl;
         }
@@ -143,7 +145,7 @@ void Shell::execute(const std::string & line) {
 
 //parse
 void Shell::parse_input(const std::string & input) {
-  //std::cout << "parse input" << std::endl;
+  //std::cout << input << std::endl;
   std::string res;
   bool find_arg = false;
   bool find_quo = false;
@@ -224,14 +226,14 @@ void Shell::parse_input(const std::string & input) {
     //std::cout << argument_p.size() << std::endl;
   }
   simplify();
-  std::cout << argument_p[0] << std::endl;
+  //std::cout << argument_p[0] << std::endl;
 }
 
 void Shell::simplify() {
   //std::vector<std::string> tmp_vec(argument_p.begin(), argument_p.end());
   //argument_p.clear();
   for (auto & s_ : argument_p) {
-    std::cout << s_ << std::endl;
+    //std::cout << s_ << std::endl;
     for (size_t i = 0; i < s_.size(); i++) {
       if (s_[i] == '\\') {
         if (i + 1 < s_.size() && (s_[i + 1] == '\\' || s_[i + 1] == '"')) {

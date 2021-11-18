@@ -20,7 +20,7 @@ int main(int argc, char * argv[]) {
     num--;
     cnt++;
   }
-  //std::cout << line << "1" << std::endl;
+  //std::cout << line << std::endl;
   if (line.size()) {
     My_Shell.execute(line);
   }
