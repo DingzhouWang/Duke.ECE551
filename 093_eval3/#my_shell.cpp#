@@ -146,11 +146,12 @@ void Shell::parse_input(const std::string & input) {
   //std::cout << "parse input" << std::endl;
   std::string res;
   bool find_arg = false;
-  //bool find_quo = false;
+  bool find_quo = false;
   int start = 0;
   for (size_t i = 0; i < input.size(); i++) {
     if (input[i] == ' ' && !find_arg)
       continue;
+    else if(input[i]=="")
     else if (input[i] != ' ' && !find_arg) {
       //std::cout << "index: " << i << std::endl;
       start = i;
