@@ -180,7 +180,7 @@ void Shell::parse_input(const std::string & input) {
       if (input[i] == ' ' && !find_arg && !find_quo) {
         continue;
       }
-      else if (input[i] == '"' && !find_quo) {
+      else if (input[i] == '"' && !find_quo && !find_arg) {
         find_quo = true;
         find_arg = true;
         //if (input[i + 1] != '\\')
@@ -193,6 +193,9 @@ void Shell::parse_input(const std::string & input) {
         //}
       }
       else if (input[i] == '"' && find_quo) {
+        if (i > 0 && input[i - 1] == '\\') {
+          continue;
+        }
         std::string tmp_arg = input.substr(start, i - start);
         argument_p.push_back(tmp_arg);
         find_quo = false;
@@ -218,28 +221,28 @@ void Shell::parse_input(const std::string & input) {
       std::cerr << "unclosed quotation mark!" << std::endl;
       std::cout << "unclosed quotation mark!" << std::endl;
     }
-    std::cout << argument_p.size() << std::endl;
+    //std::cout << argument_p.size() << std::endl;
   }
-  //simplify();
+  simplify();
+  std::cout << argument_p[0] << std::endl;
 }
-/*
+
 void Shell::simplify() {
-  std::vector<std::string> tmp_vec(argument_p.begin(), argument_p.end());
-  argument_p.clear();
-  for (auto & s : tmp_vec) {
-    size_t tmp = s.size();
-    for (size_t i = 0; i < tmp; i++) {
-      if (s[i] == '\\') {
-        if (i + 1 < s.size() && (s[i + 1] == '\\' || s[i + 1] == '"')) {
-          s.erase(i, 1);
-          tmp--;
+  //std::vector<std::string> tmp_vec(argument_p.begin(), argument_p.end());
+  //argument_p.clear();
+  for (auto & s_ : argument_p) {
+    std::cout << s_ << std::endl;
+    for (size_t i = 0; i < s_.size(); i++) {
+      if (s_[i] == '\\') {
+        if (i + 1 < s_.size() && (s_[i + 1] == '\\' || s_[i + 1] == '"')) {
+          s_.erase(i, 1);
         }
       }
     }
-    argument_p.push_back(s);
+    //argument_p.push_back(s_);
   }
 }
-*/
+
 //simplify path
 std::string Shell::simplifyPath(std::string path) {
   /*

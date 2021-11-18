@@ -8,4 +8,5 @@
    a)you can input command like "ls", and you can see all the files under this folder and message "Program was successful", this is correst, because it will iterate all the environment path and search this command.
    b)you can in put like "ls    -l", and you can see all  the same things like you input "ls -l", this is correct because the program will pass the useless space.
    c)you can input like ""ls" pwd", and you will see the same input when you type ls and pwd. This is correct because the program can recognize the quotation marks, and see these as 2 sepreate command. And when there is a unclosed quotation mark, the program will output error message.
-   
+   d)if you input like "\"ls"\" or \\a\\b, the program will output the Program failed with code 1, and you can see the real arguments like "ls" or \a\b, this is correct because the program will support escaped quotation marks (\") and backslashes (\\) to allow the user to write a literal quotation mark and backslashes
+
