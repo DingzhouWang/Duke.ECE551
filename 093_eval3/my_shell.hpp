@@ -24,4 +24,5 @@ class Shell {
   void free_path();
   void parse_input(const std::string & input);
   void simplify();
+  void new_cmd();
 };

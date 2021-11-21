@@ -1,0 +1,31 @@
+#include "shell_cmd.hpp"
+
+#include <iostream>
+#include <vector>
+extern char ** environ;  //learn from environ(7) — Linux manual page
+
+using namespace std;
+
+Shell_cmd::Shell_cmd() {
+}
+
+void Shell_cmd::init_map() {
+  char ** en_p;  //= environ;
+  for (en_p = environ; *en_p != NULL; en_p++) {
+    //cout << *en_p << endl;
+    string env = *en_p;
+    int pos = env.find("=");
+    if (pos != -1) {
+      string key = env.substr(0, pos);
+      string value = env.substr(pos + 1);
+      m_[key] = value;
+    }
+  }
+}
+
+void Shell_cmd::print_map() {
+  for (auto kv : m_) {
+    cout << "key: " << kv.first << endl;
+    cout << "value: " << kv.second << endl;
+  }
+}

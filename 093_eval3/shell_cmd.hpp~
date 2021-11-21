@@ -1,0 +1,13 @@
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+class Shell_cmd {
+ private:
+  unordered_map<string, string> m_;
+
+ public:
+  Shell_cmd();
+  void init_map();
+  void update_map();
+  void print_map();
+};
