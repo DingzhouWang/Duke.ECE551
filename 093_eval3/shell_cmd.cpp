@@ -44,8 +44,12 @@ void Shell_cmd::print_map(string input) {
   //string ans = "";
   for (size_t i = 0; i < input.size(); i++) {
     if (input[i] == '$') {
-      if (i == input.size() - 1)
+      //cout << "head: " << input << endl;
+      if (i == input.size() - 1) {
+        cout << input << endl;
         ans = input;
+        return;
+      }
       int rec_pos = i;
       //&& i + 1 < input.size() &&
       //  (isalnum(input[i + 1]) || input[i + 1] == '_')) {
@@ -59,10 +63,15 @@ void Shell_cmd::print_map(string input) {
         }
       }
       string tmp_key = input.substr(rec_pos + 1, cnt);
-      cout << tmp_key << "!" << endl;
+      //cout << tmp_key << "!" << endl;
       input.erase(rec_pos, cnt + 1);
+      //cout << input << endl;
       input.insert(rec_pos, m_[tmp_key]);
+      //cout << "insert" << input << endl;
+      //cout << input[i] << " " << i << endl;
       i = rec_pos;
+      //cout << input[i] << " " << i << endl;
+      cnt = 0;
     }
   }
   ans = input;
@@ -70,5 +79,6 @@ void Shell_cmd::print_map(string input) {
   //  cout << "key: " << kv.first << endl;
   //  cout << "value: " << kv.second << endl;
   //}
+  //cout << input << endl;
   cout << ans << endl;
 }

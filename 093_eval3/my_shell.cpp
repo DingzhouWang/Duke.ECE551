@@ -12,6 +12,8 @@
 #include <string>
 #include <vector>
 
+#include "shell_cmd.hpp"
+
 bool Shell::init_envpath() {
   path = getenv("PATH");
   if (setenv("ECE551PATH", path, 1) == 0) {
@@ -71,14 +73,19 @@ void Shell::free_argv() {
 
 void Shell::execute(const std::string & line) {
   parse_input(line);
+  Shell_cmd My_Cmd;
+  My_Cmd.init_map();
   //for (size_t i = 0; i < argument_p.size(); i++)
   //  std::cout << argument_p[i] << std::endl;
   //std::vector<std::string>().swap(argument_p);
   if (argument_p[0] == "cd") {
-    std::cout << argument_p.size() << std::endl;
+    //std::cout << argument_p.size() << std::endl;
     new_cmd();
     std::vector<std::string>().swap(argument_p);
     //exit(EXIT_SUCCESS);
+  }
+  else if ((int)line.find("$") != -1) {
+    My_Cmd.print_map(line);
   }
   else {
     std::vector<std::string>().swap(argument_p);
@@ -274,7 +281,7 @@ void Shell::new_cmd() {
     cd_num = chdir(path_.c_str());
   }
   else if (argument_p.size() == 2) {
-    std::cout << argument_p[1] << std::endl;
+    //std::cout << argument_p[1] << std::endl;
     cd_num = chdir(argument_p[1].c_str());
   }
   else {

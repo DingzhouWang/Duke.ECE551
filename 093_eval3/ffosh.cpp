@@ -15,8 +15,11 @@ int main() {
   Shell_cmd My_Cmd;
   //size_t cnt = 1;
   //size_t num = argc - 1;
-  My_Cmd.init_map();
-  My_Cmd.print_map("$USER-is-using-$TERM $");
+  //My_Cmd.init_map();
+  //My_Cmd.print_map("$USER-is-using-$TERM $");
+  //My_Cmd.print_map("$USER-is-using-$TERM-");
+  //My_Cmd.print_map("$USER-is-using-$TERM_");
+  //My_Cmd.print_map("$USER-is-using-$TERM$USER");
   char buf[1000];
   getcwd(buf, sizeof(buf));
   //while (num) {
@@ -36,6 +39,13 @@ int main() {
       std::cout << "break now!!!!" << std::endl;
       break;
     }
+
+    //if ((int)line.find("$") != -1) {
+    //cout << "IN" << endl;
+    //My_Cmd.print_map(line);
+    //continue;
+    //}
+
     //std::cout << line << std::endl;
     //process_cmd(line);
     //Shell My_Shell;
