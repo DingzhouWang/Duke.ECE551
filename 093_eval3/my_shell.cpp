@@ -86,14 +86,16 @@ void Shell::execute(const std::string & line) {
   }
   else if (argument_p[0] == "set") {
     //cout << "SET" << endl;
-    if (argument_p.size() != 3) {
+    if (argument_p.size() < 3) {
       cout << "please use: set var val!" << endl;
     }
     else {
-      My_Cmd.set_val(argument_p);
+      ParseLine(line);
+      My_Cmd.set_val(parseline);
     }
     //My_Cmd.print_map();
     std::vector<std::string>().swap(argument_p);
+    std::vector<std::string>().swap(parseline);
   }
   else if (argument_p[0] == "export") {
     //cout << "export" << endl;
@@ -334,8 +336,8 @@ void Shell::ParseLine(const std::string & line) {
   string cmd = line.substr(0, pos1);
   parseline.push_back(cmd);
   int pos2 = line.substr(pos1 + 1).find(" ");
-  string var = line.substr(pos1 + 1, pos2 - pos1 + 1);
+  string var = line.substr(pos1 + 1, pos2);
   parseline.push_back(var);
-  string value = line.substr(pos2 + 1);
+  string value = line.substr(pos1 + pos2 + 2);
   parseline.push_back(value);
 }
