@@ -4,12 +4,16 @@
 #include <string>
 #include <vector>
 
+#include "shell_cmd.hpp"
+
+//using namespace std;
 class Shell {
  private:
   char * path;
   std::vector<char *> env_paths;
-  char ** argv;  //not used
+  std::vector<std::string> parseline;
   std::vector<std::string> argument_p;
+  Shell_cmd My_Cmd;
 
  public:
   Shell(){};
@@ -25,4 +29,5 @@ class Shell {
   void parse_input(const std::string & input);
   void simplify();
   void new_cmd();
+  void ParseLine(const std::string & line);
 };

@@ -1,5 +1,6 @@
 #include "shell_cmd.hpp"
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 extern char ** environ;  //learn from environ(7) — Linux manual page
@@ -7,6 +8,7 @@ extern char ** environ;  //learn from environ(7) — Linux manual page
 using namespace std;
 
 Shell_cmd::Shell_cmd() {
+  init_map();
 }
 /*
 void Shell_cmd::update_map(string input) {
@@ -81,4 +83,52 @@ void Shell_cmd::print_map(string input) {
   //}
   //cout << input << endl;
   cout << ans << endl;
+}
+
+void Shell_cmd::set_val(vector<string> argument_p) {
+  for (size_t i = 0; i < argument_p[1].size(); i++) {
+    if (isalnum(argument_p[1][i]) || argument_p[1][i] == '_') {
+      continue;
+    }
+    else {
+      cerr << "invalid key" << endl;
+    }
+  }
+  m_[argument_p[1]] = argument_p[2];
+  //print_map();
+}
+
+void Shell_cmd::export_val(vector<string> argument_p) {
+  if (m_.find(argument_p[1]) == m_.end()) {
+    cout << "this key haven't been set!" << endl;
+  }
+  else {
+    setenv(argument_p[1].c_str(), m_[argument_p[1]].c_str(), 1);
+  }
+}
+
+void Shell_cmd::rev_val(vector<string> argument_p) {
+  if (m_.find(argument_p[1]) == m_.end()) {
+    cout << "this key haven't been set!" << endl;
+  }
+  else {
+    string tmp_val = m_[argument_p[1]];
+    reverse(tmp_val.begin(), tmp_val.end());
+    //cout << tmp_val << endl;
+    m_[argument_p[1]] = tmp_val;
+  }
+}
+
+void Shell_cmd::print_env() {
+  char ** en_p;
+  for (en_p = environ; *en_p != NULL; en_p++) {
+    cout << *en_p << endl;
+  }
+}
+
+void Shell_cmd::print_map() {
+  for (auto kv : m_) {
+    cout << "key:" << kv.first << endl;
+    cout << "value:" << kv.second << endl;
+  }
 }

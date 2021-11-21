@@ -12,7 +12,7 @@
 #include <string>
 #include <vector>
 
-#include "shell_cmd.hpp"
+//#include "shell_cmd.hpp"
 
 bool Shell::init_envpath() {
   path = getenv("PATH");
@@ -73,8 +73,8 @@ void Shell::free_argv() {
 
 void Shell::execute(const std::string & line) {
   parse_input(line);
-  Shell_cmd My_Cmd;
-  My_Cmd.init_map();
+  //Shell_cmd My_Cmd;
+  //My_Cmd.init_map();
   //for (size_t i = 0; i < argument_p.size(); i++)
   //  std::cout << argument_p[i] << std::endl;
   //std::vector<std::string>().swap(argument_p);
@@ -83,6 +83,41 @@ void Shell::execute(const std::string & line) {
     new_cmd();
     std::vector<std::string>().swap(argument_p);
     //exit(EXIT_SUCCESS);
+  }
+  else if (argument_p[0] == "set") {
+    //cout << "SET" << endl;
+    if (argument_p.size() != 3) {
+      cout << "please use: set var val!" << endl;
+    }
+    else {
+      My_Cmd.set_val(argument_p);
+    }
+    //My_Cmd.print_map();
+    std::vector<std::string>().swap(argument_p);
+  }
+  else if (argument_p[0] == "export") {
+    //cout << "export" << endl;
+    //My_Cmd.print_map();
+    if (argument_p.size() != 2) {
+      cout << "please use: export var!" << endl;
+    }
+    else {
+      My_Cmd.export_val(argument_p);
+    }
+    std::vector<std::string>().swap(argument_p);
+  }
+  else if (argument_p[0] == "rev" && argument_p.size() == 2) {
+    if (argument_p.size() != 2) {
+      cout << "please use: rev var!" << endl;
+    }
+    else {
+      My_Cmd.rev_val(argument_p);
+    }
+    std::vector<std::string>().swap(argument_p);
+  }
+  else if (argument_p[0] == "env" && argument_p.size() == 1) {
+    My_Cmd.print_env();
+    std::vector<std::string>().swap(argument_p);
   }
   else if ((int)line.find("$") != -1) {
     My_Cmd.print_map(line);
@@ -292,4 +327,15 @@ void Shell::new_cmd() {
   }
 
   return;
+}
+
+void Shell::ParseLine(const std::string & line) {
+  int pos1 = line.find(" ");
+  string cmd = line.substr(0, pos1);
+  parseline.push_back(cmd);
+  int pos2 = line.substr(pos1 + 1).find(" ");
+  string var = line.substr(pos1 + 1, pos2 - pos1 + 1);
+  parseline.push_back(var);
+  string value = line.substr(pos2 + 1);
+  parseline.push_back(value);
 }

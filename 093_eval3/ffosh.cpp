@@ -8,11 +8,13 @@
 #include <vector>
 
 #include "my_shell.hpp"
-#include "shell_cmd.hpp"
+
 int main() {
   std::string line;
   Shell My_Shell;
-  Shell_cmd My_Cmd;
+  //Shell_cmd My_Cmd;
+  //My_Cmd.init_map();
+
   //size_t cnt = 1;
   //size_t num = argc - 1;
   //My_Cmd.init_map();
