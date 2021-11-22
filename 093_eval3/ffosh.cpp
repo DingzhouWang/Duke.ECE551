@@ -36,6 +36,7 @@ int main() {
   //}
   //std::cout << line << std::endl;
   std::cout << "ffosh:" << buf << " $ ";
+  //free(buf);
   while (getline(std::cin, line)) {
     if (line == "exit()") {
       std::cout << "break now!!!!" << std::endl;
@@ -54,9 +55,11 @@ int main() {
       My_Shell.execute(line);
       getcwd(buf, sizeof(buf));
       std::cout << "ffosh:" << buf << " $ ";
+      //free(buf);
     }
     else {
       std::cout << "ffosh:" << buf << " $ ";
+      //free(buf);
     }
   }
   return (EXIT_SUCCESS);

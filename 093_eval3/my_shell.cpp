@@ -181,6 +181,7 @@ void Shell::execute(const std::string & line) {
         cmd[argument_p.size()] = NULL;
         if (execve(tmp_cmd, cmd, NULL) < 0)
           exit(EXIT_FAILURE);
+        delete[] cmd;
       }
       else {
         //std::cout << "child P11" << std::endl;
@@ -204,13 +205,15 @@ void Shell::execute(const std::string & line) {
             find_cmd = true;
             exit(EXIT_SUCCESS);
           }
+          delete[] cmd;
         }
         if (!find_cmd) {
           std::cout << "Command " << line << " not found" << std::endl;
           exit(EXIT_FAILURE);
         }
-        free_path();
+        //free_path();
       }
+      free_path();
     }
   }
 }
