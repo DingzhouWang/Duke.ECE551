@@ -41,19 +41,23 @@ int main() {
       std::cout << "break now!!!!" << std::endl;
       break;
     }
+    if (line != "") {
+      //if ((int)line.find("$") != -1) {
+      //cout << "IN" << endl;
+      //My_Cmd.print_map(line);
+      //continue;
+      //}
 
-    //if ((int)line.find("$") != -1) {
-    //cout << "IN" << endl;
-    //My_Cmd.print_map(line);
-    //continue;
-    //}
-
-    //std::cout << line << std::endl;
-    //process_cmd(line);
-    //Shell My_Shell;
-    My_Shell.execute(line);
-    getcwd(buf, sizeof(buf));
-    std::cout << "ffosh:" << buf << " $ ";
+      //std::cout << line << std::endl;
+      //process_cmd(line);
+      //Shell My_Shell;
+      My_Shell.execute(line);
+      getcwd(buf, sizeof(buf));
+      std::cout << "ffosh:" << buf << " $ ";
+    }
+    else {
+      std::cout << "ffosh:" << buf << " $ ";
+    }
   }
   return (EXIT_SUCCESS);
 }

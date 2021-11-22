@@ -90,8 +90,20 @@ void Shell::execute(const std::string & line) {
       cout << "please use: set var val!" << endl;
     }
     else {
-      ParseLine(line);
-      My_Cmd.set_val(parseline);
+      bool valid = true;
+      for (size_t i = 0; i < argument_p[1].size(); i++) {
+        if (argument_p[1][i] != '_' && isalnum(argument_p[1][i]) == 0) {
+          valid = false;
+          //cout << argument_p[1][i] << endl;
+          cout << "Invalid Key Name!" << endl;
+          break;
+        }
+      }
+      if (valid) {
+        ParseLine(line);
+        My_Cmd.set_val(parseline);
+      }
+      valid = true;
     }
     //My_Cmd.print_map();
     std::vector<std::string>().swap(argument_p);
