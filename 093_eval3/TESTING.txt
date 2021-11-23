@@ -1,12 +1,294 @@
-(1)Run ./ffosh, and you can see "ffosh$",
+Step(1) Run ./ffosh, and you can see "ffosh$",
    a) you can input command like "/bin/ls", and you can see all the files under this folder and a message "Program was successful" this is correct, because it is full path to the command.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ /bin/ls
+Extra-Credit.txt  TESTING.txt	    ffosh.cpp	intest	      myec.txt	      shell_cmd.hpp   story2
+Makefile	  commandShell.txt  gcc_output	my_shell.cpp  shell_cmd.cpp   shell_cmd.hpp~  wc_output
+README		  ffosh		    input.txt	my_shell.hpp  shell_cmd.cpp~  story1
+Program was successful
+
    b) you can input command like "ls", and you can see "Program failed with code 1", this is correct, because it is not a full path to the command.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ /bin/ls
+Extra-Credit.txt  TESTING.txt	    ffosh.cpp	intest	      myec.txt	      shell_cmd.hpp   story2
+Makefile	  commandShell.txt  gcc_output	my_shell.cpp  shell_cmd.cpp   shell_cmd.hpp~  wc_output
+README		  ffosh		    input.txt	my_shell.hpp  shell_cmd.cpp~  story1
+Program was successful
+
    c) you can input command like "exit()", and you can see "break now!!!!", this is correct, because it exit successful.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ exit()
+break now!!!!
+
    d) you can just write "./ffosh < input.txt" and you can see the same answers like a) and b).
 
-(2)Run ./ffosh, and you can see "ffosh$",
+Example:
+./ffosh < input.txt 
+ffosh:/home/dw299/ece551/093_eval3 $ '#TESTING.txt#'     README	       ffosh	    input.txt	   my_shell.hpp    shell_cmd.cpp~   story1
+ Extra-Credit.txt   TESTING.txt        ffosh.cpp    intest	   myec.txt	   shell_cmd.hpp    story2
+ Makefile	    commandShell.txt   gcc_output   my_shell.cpp   shell_cmd.cpp   shell_cmd.hpp~   wc_output
+Program was successful
+ffosh:/home/dw299/ece551/093_eval3 $ '#TESTING.txt#'     README	       ffosh	    input.txt	   my_shell.hpp    shell_cmd.cpp~   story1
+ Extra-Credit.txt   TESTING.txt        ffosh.cpp    intest	   myec.txt	   shell_cmd.hpp    story2
+ Makefile	    commandShell.txt   gcc_output   my_shell.cpp   shell_cmd.cpp   shell_cmd.hpp~   wc_output
+Program was successful
+
+   d) you can just push enter key, you can see it just change a line.
+
+Example:
+./ffosh
+./ffosh
+
+Step(2) Run ./ffosh, and you can see "ffosh$",
    a)you can input command like "ls", and you can see all the files under this folder and message "Program was successful", this is correst, because it will iterate all the environment path and search this command.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ ls
+'#TESTING.txt#'     README	       ffosh	    input.txt	   my_shell.hpp    shell_cmd.cpp~   story1
+ Extra-Credit.txt   TESTING.txt        ffosh.cpp    intest	   myec.txt	   shell_cmd.hpp    story2
+ Makefile	    commandShell.txt   gcc_output   my_shell.cpp   shell_cmd.cpp   shell_cmd.hpp~   wc_output
+Program was successful
+
+
    b)you can in put like "ls    -l", and you can see all  the same things like you input "ls -l", this is correct because the program will pass the useless space.
-   c)you can input like ""ls" pwd", and you will see the same input when you type ls and pwd. This is correct because the program can recognize the quotation marks, and see these as 2 sepreate command. And when there is a unclosed quotation mark, the program will output error message.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ ls   -l
+total 684
+-rw-rw-r-- 1 dw299 dw299   4259 Nov 23 17:48 '#TESTING.txt#'
+-rw-r--r-- 1 dw299 dw299   2075 Nov  8 13:59  Extra-Credit.txt
+-rw-rw-r-- 1 dw299 dw299    183 Nov 20 20:05  Makefile
+-rw-rw-r-- 1 dw299 dw299  18195 Nov  8 13:59  README
+-rw-rw-r-- 1 dw299 dw299   3412 Nov 23 17:45  TESTING.txt
+-rw-r--r-- 1 root  root    7907 Nov  9 16:17  commandShell.txt
+-rwxrwxr-x 1 dw299 dw299 590256 Nov 22 11:24  ffosh
+-rw-rw-r-- 1 dw299 dw299   1506 Nov 22 11:24  ffosh.cpp
+-rw-rw-r-- 1 dw299 dw299     57 Nov 23 09:03  gcc_output
+-rw-rw-r-- 1 dw299 dw299     11 Nov 12 17:43  input.txt
+-rw-rw-r-- 1 dw299 dw299      3 Nov 22 15:19  intest
+-rw-rw-r-- 1 dw299 dw299  10522 Nov 22 10:52  my_shell.cpp
+-rw-rw-r-- 1 dw299 dw299    717 Nov 21 13:39  my_shell.hpp
+-rw-rw-r-- 1 dw299 dw299     98 Nov 18 10:12  myec.txt
+-rw-rw-r-- 1 dw299 dw299   3224 Nov 21 13:37  shell_cmd.cpp
+-rw-rw-r-- 1 dw299 dw299   1749 Nov 20 23:03  shell_cmd.cpp~
+-rw-rw-r-- 1 dw299 dw299    446 Nov 21 11:11  shell_cmd.hpp
+-rw-rw-r-- 1 dw299 dw299    218 Nov 20 20:17  shell_cmd.hpp~
+drwxrwxr-x 2 dw299 dw299    249 Nov  8 13:59  story1
+drwxrwxr-x 2 dw299 dw299    213 Nov  8 13:59  story2
+-rw-rw-r-- 1 dw299 dw299      4 Nov 23 09:08  wc_output
+Program was successful
+
+   c)you can input like ""ls" -l", and you will see the same input when you type ls and pwd. This is correct because the program can recognize the quotation marks, and see these as 2 sepreate command. And when there is a unclosed quotation mark, the program will output error message.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ "ls" -l 
+total 688
+-rw-rw-r-- 1 dw299 dw299   5187 Nov 23 17:52 '#TESTING.txt#'
+-rw-r--r-- 1 dw299 dw299   2075 Nov  8 13:59  Extra-Credit.txt
+-rw-rw-r-- 1 dw299 dw299    183 Nov 20 20:05  Makefile
+-rw-rw-r-- 1 dw299 dw299  18195 Nov  8 13:59  README
+-rw-rw-r-- 1 dw299 dw299   5175 Nov 23 17:50  TESTING.txt
+-rw-r--r-- 1 root  root    7907 Nov  9 16:17  commandShell.txt
+-rwxrwxr-x 1 dw299 dw299 590256 Nov 22 11:24  ffosh
+-rw-rw-r-- 1 dw299 dw299   1506 Nov 22 11:24  ffosh.cpp
+-rw-rw-r-- 1 dw299 dw299     57 Nov 23 09:03  gcc_output
+-rw-rw-r-- 1 dw299 dw299     11 Nov 12 17:43  input.txt
+-rw-rw-r-- 1 dw299 dw299      3 Nov 22 15:19  intest
+-rw-rw-r-- 1 dw299 dw299  10522 Nov 22 10:52  my_shell.cpp
+-rw-rw-r-- 1 dw299 dw299    717 Nov 21 13:39  my_shell.hpp
+-rw-rw-r-- 1 dw299 dw299     98 Nov 18 10:12  myec.txt
+-rw-rw-r-- 1 dw299 dw299   3224 Nov 21 13:37  shell_cmd.cpp
+-rw-rw-r-- 1 dw299 dw299   1749 Nov 20 23:03  shell_cmd.cpp~
+-rw-rw-r-- 1 dw299 dw299    446 Nov 21 11:11  shell_cmd.hpp
+-rw-rw-r-- 1 dw299 dw299    218 Nov 20 20:17  shell_cmd.hpp~
+drwxrwxr-x 2 dw299 dw299    249 Nov  8 13:59  story1
+drwxrwxr-x 2 dw299 dw299    213 Nov  8 13:59  story2
+-rw-rw-r-- 1 dw299 dw299      4 Nov 23 09:08  wc_output
+Program was successful
+
    d)if you input like "\"ls"\" or \\a\\b, the program will output the Program failed with code 1, and you can see the real arguments like "ls" or \a\b, this is correct because the program will support escaped quotation marks (\") and backslashes (\\) to allow the user to write a literal quotation mark and backslashes
 
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ \"ls\"
+Command \"ls\" not found
+Program failed with code 1
+ffosh:/home/dw299/ece551/093_eval3 $ \\a\\b
+Command \\a\\b not found
+Program failed with code 1
+
+Step(3) Run ./ffosh, and you can see "ffosh:$WORK_PATH$" for me it's "ffosh:/home/dw299/ece551/093_eval3 $"
+   a)you can input command "ls", and you can see all the files in this directory. And you input like "cd ." and "ls", you can see all the files in this directory. This is correct, because "cd ." would not change the directory.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ ls
+Extra-Credit.txt  TESTING.txt	    ffosh.cpp	intest	      myec.txt	      shell_cmd.hpp   story2
+Makefile	  commandShell.txt  gcc_output	my_shell.cpp  shell_cmd.cpp   shell_cmd.hpp~  wc_output
+README		  ffosh		    input.txt	my_shell.hpp  shell_cmd.cpp~  story1
+Program was successful
+ffosh:/home/dw299/ece551/093_eval3 $ cd .
+ffosh:/home/dw299/ece551/093_eval3 $ ls
+Extra-Credit.txt  TESTING.txt	    ffosh.cpp	intest	      myec.txt	      shell_cmd.hpp   story2
+Makefile	  commandShell.txt  gcc_output	my_shell.cpp  shell_cmd.cpp   shell_cmd.hpp~  wc_output
+README		  ffosh		    input.txt	my_shell.hpp  shell_cmd.cpp~  story1
+Program was successful
+
+   b)you can input command "ls", and you can see all the files in this directory. And you input like "cd ./story1" and "ls", you can see all the files in story1 directory. This is correct, because "cd ." would not change the directory.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ ls
+Extra-Credit.txt  TESTING.txt	    ffosh.cpp	intest	      myec.txt	      shell_cmd.hpp   story2
+Makefile	  commandShell.txt  gcc_output	my_shell.cpp  shell_cmd.cpp   shell_cmd.hpp~  wc_output
+README		  ffosh		    input.txt	my_shell.hpp  shell_cmd.cpp~  story1
+Program was successful
+ffosh:/home/dw299/ece551/093_eval3 $ cd ./story1
+ffosh:/home/dw299/ece551/093_eval3/story1 $ ls
+page1.txt   page11.txt	page13.txt  page2.txt  page4.txt  page6.txt  page8.txt
+page10.txt  page12.txt	page14.txt  page3.txt  page5.txt  page7.txt  page9.txt
+Program was successful
+
+   c)you can input command "env", and you can see environ varibles. This is correct because the program support "env" command.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ env
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+SSH_CONNECTION=98.26.60.237 61488 152.3.77.223 22
+LESSCLOSE=/usr/bin/lesspipe %s %s
+LANG=en_US.UTF-8
+EDITOR=emacs -nw
+S_COLORS=auto
+XDG_SESSION_ID=99885
+USER=dw299
+PWD=/home/dw299/ece551/093_eval3
+HOME=/home/dw299
+LC_CTYPE=UTF-8
+SSH_CLIENT=98.26.60.237 61488 22
+SSH_TTY=/dev/pts/10
+MAIL=/var/mail/dw299
+VISUAL=emacs -nw
+TERM=xterm-256color
+SHELL=/bin/bash
+SHLVL=1
+LOGNAME=dw299
+XDG_RUNTIME_DIR=/run/user/1640
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+LESSOPEN=| /usr/bin/lesspipe %s
+_=./ffosh
+OLDPWD=/home/dw299/ece551
+
+   d)if you first input "set a 123" and then you input "env", you would see environ var same as previous one. Because you haven't export it. after you input "export a" and then input "env" you can see "a=123" in the last. This is correct. Because you set and export var successfully.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ set a 123
+ffosh:/home/dw299/ece551/093_eval3 $ env
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+SSH_CONNECTION=98.26.60.237 61488 152.3.77.223 22
+LESSCLOSE=/usr/bin/lesspipe %s %s
+LANG=en_US.UTF-8
+EDITOR=emacs -nw
+S_COLORS=auto
+XDG_SESSION_ID=99885
+USER=dw299
+PWD=/home/dw299/ece551/093_eval3
+HOME=/home/dw299
+LC_CTYPE=UTF-8
+SSH_CLIENT=98.26.60.237 61488 22
+SSH_TTY=/dev/pts/10
+MAIL=/var/mail/dw299
+VISUAL=emacs -nw
+TERM=xterm-256color
+SHELL=/bin/bash
+SHLVL=1
+LOGNAME=dw299
+XDG_RUNTIME_DIR=/run/user/1640
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+LESSOPEN=| /usr/bin/lesspipe %s
+_=./ffosh
+OLDPWD=/home/dw299/ece551
+ffosh:/home/dw299/ece551/093_eval3 $ export a
+ffosh:/home/dw299/ece551/093_eval3 $ env
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+SSH_CONNECTION=98.26.60.237 61488 152.3.77.223 22
+LESSCLOSE=/usr/bin/lesspipe %s %s
+LANG=en_US.UTF-8
+EDITOR=emacs -nw
+S_COLORS=auto
+XDG_SESSION_ID=99885
+USER=dw299
+PWD=/home/dw299/ece551/093_eval3
+HOME=/home/dw299
+LC_CTYPE=UTF-8
+SSH_CLIENT=98.26.60.237 61488 22
+SSH_TTY=/dev/pts/10
+MAIL=/var/mail/dw299
+VISUAL=emacs -nw
+TERM=xterm-256color
+SHELL=/bin/bash
+SHLVL=1
+LOGNAME=dw299
+XDG_RUNTIME_DIR=/run/user/1640
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+LESSOPEN=| /usr/bin/lesspipe %s
+_=./ffosh
+OLDPWD=/home/dw299/ece551
+a=123
+
+   e)you can input "set a 123" and the input "rev a" and "export a", finally input "env". You would see "a=321" at last. This is correct. Because you set, reverse and export a varible successfully.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ set a 123
+ffosh:/home/dw299/ece551/093_eval3 $ rev a
+ffosh:/home/dw299/ece551/093_eval3 $ export a
+ffosh:/home/dw299/ece551/093_eval3 $ env
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+SSH_CONNECTION=98.26.60.237 61488 152.3.77.223 22
+LESSCLOSE=/usr/bin/lesspipe %s %s
+LANG=en_US.UTF-8
+EDITOR=emacs -nw
+S_COLORS=auto
+XDG_SESSION_ID=99885
+USER=dw299
+PWD=/home/dw299/ece551/093_eval3
+HOME=/home/dw299
+LC_CTYPE=UTF-8
+SSH_CLIENT=98.26.60.237 61488 22
+SSH_TTY=/dev/pts/10
+MAIL=/var/mail/dw299
+VISUAL=emacs -nw
+TERM=xterm-256color
+SHELL=/bin/bash
+SHLVL=1
+LOGNAME=dw299
+XDG_RUNTIME_DIR=/run/user/1640
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+LESSOPEN=| /usr/bin/lesspipe %s
+_=./ffosh
+OLDPWD=/home/dw299/ece551
+a=321
+
+   f)also you can access var by using "$".
+     1.If you input "the user is $USER" you would see "the user is dw299". This is true, because we can access the var by "$"
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ the user is $USER
+the user is dw299
+
+     2.If you input "the user is $USER$PWD", you would see "the user is dw299/home/dw299/ece551/093_eval3". This is true, because we can access var by "$", even two var is concate.
+      
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ the user is $USER$PWD
+the user is dw299/home/dw299/ece551/093_eval3
+      
+     3.If you input like "$USER$", you would see "the user is dw299$". This is true, because the second "$" is the last char in string. We cannot access var by it.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ the user is $USER$
+the user is dw299$
+
+     4.If you input like "$123", you would see nothing. This is true, because 123 is not a key of the var. So we cannot find it and it's value.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ $USER$123
+dw299
