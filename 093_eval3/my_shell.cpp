@@ -179,8 +179,10 @@ void Shell::execute(const std::string & line) {
           //std::cout << cmd[i] << std::endl;
         }
         cmd[argument_p.size()] = NULL;
-        if (execve(tmp_cmd, cmd, NULL) < 0)
+        if (execve(tmp_cmd, cmd, NULL) < 0) {
+          cout << "Command " << argument_p[0] << " not found" << endl;
           exit(EXIT_FAILURE);
+        }
         delete[] cmd;
       }
       else {
@@ -208,7 +210,7 @@ void Shell::execute(const std::string & line) {
           delete[] cmd;
         }
         if (!find_cmd) {
-          std::cout << "Command " << line << " not found" << std::endl;
+          std::cout << "Command " << argument_p[0] << " not found" << std::endl;
           exit(EXIT_FAILURE);
         }
         //free_path();
@@ -300,7 +302,7 @@ void Shell::parse_input(const std::string & input) {
       }
     }
     if (find_quo) {
-      std::cerr << "unclosed quotation mark!" << std::endl;
+      //std::cerr << "unclosed quotation mark!" << std::endl;
       std::cout << "unclosed quotation mark!" << std::endl;
     }
     //std::cout << argument_p.size() << std::endl;
