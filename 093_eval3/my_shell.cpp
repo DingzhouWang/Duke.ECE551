@@ -1,5 +1,6 @@
 #include "my_shell.hpp"
 
+#include <fcntl.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,6 +8,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+#include <algorithm>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -165,8 +167,36 @@ void Shell::execute(const std::string & line) {
     else if (p1 == 0) {
       //std::cout << "child process in" << std::endl;
       bool find_cmd = false;
-      process_cmd(line);  //init env_path
-      parse_input(line);  //init argument_p
+      string l_ = redirect_output(line);
+      l_ = redirect_input(l_);
+      process_cmd(l_);  //init env_path
+      parse_input(l_);  //init argument_p
+      for (size_t i = 0; i < output_file.size(); i++) {
+        int fd_out = open(output_file[i].c_str(),
+                          O_CREAT | O_RDWR,
+                          S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+        if (fd_out > 0) {
+          // redirect STDIN/STDOUT for this process
+          dup2(fd_out, 1);
+          //dup2(fd_out2, 1);
+          close(fd_out);
+          //close(fd_out2);
+        }
+        else {
+          cout << "error fd_out!" << endl;
+        }
+      }
+      for (size_t j = 0; j < input_file.size(); j++) {
+        int fd_in = open(input_file[j].c_str(), O_RDONLY);
+        if (fd_in > 0) {
+          // redirect STDIN/STDOUT for this process
+          dup2(fd_in, 0);
+          close(fd_in);
+        }
+        else {
+          cout << "error fd_in!" << endl;
+        }
+      }
       //std::cout << line << std::endl;
       //std::cout << argument_p[0] << std::endl;
       //std::cout << argument_p.size() << std::endl;
@@ -357,4 +387,40 @@ void Shell::ParseLine(const std::string & line) {
   parseline.push_back(var);
   string value = line.substr(pos1 + pos2 + 2);
   parseline.push_back(value);
+}
+
+string Shell::redirect_output(std::string l) {
+  while (l.find('>') != string::npos) {
+    int i = l.find('>');
+    int j = i + 1;
+
+    while (j <= (int)l.size() - 1 && l[j] != '>' && l[j] != '<') {
+      j++;
+    }
+    string str = l.substr(i + 1, j - i - 1);
+    str.erase(std::remove(str.begin(), str.end(), ' '), str.end());
+    output_file.push_back(str);
+    l.erase(i, j - i);
+  }
+  return l;
+}
+
+string Shell::redirect_input(std::string l) {
+  while (l.find('<') != string::npos) {
+    int i = l.find('<');
+    int j = i + 1;
+
+    while (j <= (int)l.size() - 1 && l[j] != '<' && l[j] != '>') {
+      j++;
+    }
+    string str = l.substr(i + 1, j - i - 1);
+    str.erase(std::remove(str.begin(), str.end(), ' '), str.end());
+    input_file.push_back(str);
+    l.erase(i, j - i);
+  }
+  return l;
+}
+
+string Shell::redirect_error(std::string l) {
+  return l;
 }

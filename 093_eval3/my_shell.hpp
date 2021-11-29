@@ -14,6 +14,8 @@ class Shell {
   std::vector<std::string> parseline;
   std::vector<std::string> argument_p;
   Shell_cmd My_Cmd;
+  std::vector<std::string> output_file;
+  std::vector<std::string> input_file;
 
  public:
   Shell(){};
@@ -30,4 +32,7 @@ class Shell {
   void simplify();
   void new_cmd();
   void ParseLine(const std::string & line);
+  string redirect_output(std::string line);
+  string redirect_input(std::string line);
+  string redirect_error(std::string line);
 };
