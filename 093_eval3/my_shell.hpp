@@ -16,6 +16,7 @@ class Shell {
   Shell_cmd My_Cmd;
   std::vector<std::string> output_file;
   std::vector<std::string> input_file;
+  std::vector<std::string> error_file;
 
  public:
   Shell(){};

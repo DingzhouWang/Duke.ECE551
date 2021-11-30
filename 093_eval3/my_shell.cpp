@@ -167,7 +167,8 @@ void Shell::execute(const std::string & line) {
     else if (p1 == 0) {
       //std::cout << "child process in" << std::endl;
       bool find_cmd = false;
-      string l_ = redirect_output(line);
+      string l_ = redirect_error(line);
+      l_ = redirect_output(l_);
       l_ = redirect_input(l_);
       process_cmd(l_);  //init env_path
       parse_input(l_);  //init argument_p
@@ -195,6 +196,17 @@ void Shell::execute(const std::string & line) {
         }
         else {
           cout << "error fd_in!" << endl;
+        }
+      }
+      for (size_t k = 0; k < error_file.size(); k++) {
+        int fd_er = open(error_file[k].c_str(), O_CREAT | O_WRONLY);
+        if (fd_er > 0) {
+          // redirect STDIN/STDOUT for this process
+          dup2(fd_er, 2);
+          close(fd_er);
+        }
+        else {
+          cout << "error fd_er!" << endl;
         }
       }
       //std::cout << line << std::endl;
@@ -399,7 +411,12 @@ string Shell::redirect_output(std::string l) {
     }
     string str = l.substr(i + 1, j - i - 1);
     str.erase(std::remove(str.begin(), str.end(), ' '), str.end());
-    output_file.push_back(str);
+    if (!str.empty()) {
+      output_file.push_back(str);
+    }
+    else {
+      cerr << "error redirect output!" << endl;
+    }
     l.erase(i, j - i);
   }
   return l;
@@ -415,12 +432,34 @@ string Shell::redirect_input(std::string l) {
     }
     string str = l.substr(i + 1, j - i - 1);
     str.erase(std::remove(str.begin(), str.end(), ' '), str.end());
-    input_file.push_back(str);
+    if (!str.empty()) {
+      input_file.push_back(str);
+    }
+    else {
+      cerr << "error redirect input!" << endl;
+    }
     l.erase(i, j - i);
   }
   return l;
 }
 
 string Shell::redirect_error(std::string l) {
+  if (l.find("2>") != string::npos) {
+    int i = l.find("2>");
+    int j = i + 1;
+
+    while (j <= (int)l.size() - 1) {
+      j++;
+    }
+    string str = l.substr(i + 2, j - i - 1);
+    str.erase(std::remove(str.begin(), str.end(), ' '), str.end());
+    if (!str.empty()) {
+      error_file.push_back(str);
+    }
+    else {
+      cerr << "error redirect error!" << endl;
+    }
+    l.erase(i, j - i);
+  }
   return l;
 }
