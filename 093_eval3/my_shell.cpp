@@ -75,6 +75,7 @@ void Shell::free_argv() {
 
 void Shell::execute(const std::string & line) {
   parse_input(line);
+  string line_;
   //Shell_cmd My_Cmd;
   //My_Cmd.init_map();
   //for (size_t i = 0; i < argument_p.size(); i++)
@@ -135,10 +136,13 @@ void Shell::execute(const std::string & line) {
     My_Cmd.print_env();
     std::vector<std::string>().swap(argument_p);
   }
-  else if ((int)line.find("$") != -1) {
-    My_Cmd.print_map(line);
-  }
+  //else if ((int)line.find("$") != -1) {
+  //  My_Cmd.print_map(line);
+  //}
   else {
+    if ((int)line.find("$") != -1) {
+      line_ = My_Cmd.print_map(line);
+    }
     std::vector<std::string>().swap(argument_p);
     pid_t p1 = -1;
     p1 = fork();
@@ -167,7 +171,7 @@ void Shell::execute(const std::string & line) {
     else if (p1 == 0) {
       //std::cout << "child process in" << std::endl;
       bool find_cmd = false;
-      string l_ = redirect_error(line);
+      string l_ = redirect_error(line_);
       l_ = redirect_output(l_);
       l_ = redirect_input(l_);
       process_cmd(l_);  //init env_path

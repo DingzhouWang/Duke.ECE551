@@ -11,7 +11,7 @@ class Shell_cmd {
   Shell_cmd();
   void init_map();
   void update_map(string input);
-  void print_map(string input);
+  string print_map(string input);
   void set_val(vector<string> argument_p);
   void export_val(vector<string> argument_p);
   void rev_val(vector<string> argument_p);

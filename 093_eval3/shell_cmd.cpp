@@ -36,9 +36,9 @@ void Shell_cmd::init_map() {
   }
 }
 
-void Shell_cmd::print_map(string input) {
+string Shell_cmd::print_map(string input) {
   if ((int)input.find("$") == -1)
-    return;
+    return input;
   //int start = 0;
   //int end = 0;
   int cnt = 0;
@@ -50,7 +50,7 @@ void Shell_cmd::print_map(string input) {
       if (i == input.size() - 1) {
         cout << input << endl;
         ans = input;
-        return;
+        return ans;
       }
       int rec_pos = i;
       //&& i + 1 < input.size() &&
@@ -83,6 +83,7 @@ void Shell_cmd::print_map(string input) {
   //}
   //cout << input << endl;
   cout << ans << endl;
+  return ans;
 }
 
 void Shell_cmd::set_val(vector<string> argument_p) {
