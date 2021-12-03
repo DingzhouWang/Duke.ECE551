@@ -142,7 +142,6 @@ void Shell::execute(const std::string & line) {
       if (WIFEXITED(status)) {
         if (WEXITSTATUS(status) == 0) {
           std::cout << "Program was successful" << std::endl;
-          //return;
         }
         else
           std::cout << "Program failed with code " << WEXITSTATUS(status) << std::endl;
@@ -479,11 +478,8 @@ void Shell::go_exe(string line) {
     dup2(fd[1], STDERR_FILENO);
     close(fd[0]);
     close(fd[1]);
-    //string s = pipe_v.front();
-    //pipe_v.pop();
-    //cout << pipe_v.front() << endl;
     execute(pipe_v[0]);
-    //cout << "exit!" << endl;
+    exit(EXIT_SUCCESS);
   }
   if ((pid2 = fork()) < 0) {
     cout << "fork error" << endl;
@@ -492,19 +488,15 @@ void Shell::go_exe(string line) {
     dup2(fd[0], STDIN_FILENO);
     close(fd[0]);
     close(fd[1]);
-    //string s = pipe_v[1];
-    //pipe_v.pop();
-    //cout << "s:" << pipe_v[1] << endl;
-    cout << "1111" << endl;
     execute(pipe_v[1]);
-    cout << "2222" << endl;
+    exit(EXIT_SUCCESS);
   }
   close(fd[0]);
   close(fd[1]);
   for (int i = 0; i < 2; i++) {
     wait(&status);
   }
-  exit(EXIT_SUCCESS);
+  return;
 }
 
 /*
