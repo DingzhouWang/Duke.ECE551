@@ -407,7 +407,7 @@ a is qwe
 
 
 Step(4): Run ./ffosh, and test the redirection and pipe!
-   a)you can input command like "gcc 2> error_out" and then input "cat error_out", and you would see the error message in error_out. This is correct, because we redirect the stderr to the error_out. SO, the error message is in the error_out file.
+   a)you can input command like "gcc 2> error_out" and then input "cat error_out", and you would see the error message in error_out. This is correct, because we redirect the stderr to the error_out. So, the error message is in the error_out file.
 
 Example:
 ffosh:/home/dw299/ece551/093_eval3 $ gcc 2> error_out
