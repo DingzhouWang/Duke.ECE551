@@ -184,7 +184,9 @@ void Shell::execute(const std::string & line) {
         }
       }
       for (size_t k = 0; k < error_file.size(); k++) {
-        int fd_er = open(error_file[k].c_str(), O_CREAT | O_WRONLY);
+        int fd_er = open(error_file[k].c_str(),
+                         O_CREAT | O_RDWR,
+                         S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
         if (fd_er > 0) {
           // redirect STDERR for this process
           dup2(fd_er, 2);

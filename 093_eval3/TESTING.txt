@@ -326,8 +326,137 @@ Example:
 ffosh:/home/dw299/ece551/093_eval3 $ the user is $USER$
 the user is dw299$
 
-     4.If you input like "$123", you would see nothing. This is true, because 123 is not a key of the var. So we cannot find it and it's value.
+     4.If you first "set a ls", which means you set a=ls, then you access a by using "$a", you would see the result as you input "ls" command. This is true, because a=ls and you just input "$a", it equals to you just input "ls" command. So we cannot find it and it's value.
+     
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ set a ls
+ffosh:/home/dw299/ece551/093_eval3 $ $a
+'#TESTING.txt#'     README	  commandShell.txt   intest	    myec.txt	    shell_cmd.cpp~   story1
+ Extra-Credit.txt   TESTING.txt   ffosh		     my_shell.cpp   page1.txt	    shell_cmd.hpp    story2
+ Makefile	    cat		  ffosh.cpp	     my_shell.hpp   shell_cmd.cpp   shell_cmd.hpp~   wc_output
+Program was successful
+
+     4.If you first "set a wqe", which means you set a=qwe, then you access a by using "$a", you would see the result like "Command qwe not found". This is true, because a=qwe and you just input "$a", it equals to you just input "qwe" commend. And it is not a valid command.
 
 Example:
-ffosh:/home/dw299/ece551/093_eval3 $ $USER$123
-dw299
+ffosh:/home/dw299/ece551/093_eval3 $ set a qwe
+ffosh:/home/dw299/ece551/093_eval3 $ $a
+Command qwe not found
+Program failed with code 1
+
+     If you want to see a's value, you can just input like "a is $a", and you can see the output like "a is qwe". This is true, because "a is qwe" is a sentence but not a command.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ set a qwe
+ffosh:/home/dw299/ece551/093_eval3 $ a is $a
+a is qwe
+
+
+Step(4): Run ./ffosh, and test the redirection and pipe!
+   a)you can input command like "gcc 2> error_out", and you would see 
+
+
+
+   b)you can input command like "ls > out1" and "cat out1", and you would see result like below. This is correct, because we just redirect the output from stdout to out1, so if we "cat" it, we can see the result.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ ls > out1 
+Program was successful
+ffosh:/home/dw299/ece551/093_eval3 $ cat out1
+123
+Extra-Credit.txt
+Makefile
+README
+TESTING.txt
+cat
+commandShell.txt
+ffosh
+ffosh.cpp
+intest
+my_shell.cpp
+my_shell.hpp
+myec.txt
+out1
+page1.txt
+shell_cmd.cpp
+shell_cmd.cpp~
+shell_cmd.hpp
+shell_cmd.hpp~
+story1
+story2
+wc_output
+Program was successful
+   
+   c)you can input command like "cat < myec.txt" and you would see result like below. This is correct, because we just redirect the input from stdin to myec.txt, so if we input like that, we can see the result.
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ cat < myec.txt  
+Step 1: 83ac453dc620b2bdbb825c525e310f8f0c71140e
+Step 2: a18e9ba4a72e717be32cf56200f5bbe14693828e
+Step 3: c671e28bf8da84602a9e0338841a60ec1eeb2c7f
+Program was successful
+    
+   d)you can input command like "wc -l < README > out3" and "cat out3", you would see 437 in file out3. This is correct, because we redirect input and out from stdin and stdout to README and out3. So the input argument of "wc -l" is README, and the output result will be save in the file 3.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ wc -l < README > out3     
+Program was successful
+ffosh:/home/dw299/ece551/093_eval3 $ cat out3
+437
+Program was successful
+
+   e)you can input command like "wc -l > out3 < README" and "cat out3", you would see 437 in file out3. This is correct, because we redirect input and out from stdin and stdout to README and out3. So the input argument of "wc -l" is README, and the output result will be save in the file 3.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ wc -l>out3<README
+Program was successful
+ffosh:/home/dw299/ece551/093_eval3 $ cat out3
+437
+
+   f)And if we input like "wc < FILE_NAME > out3 -l" or "< FILE_NAME > wc_output wc -l" or " wc -l > wc_output < FILE_NAME" or other permutations, we will see the result same as previous(d and e). This is correct, because the program can recognize the redirect input file and output file. Besides, the program can also recognize the space(like example in e), that means the result of "wc -l>out3<README" and "wc -l > out3 < README" is same
+
+
+   g)We can input "ls | cat" to test the pipe, and you would see the result like below. This is correct, we do "ls" command and the output would pass the cat by pipe. So, we could see the result like this.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ ls | cat
+123
+234
+Extra-Credit.txt
+Makefile
+README
+TESTING.txt
+cat
+commandShell.txt
+ffosh
+ffosh.cpp
+intest
+my_shell.cpp
+my_shell.hpp
+myec.txt
+out1
+out2
+out3
+out4
+page1.txt
+shell_cmd.cpp
+shell_cmd.cpp~
+shell_cmd.hpp
+shell_cmd.hpp~
+story1
+story2
+Program was successful
+Program was successful
+    
+   h)And we also can mix the redirection and pipe together, eg: we can input "cat README | wc -l > wc_out", and you can use "ls" to see the files in this dictionary, and use "cat" to see the content. This is correct, because the output of "cat README" pass to the "wc" command by the pipe. And in the "wc" command, we realized redirection. So we can see the output like this.
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ cat README | wc -l > wc_out
+Program was successful
+ffosh:/home/dw299/ece551/093_eval3 $ ls
+123		  Makefile     cat		 ffosh.cpp     my_shell.hpp  out2  page1.txt	   shell_cmd.hpp   story2
+234		  README       commandShell.txt  intest        myec.txt      out3  shell_cmd.cpp   shell_cmd.hpp~  wc_out
+Extra-Credit.txt  TESTING.txt  ffosh		 my_shell.cpp  out1	     out4  shell_cmd.cpp~  story1
+Program was successful
+ffosh:/home/dw299/ece551/093_eval3 $ cat wc_out
+438
+Program was successful
