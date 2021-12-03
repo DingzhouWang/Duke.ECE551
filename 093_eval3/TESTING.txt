@@ -1,6 +1,6 @@
 Eval TESTING SAMPLE!
 
-Step(1) Run ./ffosh, and you can see "ffosh$",
+1;95;0cStep(1) Run ./ffosh, and you can see "ffosh$",
    a) you can input command like "/bin/ls", and you can see all the files under this folder and a message "Program was successful" this is correct, because it is full path to the command.
 
 Example:
