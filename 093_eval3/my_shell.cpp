@@ -14,8 +14,7 @@
 #include <string>
 #include <vector>
 
-//#include "shell_cmd.hpp"
-
+//this function is used to init the environment path
 bool Shell::init_envpath() {
   path = getenv("PATH");
   if (setenv("ECE551PATH", path, 1) == 0) {
@@ -30,15 +29,13 @@ bool Shell::init_envpath() {
 void Shell::set_path(const char * paths) {
   std::stringstream p(paths);
   std::string tmp;
-  while (getline(p, tmp, ':')) {
-    //std::cout << "set path " << tmp << std::endl;
+  while (getline(p, tmp, ':')) {     //filter the string by ":"
     char * t = strdup(tmp.c_str());  //remember to free it
     env_paths.push_back(t);
   }
-  //std::cout << env_paths[0] << " " << env_paths[1] << std::endl;
 }
 
-//set to new path
+//set to new path, split by :
 void Shell::process_cmd(const std::string & line) {
   init_envpath();
   path = getenv("ECE551PATH");
@@ -48,47 +45,25 @@ void Shell::process_cmd(const std::string & line) {
   }
 }
 
+//because we use strdup, so we have to free it
 void Shell::free_path() {
   for (size_t i = 0; i < env_paths.size(); i++) {
     free(env_paths[i]);
   }
 }
 
-/*set argv[] not used!!!!!!!
-void Shell::set_argv() {  //also have to remember free
-  int size_ = argument_p.size() + 1;
-  argv = new char *[size_];
-  //argv[0] = (char *)argument_p[0].c_str();
-  for (int i = 0; i < size_ - 1; i++) {
-    argv[i] = (char *)argument_p[i].c_str();
-  }
-  argv[size_ - 1] = NULL;
-}
-
-void Shell::free_argv() {
-  for (size_t i = 0; i < env_paths.size(); i++) {
-    //   free(argument_p[i]);
-  }
-  delete[] argv;
-}
-*/
-
+//the mainly execute function, which handle arguments like
+// set, rev, export, env, ls, cd, etc.
 void Shell::execute(const std::string & line) {
+  //first we need to make input format
   parse_input(line);
   string line_;
-  //Shell_cmd My_Cmd;
-  //My_Cmd.init_map();
-  //for (size_t i = 0; i < argument_p.size(); i++)
-  //  std::cout << argument_p[i] << std::endl;
-  //std::vector<std::string>().swap(argument_p);
+  //if the input is "cd"
   if (argument_p[0] == "cd") {
-    //std::cout << argument_p.size() << std::endl;
     new_cmd();
     std::vector<std::string>().swap(argument_p);
-    //exit(EXIT_SUCCESS);
   }
-  else if (argument_p[0] == "set") {
-    //cout << "SET" << endl;
+  else if (argument_p[0] == "set") {  //if the input is "set"
     if (argument_p.size() < 3) {
       cout << "please use: set var val!" << endl;
     }
@@ -97,51 +72,57 @@ void Shell::execute(const std::string & line) {
       for (size_t i = 0; i < argument_p[1].size(); i++) {
         if (argument_p[1][i] != '_' && isalnum(argument_p[1][i]) == 0) {
           valid = false;
-          //cout << argument_p[1][i] << endl;
           cout << "Invalid Key Name!" << endl;
           break;
         }
       }
       if (valid) {
-        ParseLine(line);
-        My_Cmd.set_val(parseline);
+        ParseLine(line);            //parse set, var, val
+        My_Cmd.set_val(parseline);  //set to the map
       }
       valid = true;
     }
-    //My_Cmd.print_map();
     std::vector<std::string>().swap(argument_p);
     std::vector<std::string>().swap(parseline);
   }
-  else if (argument_p[0] == "export") {
-    //cout << "export" << endl;
-    //My_Cmd.print_map();
+  else if (argument_p[0] == "export") {  //if the input is export
     if (argument_p.size() != 2) {
       cout << "please use: export var!" << endl;
     }
-    else {
+    else {  //add variable to environment
       My_Cmd.export_val(argument_p);
     }
     std::vector<std::string>().swap(argument_p);
   }
-  else if (argument_p[0] == "rev" && argument_p.size() == 2) {
+  else if (argument_p[0] == "rev") {  //&& argument_p.size() == 2
     if (argument_p.size() != 2) {
       cout << "please use: rev var!" << endl;
     }
-    else {
+    else {  // reverse the value
       My_Cmd.rev_val(argument_p);
     }
     std::vector<std::string>().swap(argument_p);
   }
-  else if (argument_p[0] == "env" && argument_p.size() == 1) {
-    My_Cmd.print_env();
+  else if (argument_p[0] == "env") {  //if the input is "env"
+    //&& argument_p.size() == 1
+    if (argument_p.size() != 1) {
+      cout << "please use: env!" << endl;
+    }
+    else {
+      My_Cmd.print_env();  //print all the env variables
+    }
     std::vector<std::string>().swap(argument_p);
   }
-  //else if ((int)line.find("$") != -1) {
-  //  My_Cmd.print_map(line);
-  //}
   else {
-    if ((int)line.find("$") != -1) {
+    if (line.find("$") != string::npos) {
       line_ = My_Cmd.print_map(line);
+      if (line_.find(" ") != string::npos) {
+        cout << line_ << endl;
+        return;
+      }
+    }
+    else {
+      line_ = line;
     }
     std::vector<std::string>().swap(argument_p);
     pid_t p1 = -1;
@@ -150,7 +131,7 @@ void Shell::execute(const std::string & line) {
       std::cerr << "cannot fork!" << std::endl;
       exit(EXIT_FAILURE);
     }
-    else if (p1 > 0) {
+    else if (p1 > 0) {  //parent process
       int status;
       //learn from linux man page
       pid_t wpid = waitpid(p1, &status, WUNTRACED);
@@ -168,7 +149,7 @@ void Shell::execute(const std::string & line) {
         std::cout << "Terminated by signal " << WTERMSIG(status) << std::endl;
       }
     }
-    else if (p1 == 0) {
+    else if (p1 == 0) {  //child process
       //std::cout << "child process in" << std::endl;
       bool find_cmd = false;
       string l_ = redirect_error(line_);
@@ -176,16 +157,15 @@ void Shell::execute(const std::string & line) {
       l_ = redirect_input(l_);
       process_cmd(l_);  //init env_path
       parse_input(l_);  //init argument_p
+      //std::cout << "1: " << argument_p[0] << std::endl;
       for (size_t i = 0; i < output_file.size(); i++) {
         int fd_out = open(output_file[i].c_str(),
                           O_CREAT | O_RDWR,
                           S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
         if (fd_out > 0) {
-          // redirect STDIN/STDOUT for this process
+          // redirect STDOUT for this process
           dup2(fd_out, 1);
-          //dup2(fd_out2, 1);
           close(fd_out);
-          //close(fd_out2);
         }
         else {
           cout << "error fd_out!" << endl;
@@ -194,7 +174,7 @@ void Shell::execute(const std::string & line) {
       for (size_t j = 0; j < input_file.size(); j++) {
         int fd_in = open(input_file[j].c_str(), O_RDONLY);
         if (fd_in > 0) {
-          // redirect STDIN/STDOUT for this process
+          // redirect STDIN for this process
           dup2(fd_in, 0);
           close(fd_in);
         }
@@ -205,7 +185,7 @@ void Shell::execute(const std::string & line) {
       for (size_t k = 0; k < error_file.size(); k++) {
         int fd_er = open(error_file[k].c_str(), O_CREAT | O_WRONLY);
         if (fd_er > 0) {
-          // redirect STDIN/STDOUT for this process
+          // redirect STDERR for this process
           dup2(fd_er, 2);
           close(fd_er);
         }
@@ -213,9 +193,7 @@ void Shell::execute(const std::string & line) {
           cout << "error fd_er!" << endl;
         }
       }
-      //std::cout << line << std::endl;
-      //std::cout << argument_p[0] << std::endl;
-      //std::cout << argument_p.size() << std::endl;
+      //if the input commend include '/'
       if (argument_p[0].find('/') != std::string::npos) {
         char * tmp_cmd = (char *)argument_p[0].c_str();
         //char * cmd[] = {tmp_cmd, NULL};
@@ -231,18 +209,14 @@ void Shell::execute(const std::string & line) {
         }
         delete[] cmd;
       }
-      else {
-        //std::cout << "child P11" << std::endl;
+      else {  //if the input commend exclude '/'
         for (size_t i = 0; i < env_paths.size(); i++) {
-          //char * tmp_cmd = (char *)line.c_str();
           std::string tmp_env_path = env_paths[i];
+          //here we need update the path
           std::string tmp_cmd = tmp_env_path + "/" + argument_p[0];
-          //std::cout << tmp_cmd << std::endl;
           char ** cmd = new char *[argument_p.size() + 1];
           for (size_t i = 0; i < argument_p.size(); i++) {
-            //std::cout << argument_p[i] << std::endl;
             cmd[i] = (char *)argument_p[i].c_str();
-            //std::cout << cmd[i] << std::endl;
           }
           cmd[argument_p.size()] = NULL;
           int exe_num = execve(tmp_cmd.c_str(), cmd, NULL);
@@ -259,14 +233,14 @@ void Shell::execute(const std::string & line) {
           std::cout << "Command " << argument_p[0] << " not found" << std::endl;
           exit(EXIT_FAILURE);
         }
-        //free_path();
       }
       free_path();
     }
   }
 }
 
-//parse
+//parse the input to meet the format
+//include to match '"' '\'
 void Shell::parse_input(const std::string & input) {
   //std::cout << input << std::endl;
   std::string res;
@@ -283,12 +257,6 @@ void Shell::parse_input(const std::string & input) {
         start = i;
         find_arg = true;
       }
-      //else if (i == input.size() - 1 && find_arg && input[i] != ' ') {
-      //  std::string tmp_arg = input.substr(start, i - start + 1);
-      //  //std::cout << "tmp_arg: " << tmp_arg << std::endl;
-      //  argument_p.push_back(tmp_arg);
-      //  find_arg = false;
-      //}
       else if (input[i] == ' ' && find_arg) {
         std::string tmp_arg = input.substr(start, i - start);
         //std::cout << "tmp_arg: " << tmp_arg << std::endl;
@@ -313,14 +281,7 @@ void Shell::parse_input(const std::string & input) {
       else if (input[i] == '"' && !find_quo && !find_arg) {
         find_quo = true;
         find_arg = true;
-        //if (input[i + 1] != '\\')
         start = i + 1;
-        // else {
-        //if (input[i + 2] == '"' || input[i + 2] == '\\') {
-        //  start = i + 2;
-        //  i = i + 2;
-        // }
-        //}
       }
       else if (input[i] == '"' && find_quo) {
         if (i > 0 && input[i - 1] == '\\') {
@@ -357,9 +318,9 @@ void Shell::parse_input(const std::string & input) {
   //std::cout << argument_p[0] << std::endl;
 }
 
+//simplify the elements in argument_p
+//remove "\\" and "\""
 void Shell::simplify() {
-  //std::vector<std::string> tmp_vec(argument_p.begin(), argument_p.end());
-  //argument_p.clear();
   for (auto & s_ : argument_p) {
     //std::cout << s_ << std::endl;
     for (size_t i = 0; i < s_.size(); i++) {
@@ -373,7 +334,7 @@ void Shell::simplify() {
   }
 }
 
-//cd
+//cd commend
 void Shell::new_cmd() {
   int cd_num = 0;
   if (argument_p.size() == 1) {
@@ -394,6 +355,7 @@ void Shell::new_cmd() {
   return;
 }
 
+//ParseLine is used to parse the "set var value" commend
 void Shell::ParseLine(const std::string & line) {
   int pos1 = line.find(" ");
   string cmd = line.substr(0, pos1);
@@ -405,6 +367,7 @@ void Shell::ParseLine(const std::string & line) {
   parseline.push_back(value);
 }
 
+//redirect output
 string Shell::redirect_output(std::string l) {
   while (l.find('>') != string::npos) {
     int i = l.find('>');
@@ -426,6 +389,7 @@ string Shell::redirect_output(std::string l) {
   return l;
 }
 
+//redirect input
 string Shell::redirect_input(std::string l) {
   while (l.find('<') != string::npos) {
     int i = l.find('<');
@@ -447,6 +411,7 @@ string Shell::redirect_input(std::string l) {
   return l;
 }
 
+//redirect error
 string Shell::redirect_error(std::string l) {
   if (l.find("2>") != string::npos) {
     int i = l.find("2>");
@@ -467,3 +432,107 @@ string Shell::redirect_error(std::string l) {
   }
   return l;
 }
+
+void Shell::go_exe(string line) {
+  //if only have one command
+  if (line.find('|') == string::npos) {
+    execute(line);
+    return;
+  }
+  //if we have many command, store it in pipe_v
+  std::stringstream p_v(line);
+  string cmd_p;
+  while (getline(p_v, cmd_p, '|')) {
+    pipe_v.push(cmd_p);
+  }
+  /*
+  int s_ = pipe_v.size() * 2;
+  int pipes[s_];
+  auto i = pipes;
+  int status;
+  while (i < pipes + s_) {
+    pipe(i);
+    i = i + 2;
+  }
+  exe_pipe(0);
+  for (auto j = 0; j < (int)pipe_v.size(); j++) {
+    wait(&status);
+  }
+  */
+  int fd[2];
+  int pid;
+  int status;
+  pipe(fd);
+  pid = fork();
+  if (pid == 0) {
+    dup2(fd[0], 0);
+    close(fd[1]);
+    string s = pipe_v.front();
+    pipe_v.pop();
+    //cout << pipe_v.front() << endl;
+    execute(s);
+  }
+  else {
+    waitpid(pid, &status, 0);
+    //cout << pipe_v.front() << endl;
+    dup2(fd[1], 1);
+    close(fd[0]);
+    string s = pipe_v.front();
+    pipe_v.pop();
+    //cout << s << endl;
+    execute(s);
+    exit(EXIT_SUCCESS);
+  }
+}
+
+/*
+void Shell::exe_pipe() {
+  //do each command
+  //cout << "pipe_v: " << pipe_v.size() << endl;
+
+  int fd[2];
+  if (pipe(fd) == -1) {
+    cerr << "We got error PIPE!" << endl;
+    exit(EXIT_FAILURE);
+  }
+  pid_t pid = fork();
+  if (pid == -1) {
+    std::cerr << "cannot fork!" << std::endl;
+    exit(EXIT_FAILURE);
+  }
+  else if (pid == 0) {  //child process
+    cout << "in child(pipe)" << endl;
+    close(fd[0]);
+    int tmp = dup2(fd[1], STDOUT_FILENO);  //std_out redirect to fd[1]
+    //close(fd[1]);
+    cout << "tmp:" << tmp << endl;
+    string cmd = pipe_v.front();
+    cout << cmd << endl;
+    pipe_v.pop();
+    execute(cmd);
+    //do we need to exit?
+    cout << "exit 1" << endl;
+  }
+  else if (pid > 0) {
+    //cout << "parent" << endl;
+    int status;
+    cout << "1111" << endl;
+    pid_t wpid = waitpid(pid, &status, 0);
+    cout << wpid << endl;
+    if (WEXITSTATUS(status)) {  //child process exit success
+      cout << "status" << endl;
+      if (pipe_v.size()) {
+        cout << "pipe_v size: " << pipe_v.size() << endl;
+        close(fd[1]);
+        dup2(fd[0], STDIN_FILENO);  //std_in redirect tp fd[0]
+        close(fd[0]);
+        exe_pipe();
+      }
+    }
+    else {
+      cout << "child exit failed!" << endl;
+      cerr << "child exit failed!" << endl;
+    }
+  }
+}
+*/

@@ -7,21 +7,12 @@ extern char ** environ;  //learn from environ(7) — Linux manual page
 
 using namespace std;
 
+//use constructor to init the map
 Shell_cmd::Shell_cmd() {
   init_map();
 }
-/*
-void Shell_cmd::update_map(string input) {
-  int start = 0;
-  //bool find_var
-  for (size_t i = 0; i < input.size(); i++) {
-    if (i < input.size() - 1 && input[i] == '$' &&
-        (isalnum(input[i + 1]) || input[i + 1] == '_')) {
-      start = i + 1;
-    }
-  }
-}
-*/
+
+//function to init the map
 void Shell_cmd::init_map() {
   char ** en_p;  //= environ;
   for (en_p = environ; *en_p != NULL; en_p++) {
@@ -36,14 +27,11 @@ void Shell_cmd::init_map() {
   }
 }
 
+//if we have set the virables, we can replace the word behind the $ by value that we set
 string Shell_cmd::print_map(string input) {
   if ((int)input.find("$") == -1)
     return input;
-  //int start = 0;
-  //int end = 0;
   int cnt = 0;
-  //bool find_var;
-  //string ans = "";
   for (size_t i = 0; i < input.size(); i++) {
     if (input[i] == '$') {
       //cout << "head: " << input << endl;
@@ -53,8 +41,6 @@ string Shell_cmd::print_map(string input) {
         return ans;
       }
       int rec_pos = i;
-      //&& i + 1 < input.size() &&
-      //  (isalnum(input[i + 1]) || input[i + 1] == '_')) {
       while (i < input.size() - 1) {
         i++;
         if (isalnum(input[i]) || input[i] == '_') {
@@ -77,15 +63,11 @@ string Shell_cmd::print_map(string input) {
     }
   }
   ans = input;
-  // for (auto kv : m_) {
-  //  cout << "key: " << kv.first << endl;
-  //  cout << "value: " << kv.second << endl;
-  //}
-  //cout << input << endl;
-  cout << ans << endl;
+  //cout << ans << endl;
   return ans;
 }
 
+//function to set the value (add to the map)
 void Shell_cmd::set_val(vector<string> argument_p) {
   for (size_t i = 0; i < argument_p[1].size(); i++) {
     if (isalnum(argument_p[1][i]) || argument_p[1][i] == '_') {
@@ -99,6 +81,7 @@ void Shell_cmd::set_val(vector<string> argument_p) {
   //print_map();
 }
 
+//function to export the value
 void Shell_cmd::export_val(vector<string> argument_p) {
   if (m_.find(argument_p[1]) == m_.end()) {
     cout << "this key haven't been set!" << endl;
@@ -108,6 +91,7 @@ void Shell_cmd::export_val(vector<string> argument_p) {
   }
 }
 
+//function to reverse the value
 void Shell_cmd::rev_val(vector<string> argument_p) {
   if (m_.find(argument_p[1]) == m_.end()) {
     cout << "this key haven't been set!" << endl;
@@ -120,6 +104,7 @@ void Shell_cmd::rev_val(vector<string> argument_p) {
   }
 }
 
+//function to print the environment virables
 void Shell_cmd::print_env() {
   char ** en_p;
   for (en_p = environ; *en_p != NULL; en_p++) {
@@ -127,6 +112,7 @@ void Shell_cmd::print_env() {
   }
 }
 
+//print key-value used for test
 void Shell_cmd::print_map() {
   for (auto kv : m_) {
     cout << "key:" << kv.first << endl;

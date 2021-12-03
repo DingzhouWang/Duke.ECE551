@@ -4,7 +4,7 @@
 using namespace std;
 class Shell_cmd {
  private:
-  unordered_map<string, string> m_;
+  unordered_map<string, string> m_;  //the map is used to save env virables
   string ans;
 
  public:

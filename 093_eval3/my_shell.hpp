@@ -1,6 +1,7 @@
 #include <stdlib.h>
 
 #include <iostream>
+#include <queue>
 #include <string>
 #include <vector>
 
@@ -10,13 +11,14 @@
 class Shell {
  private:
   char * path;
-  std::vector<char *> env_paths;
+  std::vector<char *> env_paths;  //save the environment path
   std::vector<std::string> parseline;
-  std::vector<std::string> argument_p;
-  Shell_cmd My_Cmd;
+  std::vector<std::string> argument_p;  //store the arguments
+  Shell_cmd My_Cmd;                     //a Shell_cmd class
   std::vector<std::string> output_file;
   std::vector<std::string> input_file;
   std::vector<std::string> error_file;
+  std::queue<std::string> pipe_v;
 
  public:
   Shell(){};
@@ -36,4 +38,6 @@ class Shell {
   string redirect_output(std::string line);
   string redirect_input(std::string line);
   string redirect_error(std::string line);
+  void exe_pipe(int i);
+  void go_exe(string line);
 };
