@@ -320,7 +320,7 @@ Example:
 ffosh:/home/dw299/ece551/093_eval3 $ the user is $USER$PWD
 the user is dw299/home/dw299/ece551/093_eval3
       
-     3.If you input like "$USER$", you would see "the user is dw299$". This is true, because the second "$" is the last char in string. We cannot access var by it.
+     3.If you input like "the user is $USER$", you would see "the user is dw299$". This is true, because the second "$" is the last char in string. We cannot access var by it.
 
 Example:
 ffosh:/home/dw299/ece551/093_eval3 $ the user is $USER$
@@ -336,7 +336,7 @@ ffosh:/home/dw299/ece551/093_eval3 $ $a
  Makefile	    cat		  ffosh.cpp	     my_shell.hpp   shell_cmd.cpp   shell_cmd.hpp~   wc_output
 Program was successful
 
-     4.If you first "set a wqe", which means you set a=qwe, then you access a by using "$a", you would see the result like "Command qwe not found". This is true, because a=qwe and you just input "$a", it equals to you just input "qwe" commend. And it is not a valid command.
+     5.If you first "set a wqe", which means you set a=qwe, then you access a by using "$a", you would see the result like "Command qwe not found". This is true, because a=qwe and you just input "$a", it equals to you just input "qwe" commend. And it is not a valid command.
 
 Example:
 ffosh:/home/dw299/ece551/093_eval3 $ set a qwe
@@ -353,9 +353,15 @@ a is qwe
 
 
 Step(4): Run ./ffosh, and test the redirection and pipe!
-   a)you can input command like "gcc 2> error_out", and you would see 
+   a)you can input command like "gcc 2> error_out" and then input "cat error_out", and you would see the error message in error_out. This is correct, because we redirect the stderr to the error_out. SO, the error message is in the error_out file.
 
-
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ gcc 2> error_out
+Program failed with code 1
+ffosh:/home/dw299/ece551/093_eval3 $ cat error_out
+gcc: fatal error: no input files
+compilation terminated.
+Program was successful
 
    b)you can input command like "ls > out1" and "cat out1", and you would see result like below. This is correct, because we just redirect the output from stdout to out1, so if we "cat" it, we can see the result.
 
