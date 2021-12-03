@@ -24,8 +24,8 @@ int main() {
     }
     if (line != "") {
       //regular execute function
-      My_Shell.execute(line);
-      //My_Shell.go_exe(line);
+      //My_Shell.execute(line);
+      My_Shell.go_exe(line);
       getcwd(buf, sizeof(buf));
       std::cout << "ffosh:" << buf << " $ ";
     }

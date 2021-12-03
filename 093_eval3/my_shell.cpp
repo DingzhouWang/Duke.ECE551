@@ -140,8 +140,10 @@ void Shell::execute(const std::string & line) {
         exit(EXIT_FAILURE);
       }
       if (WIFEXITED(status)) {
-        if (WEXITSTATUS(status) == 0)
+        if (WEXITSTATUS(status) == 0) {
           std::cout << "Program was successful" << std::endl;
+          //return;
+        }
         else
           std::cout << "Program failed with code " << WEXITSTATUS(status) << std::endl;
       }
@@ -214,21 +216,27 @@ void Shell::execute(const std::string & line) {
           std::string tmp_env_path = env_paths[i];
           //here we need update the path
           std::string tmp_cmd = tmp_env_path + "/" + argument_p[0];
+          //std::cout << tmp_cmd << std::endl;
           char ** cmd = new char *[argument_p.size() + 1];
           for (size_t i = 0; i < argument_p.size(); i++) {
             cmd[i] = (char *)argument_p[i].c_str();
+            //cout << cmd[i] << endl;
           }
           cmd[argument_p.size()] = NULL;
           int exe_num = execve(tmp_cmd.c_str(), cmd, NULL);
+          //cout << exe_num << endl;
           if (exe_num != 0) {
             find_cmd = find_cmd || false;
+            //cout << tmp_cmd << ":" << exe_num << endl;
           }
           else {
             find_cmd = true;
+            //cout << tmp_cmd << ":" << exe_num << endl;
             exit(EXIT_SUCCESS);
           }
           delete[] cmd;
         }
+        //cout << "11111" << endl;
         if (!find_cmd) {
           std::cout << "Command " << argument_p[0] << " not found" << std::endl;
           exit(EXIT_FAILURE);
@@ -443,7 +451,7 @@ void Shell::go_exe(string line) {
   std::stringstream p_v(line);
   string cmd_p;
   while (getline(p_v, cmd_p, '|')) {
-    pipe_v.push(cmd_p);
+    pipe_v.push_back(cmd_p);
   }
   /*
   int s_ = pipe_v.size() * 2;
@@ -460,29 +468,43 @@ void Shell::go_exe(string line) {
   }
   */
   int fd[2];
-  int pid;
+  int pid1, pid2;
   int status;
   pipe(fd);
-  pid = fork();
-  if (pid == 0) {
-    dup2(fd[0], 0);
-    close(fd[1]);
-    string s = pipe_v.front();
-    pipe_v.pop();
-    //cout << pipe_v.front() << endl;
-    execute(s);
+  if ((pid1 = fork()) < 0) {
+    cout << "fork error" << endl;
   }
-  else {
-    waitpid(pid, &status, 0);
-    //cout << pipe_v.front() << endl;
-    dup2(fd[1], 1);
+  else if (pid1 == 0) {
+    dup2(fd[1], STDOUT_FILENO);
+    dup2(fd[1], STDERR_FILENO);
     close(fd[0]);
-    string s = pipe_v.front();
-    pipe_v.pop();
-    //cout << s << endl;
-    execute(s);
-    exit(EXIT_SUCCESS);
+    close(fd[1]);
+    //string s = pipe_v.front();
+    //pipe_v.pop();
+    //cout << pipe_v.front() << endl;
+    execute(pipe_v[0]);
+    //cout << "exit!" << endl;
   }
+  if ((pid2 = fork()) < 0) {
+    cout << "fork error" << endl;
+  }
+  else if (pid2 == 0) {
+    dup2(fd[0], STDIN_FILENO);
+    close(fd[0]);
+    close(fd[1]);
+    //string s = pipe_v[1];
+    //pipe_v.pop();
+    //cout << "s:" << pipe_v[1] << endl;
+    cout << "1111" << endl;
+    execute(pipe_v[1]);
+    cout << "2222" << endl;
+  }
+  close(fd[0]);
+  close(fd[1]);
+  for (int i = 0; i < 2; i++) {
+    wait(&status);
+  }
+  exit(EXIT_SUCCESS);
 }
 
 /*
