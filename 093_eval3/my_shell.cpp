@@ -454,24 +454,57 @@ void Shell::go_exe(string line) {
   while (getline(p_v, cmd_p, '|')) {
     pipe_v.push_back(cmd_p);
   }
+
+  int s_ = pipe_v.size();
+  vector<int> pid_arr(s_);
+  //for (int i = 0; i < s_; i++) {
+  //  pid_arr[i] = fork();
+  //}
+  // cout << pid_arr.size() << endl;
   /*
-  int s_ = pipe_v.size() * 2;
-  int pipes[s_];
-  auto i = pipes;
-  int status;
-  while (i < pipes + s_) {
-    pipe(i);
-    i = i + 2;
-  }
   exe_pipe(0);
   for (auto j = 0; j < (int)pipe_v.size(); j++) {
     wait(&status);
   }
   */
-  int fd[2];
-  int pid1, pid2;
+  int lineNum = s_ - 1, colNum = 2;
+  int ** p = new int *[lineNum];
+  for (int i = 0; i < lineNum; i++) {
+    p[i] = new int[colNum];
+    pipe(p[i]);
+  }
+  //int fd[2];
+  //int pid1, pid2;
   int status;
-  pipe(fd);
+  //pipe(fd);
+  for (int i = 0; i < s_; i++) {
+    //pipe(p[i]);
+    pid_arr[i] = fork();
+    if (pid_arr[i] < 0) {
+      cout << "fork error" << endl;
+    }
+    else if (pid_arr[i] == 0) {
+      if (i != s_ - 1) {
+        dup2(p[i][1], STDOUT_FILENO);
+      }
+      //dup2(p[i][1], STDERR_FILENO);
+      if (i != 0) {
+        dup2(p[i - 1][0], STDIN_FILENO);
+      }
+      for (int m = 0; m < s_ - 1; m++) {
+        close(p[m][0]);
+        close(p[m][1]);
+      }
+
+      execute(pipe_v[i]);
+      for (int i = 0; i < lineNum; i++) {
+        delete[] p[i];
+      }
+      delete[] p;
+      exit(EXIT_SUCCESS);
+    }
+  }
+  /*
   if ((pid1 = fork()) < 0) {
     cout << "fork error" << endl;
   }
@@ -498,57 +531,18 @@ void Shell::go_exe(string line) {
   for (int i = 0; i < 2; i++) {
     wait(&status);
   }
+  */
+  for (int k = 0; k < s_ - 1; k++) {
+    close(p[k][0]);
+    close(p[k][1]);
+  }
+  for (int i = 0; i < s_; i++) {
+    wait(&status);
+  }
+
+  for (int i = 0; i < lineNum; i++) {
+    delete[] p[i];
+  }
+  delete[] p;
   return;
 }
-
-/*
-void Shell::exe_pipe() {
-  //do each command
-  //cout << "pipe_v: " << pipe_v.size() << endl;
-
-  int fd[2];
-  if (pipe(fd) == -1) {
-    cerr << "We got error PIPE!" << endl;
-    exit(EXIT_FAILURE);
-  }
-  pid_t pid = fork();
-  if (pid == -1) {
-    std::cerr << "cannot fork!" << std::endl;
-    exit(EXIT_FAILURE);
-  }
-  else if (pid == 0) {  //child process
-    cout << "in child(pipe)" << endl;
-    close(fd[0]);
-    int tmp = dup2(fd[1], STDOUT_FILENO);  //std_out redirect to fd[1]
-    //close(fd[1]);
-    cout << "tmp:" << tmp << endl;
-    string cmd = pipe_v.front();
-    cout << cmd << endl;
-    pipe_v.pop();
-    execute(cmd);
-    //do we need to exit?
-    cout << "exit 1" << endl;
-  }
-  else if (pid > 0) {
-    //cout << "parent" << endl;
-    int status;
-    cout << "1111" << endl;
-    pid_t wpid = waitpid(pid, &status, 0);
-    cout << wpid << endl;
-    if (WEXITSTATUS(status)) {  //child process exit success
-      cout << "status" << endl;
-      if (pipe_v.size()) {
-        cout << "pipe_v size: " << pipe_v.size() << endl;
-        close(fd[1]);
-        dup2(fd[0], STDIN_FILENO);  //std_in redirect tp fd[0]
-        close(fd[0]);
-        exe_pipe();
-      }
-    }
-    else {
-      cout << "child exit failed!" << endl;
-      cerr << "child exit failed!" << endl;
-    }
-  }
-}
-*/

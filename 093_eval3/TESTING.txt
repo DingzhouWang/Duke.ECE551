@@ -466,3 +466,10 @@ Program was successful
 ffosh:/home/dw299/ece551/093_eval3 $ cat wc_out
 438
 Program was successful
+
+   i)We can input more pipe command, like "ls | cat | wc", and we will see the result like below. This is correct. Because, the first pipe stdout redirect to the second's stdin, and the second stdout redirect to the third's stdin. So, that means we can see the "wc" result at last.(all the rediction realized by pipe)
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ ls | cat | wc
+     22      26     259
+Program was successful
