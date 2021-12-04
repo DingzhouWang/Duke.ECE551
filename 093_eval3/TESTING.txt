@@ -206,10 +206,9 @@ Program was successful
 
 Example:
 ffosh:/home/dw299/ece551/093_eval3 $ ls "a   b" "c   d"
-ls: cannot access 'a': No such file or directory
 ls: cannot access 'a   b': No such file or directory
-ls: cannot access 'c': No such file or directory
 ls: cannot access 'c   d': No such file or directory
+Program failed with code 2
 
    e)if you input like "\"ls"\" or \\a\\b, the program will output the Program failed with code 1, and you can see the real arguments like "ls" or \a\b, this is correct because the program will support escaped quotation marks (\") and backslashes (\\) to allow the user to write a literal quotation mark and backslashes, but it is not a real command for the shell, so it just shows command not found.
 
@@ -229,6 +228,12 @@ ls: invalid option -- '2'
 Try 'ls --help' for more information.
 Program failed with code 2
 
+   g)if we input like  ls "\\a   \"", we will see the result below. This is correct, because we can recognize the "\\" and "\""(\ is a special mark).
+
+Example:
+ffosh:/home/dw299/ece551/093_eval3 $ ls "\\a   \""
+ls: cannot access '\a   "': No such file or directory
+Program failed with code 2
 
 Step(3) Run ./ffosh, and you can see "ffosh:$WORK_PATH$" for me it's "ffosh:/home/dw299/ece551/093_eval3 $"
    a)you can input command "ls", and you can see all the files in this directory. And you input like "cd ." and "ls", you can see all the files in this directory. This is correct, because "cd ." would not change the directory.

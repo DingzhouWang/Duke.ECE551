@@ -59,6 +59,7 @@ void Shell::execute(const std::string & line) {
   parse_input(line);
   string line_;
   //if the input is "cd"
+  //cout << argument_p[0] << endl;
   if (argument_p[0] == "cd") {
     new_cmd();
     std::vector<std::string>().swap(argument_p);
@@ -114,16 +115,20 @@ void Shell::execute(const std::string & line) {
     std::vector<std::string>().swap(argument_p);
   }
   else {
-    if (line.find("$") != string::npos) {
+    if (line.find("$") != string::npos) {  //have $
       line_ = My_Cmd.print_map(line);
-      if (line_.find(" ") != string::npos) {
+      //cout << argument_p[0] << endl;
+      if (line_.find(" ") != string::npos) {  //have " "
         cout << line_ << endl;
-        return;
+        //cout << "123" << endl;
+        std::vector<std::string>().swap(argument_p);
+        return;  //exit(EXIT_SUCCESS);
       }
     }
     else {
       line_ = line;
     }
+
     std::vector<std::string>().swap(argument_p);
     pid_t p1 = -1;
     p1 = fork();
@@ -311,7 +316,7 @@ void Shell::parse_input(const std::string & input) {
         argument_p.push_back(tmp_arg);
         find_arg = false;
       }
-      else if (input[i] == ' ' && find_arg) {
+      else if (input[i] == ' ' && find_arg && !find_quo) {
         std::string tmp_arg = input.substr(start, i - start);
         argument_p.push_back(tmp_arg);
         find_arg = false;
